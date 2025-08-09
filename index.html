@@ -30,7 +30,7 @@
     @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
 
     /* NAV */
-    .nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(11,11,12,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);will-change:transform,opacity}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(11,11,12,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);will-change:transform,opacity;transform:translate3d(0,0,0)}
     .nav .in{display:flex;gap:16px;align-items:center;padding:10px 24px}
     .logo{font-weight:800;letter-spacing:-.01em}
     .nav .links{display:flex;gap:14px;margin-left:auto;flex-wrap:wrap}
@@ -327,33 +327,49 @@
   <script>
     // Reveal disabled (removed)
 
-    // Nav hide on downward scroll (final)
+    // Nav hide on downward scroll (bulletproof + polling fallback)
     (function(){
       const nav = document.querySelector('.nav');
       if(!nav) return;
-      // Keep layout offset stable under fixed header
+
+      function getY(){
+        return (typeof window.pageYOffset === 'number' ? window.pageYOffset : null) ??
+               (document.scrollingElement && document.scrollingElement.scrollTop) ??
+               document.documentElement.scrollTop ??
+               document.body.scrollTop ?? 0;
+      }
       function setNavH(){
-        const h = Math.round(nav.getBoundingClientRect().height);
+        const h = Math.ceil((nav.getBoundingClientRect().height)||64);
         document.documentElement.style.setProperty('--navH', h + 'px');
       }
       setNavH();
-      window.addEventListener('resize', ()=>{ clearTimeout(window.__navRz); window.__navRz = setTimeout(setNavH, 100); }, {passive:true});
+      window.addEventListener('resize', setNavH, {passive:true});
 
-      let lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      function onScroll(){
-        const y = window.pageYOffset || document.documentElement.scrollTop || 0;
-        const dy = y - lastY;
-        if(y <= 0){
+      let lastY = getY();
+      let ticking = false;
+      function apply(){
+        const y = getY();
+        if(y <= 1){
           nav.classList.remove('nav-hide','nav-dim');
-        } else if(dy > 2){ // scrolling down
+        } else if(y > lastY){ // down
           nav.classList.add('nav-hide','nav-dim');
-        } else if(dy < -2){ // scrolling up
+        } else if(y < lastY){ // up
           nav.classList.remove('nav-hide','nav-dim');
         }
         lastY = y;
+        ticking = false;
       }
+      function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(apply); } }
+
+      // Listen to events (works in most contexts)
       window.addEventListener('scroll', onScroll, {passive:true});
-      onScroll();
+      window.addEventListener('wheel', onScroll, {passive:true});
+      window.addEventListener('touchmove', onScroll, {passive:true});
+
+      // Fallback: poll scroll position (catches hosts that swallow events)
+      setInterval(apply, 120);
+
+      apply();
     })();
 
 
