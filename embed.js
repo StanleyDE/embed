@@ -22,8 +22,16 @@
       modal.remove();
     }
 
-    document.getElementById('btn-accept').addEventListener('click', () => save(true));
-    document.getElementById('btn-reject').addEventListener('click', () => save(false));
+    const accept = document.getElementById('btn-accept');
+    const reject = document.getElementById('btn-reject');
+
+    if (accept) {
+      accept.addEventListener('click', () => save(true));
+    }
+
+    if (reject) {
+      reject.addEventListener('click', () => save(false));
+    }
   }
 
   if(document.readyState === 'loading'){
