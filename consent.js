@@ -19,6 +19,10 @@ function saveConsent(next){
   return consent;
 }
 
+function resetConsent(){
+  localStorage.removeItem(LS_KEY);
+}
+
 if (typeof module !== "undefined") {
-  module.exports = { LS_KEY, DEFAULT, loadConsent, saveConsent };
+  module.exports = { LS_KEY, DEFAULT, loadConsent, saveConsent, resetConsent };
 }

@@ -1,4 +1,4 @@
-const { loadConsent, saveConsent, DEFAULT, LS_KEY } = require('../consent');
+const { loadConsent, saveConsent, resetConsent, DEFAULT, LS_KEY } = require('../consent');
 
 const localStorageMock = (() => {
   let store = {};
@@ -6,6 +6,9 @@ const localStorageMock = (() => {
     getItem: (key) => store[key] || null,
     setItem: (key, value) => {
       store[key] = value.toString();
+    },
+    removeItem: (key) => {
+      delete store[key];
     },
     clear: () => {
       store = {};
@@ -37,5 +40,11 @@ describe('consent helpers', () => {
     const stored = JSON.parse(localStorage.getItem(LS_KEY));
     expect(stored).toMatchObject({ analytics: true });
     expect(result.analytics).toBe(true);
+  });
+
+  test('resetConsent removes saved consent', () => {
+    saveConsent({ analytics: true });
+    resetConsent();
+    expect(loadConsent()).toEqual(DEFAULT);
   });
 });
