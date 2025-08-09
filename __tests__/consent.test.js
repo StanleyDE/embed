@@ -31,8 +31,15 @@ describe('consent helpers', () => {
   });
 
   test('loadConsent fills missing fields', () => {
+    const timestamp = new Date().toISOString();
+    localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true, timestamp }));
+    expect(loadConsent()).toEqual({ ...DEFAULT, analytics: true, timestamp });
+  });
+
+  test('loadConsent returns DEFAULT and clears invalid timestamp', () => {
     localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true }));
-    expect(loadConsent()).toEqual({ ...DEFAULT, analytics: true });
+    expect(loadConsent()).toEqual(DEFAULT);
+    expect(localStorage.getItem(LS_KEY)).toBeNull();
   });
 
   test('saveConsent writes to localStorage', () => {

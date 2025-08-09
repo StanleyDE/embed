@@ -5,6 +5,10 @@ function loadConsent(){
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
+      if (!c.timestamp || Number.isNaN(Date.parse(c.timestamp))) {
+        localStorage.removeItem(LS_KEY);
+        return { ...DEFAULT };
+      }
       return { ...DEFAULT, ...c };
     }
     return { ...DEFAULT };
