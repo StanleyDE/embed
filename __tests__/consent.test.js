@@ -1,4 +1,4 @@
-const { loadConsent, saveConsent, DEFAULT, LS_KEY } = require('../consent');
+const { loadConsent, saveConsent, DEFAULT, LS_KEY, MAX_VALIDITY_MS } = require('../consent');
 
 const localStorageMock = (() => {
   let store = {};
@@ -6,6 +6,9 @@ const localStorageMock = (() => {
     getItem: (key) => store[key] || null,
     setItem: (key, value) => {
       store[key] = value.toString();
+    },
+    removeItem: (key) => {
+      delete store[key];
     },
     clear: () => {
       store = {};
@@ -32,5 +35,13 @@ describe('consent helpers', () => {
     const stored = JSON.parse(localStorage.getItem(LS_KEY));
     expect(stored).toMatchObject({ analytics: true });
     expect(result.analytics).toBe(true);
+  });
+
+  test('loadConsent returns DEFAULT when consent expired', () => {
+    const old = new Date(Date.now() - MAX_VALIDITY_MS - 1000).toISOString();
+    const expired = { ...DEFAULT, analytics: true, timestamp: old };
+    localStorage.setItem(LS_KEY, JSON.stringify(expired));
+    expect(loadConsent()).toEqual(DEFAULT);
+    expect(localStorage.getItem(LS_KEY)).toBeNull();
   });
 });
