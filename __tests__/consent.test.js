@@ -55,6 +55,19 @@ describe('consent helpers', () => {
     expect(loadConsent()).toEqual(DEFAULT);
     expect(localStorage.getItem(LS_KEY)).toBeNull();
   });
+  test('loadConsent removes unparseable timestamp string', () => {
+    localStorage.setItem(
+      LS_KEY,
+      JSON.stringify({
+        essential: true,
+        analytics: true,
+        external: false,
+        timestamp: 'not-a-date'
+      })
+    );
+    expect(loadConsent()).toEqual(DEFAULT);
+    expect(localStorage.getItem(LS_KEY)).toBeNull();
+  });
   test('saveConsent writes to localStorage', () => {
     const result = saveConsent({ analytics: true });
     const stored = JSON.parse(localStorage.getItem(LS_KEY));
