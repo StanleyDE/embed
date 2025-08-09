@@ -29,7 +29,6 @@ describe('consent helpers', () => {
     localStorage.setItem(LS_KEY, '{invalid');
     expect(loadConsent()).toEqual(DEFAULT);
   });
-
   test('loadConsent fills missing fields', () => {
     const timestamp = new Date().toISOString();
     localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true, timestamp }));
