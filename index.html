@@ -119,6 +119,12 @@
     .nav.nav-hide{transform:translateY(-120%);opacity:0;pointer-events:none}
       /* Globale Anker-Korrektur für Fixed-Header */
     section[id]{scroll-margin-top:calc(var(--navH,64px) + 12px)}
+
+    /* Cookie Modal */
+    .cookie-modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;background:rgba(11,11,12,.8);backdrop-filter:blur(4px)}
+    .cookie-modal .box{max-width:480px;background:rgba(20,20,22,.96);border:1px solid var(--line);border-radius:16px;padding:24px}
+    .cookie-modal .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .cookie-modal a{color:var(--acc);text-decoration:underline;font-size:14px;display:inline-block;margin-top:12px}
   </style>
   <script type="application/ld+json">
   {
@@ -320,7 +326,7 @@
   <footer class="foot" role="contentinfo">
     <div class="in wrap">
       <div>© <span id="year"></span> stanverse</div>
-      <nav aria-label="Footerlinks" style="font-size:12px"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="https://instagram.com/stanverse" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4.5" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a></nav>
+      <nav aria-label="Footerlinks" style="font-size:12px"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="cookies.html">Cookies</a><a href="https://instagram.com/stanverse" target="_blank" rel="noopener" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor"/><circle cx="12" cy="12" r="4.5" stroke="currentColor"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a></nav>
     </div>
   </footer>
 
@@ -415,5 +421,36 @@
       addEventListener('resize', ()=>{ clearTimeout(window.__rAF||0); window.__rAF = setTimeout(redraw, 120); }, {passive:true});
     })();
   </script>
+
+<div class="cookie-modal" id="cookie-modal" hidden>
+  <div class="box">
+    <strong>Cookies & Dienste</strong>
+    <p style="margin:6px 0 0;color:var(--muted)">Wir nutzen essenzielle Cookies sowie – nur mit deiner Zustimmung – Analyse (Google Analytics) und Externe Medien (YouTube, Calendly).</p>
+    <div class="actions">
+      <button class="btn" id="btn-reject">Nur essenziell</button>
+      <button class="btn primary" id="btn-accept">Alle akzeptieren</button>
+    </div>
+    <a href="cookies.html">Mehr über Cookies</a>
+  </div>
+</div>
+<script>
+  (function(){
+    const LS_KEY = 'consent_v1';
+    const modal = document.getElementById('cookie-modal');
+    if(!modal) return;
+    let stored = null;
+    try{ stored = JSON.parse(localStorage.getItem(LS_KEY)); }catch{}
+    if(!stored || !stored.timestamp){
+      modal.hidden = false;
+    }
+    function save(all){
+      const data = { essential:true, analytics: all, external: all, timestamp: new Date().toISOString() };
+      localStorage.setItem(LS_KEY, JSON.stringify(data));
+      modal.remove();
+    }
+    document.getElementById('btn-accept').addEventListener('click', ()=>save(true));
+    document.getElementById('btn-reject').addEventListener('click', ()=>save(false));
+  })();
+</script>
 </body>
 </html>
