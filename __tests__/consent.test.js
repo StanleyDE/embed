@@ -42,6 +42,15 @@ describe('consent helpers', () => {
     expect(localStorage.getItem(LS_KEY)).toBeNull();
   });
 
+  test('mutating loadConsent result does not affect storage', () => {
+    const timestamp = new Date().toISOString();
+    localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true, timestamp }));
+    const result = loadConsent();
+    result.analytics = false;
+    const stored = JSON.parse(localStorage.getItem(LS_KEY));
+    expect(stored.analytics).toBe(true);
+  });
+
   test('saveConsent writes to localStorage', () => {
     const result = saveConsent({ analytics: true });
     const stored = JSON.parse(localStorage.getItem(LS_KEY));

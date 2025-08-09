@@ -9,7 +9,8 @@ function loadConsent(){
         localStorage.removeItem(LS_KEY);
         return { ...DEFAULT };
       }
-      return { ...DEFAULT, ...c };
+      const merged = { ...DEFAULT, ...c };
+      return { ...merged };
     }
     return { ...DEFAULT };
   } catch {
