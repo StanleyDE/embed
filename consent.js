@@ -12,7 +12,9 @@ function loadConsent() {
         typeof c.essential === "boolean" &&
         typeof c.analytics === "boolean" &&
         typeof c.external === "boolean" &&
-        (typeof c.timestamp === "string" || c.timestamp === null);
+        (c.timestamp === null ||
+          (typeof c.timestamp === "string" &&
+            !Number.isNaN(Date.parse(c.timestamp))));
 
       if (hasKeys && validTypes) {
         return { ...DEFAULT, ...c };
