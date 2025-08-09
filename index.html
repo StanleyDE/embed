@@ -436,24 +436,6 @@
     </div>
   </div>
 </div>
-<script>
-  (function(){
-    const LS_KEY = 'consent_v1';
-    const modal = document.getElementById('cookie-modal');
-    if(!modal) return;
-    let stored = null;
-    try{ stored = JSON.parse(localStorage.getItem(LS_KEY)); }catch{}
-    if(!stored || !stored.timestamp){
-      modal.hidden = false;
-    }
-    function save(all){
-      const data = { essential:true, analytics: all, external: all, timestamp: new Date().toISOString() };
-      localStorage.setItem(LS_KEY, JSON.stringify(data));
-      modal.remove();
-    }
-    document.getElementById('btn-accept').addEventListener('click', ()=>save(true));
-    document.getElementById('btn-reject').addEventListener('click', ()=>save(false));
-  })();
-</script>
+<script src="embed.js"></script>
 </body>
 </html>
