@@ -1,5 +1,20 @@
 const { loadConsent, saveConsent, DEFAULT, LS_KEY } = require('../consent');
 
+const localStorageMock = (() => {
+  let store = {};
+  return {
+    getItem: (key) => store[key] || null,
+    setItem: (key, value) => {
+      store[key] = value.toString();
+    },
+    clear: () => {
+      store = {};
+    }
+  };
+})();
+
+global.localStorage = localStorageMock;
+
 describe('consent helpers', () => {
   beforeEach(() => localStorage.clear());
 
