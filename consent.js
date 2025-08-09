@@ -5,7 +5,12 @@ function loadConsent(){
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
-      return { ...DEFAULT, ...c };
+      if (!c.timestamp || Number.isNaN(Date.parse(c.timestamp))) {
+        localStorage.removeItem(LS_KEY);
+        return { ...DEFAULT };
+      }
+      const merged = { ...DEFAULT, ...c };
+      return { ...merged };
     }
     return { ...DEFAULT };
   } catch {
