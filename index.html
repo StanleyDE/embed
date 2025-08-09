@@ -119,6 +119,12 @@
     .nav.nav-hide{transform:translateY(-120%);opacity:0;pointer-events:none}
       /* Globale Anker-Korrektur für Fixed-Header */
     section[id]{scroll-margin-top:calc(var(--navH,64px) + 12px)}
+
+    /* Cookie Banner */
+    .cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:9999;padding:16px;background:rgba(20,20,22,.96);border-top:1px solid var(--line)}
+    .cookie-banner .content{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .cookie-banner .text{flex:1 1 420px}
+    .cookie-banner .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
   </style>
   <script type="application/ld+json">
   {
@@ -415,5 +421,37 @@
       addEventListener('resize', ()=>{ clearTimeout(window.__rAF||0); window.__rAF = setTimeout(redraw, 120); }, {passive:true});
     })();
   </script>
+
+<div class="cookie-banner" id="cookie-banner" hidden>
+  <div class="content">
+    <div class="text">
+      <strong>Cookies & Dienste</strong>
+      <p style="margin:6px 0 0;color:var(--muted)">Wir nutzen essenzielle Cookies sowie – nur mit deiner Zustimmung – Analyse (Google Analytics) und Externe Medien (YouTube, Calendly).</p>
+    </div>
+    <div class="actions">
+      <button class="btn" id="btn-reject">Nur essenziell</button>
+      <button class="btn primary" id="btn-accept">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+<script>
+  (function(){
+    const LS_KEY = 'consent_v1';
+    const banner = document.getElementById('cookie-banner');
+    if(!banner) return;
+    let stored = null;
+    try{ stored = JSON.parse(localStorage.getItem(LS_KEY)); }catch{}
+    if(!stored || !stored.timestamp){
+      banner.hidden = false;
+    }
+    function save(all){
+      const data = { essential:true, analytics: all, external: all, timestamp: new Date().toISOString() };
+      localStorage.setItem(LS_KEY, JSON.stringify(data));
+      banner.remove();
+    }
+    document.getElementById('btn-accept').addEventListener('click', ()=>save(true));
+    document.getElementById('btn-reject').addEventListener('click', ()=>save(false));
+  })();
+</script>
 </body>
 </html>
