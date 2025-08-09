@@ -1,16 +1,22 @@
 const LS_KEY = "consent_v1";
 const DEFAULT = { essential: true, analytics: false, external: false, timestamp: null };
 
-function loadConsent(){
+function loadConsent() {
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
-      if (!c.timestamp || Number.isNaN(Date.parse(c.timestamp))) {
-        localStorage.removeItem(LS_KEY);
-        return { ...DEFAULT };
+      const hasKeys = ["essential", "analytics", "external", "timestamp"].every((k) =>
+        Object.prototype.hasOwnProperty.call(c, k)
+      );
+      const validTypes =
+        typeof c.essential === "boolean" &&
+        typeof c.analytics === "boolean" &&
+        typeof c.external === "boolean" &&
+        (typeof c.timestamp === "string" || c.timestamp === null);
+
+      if (hasKeys && validTypes) {
+        return { ...DEFAULT, ...c };
       }
-      const merged = { ...DEFAULT, ...c };
-      return { ...merged };
     }
     return { ...DEFAULT };
   } catch {
@@ -18,13 +24,13 @@ function loadConsent(){
   }
 }
 
-function saveConsent(next){
+function saveConsent(next) {
   const consent = { ...loadConsent(), ...next, timestamp: new Date().toISOString() };
   localStorage.setItem(LS_KEY, JSON.stringify(consent));
   return consent;
 }
 
-function resetConsent(){
+function resetConsent() {
   localStorage.removeItem(LS_KEY);
 }
 
