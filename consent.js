@@ -18,8 +18,10 @@ function loadConsent() {
         return { ...DEFAULT, ...c };
       }
     }
+    localStorage.removeItem(LS_KEY);
     return { ...DEFAULT };
   } catch {
+    localStorage.removeItem(LS_KEY);
     return { ...DEFAULT };
   }
 }
