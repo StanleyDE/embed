@@ -29,10 +29,25 @@ describe('consent helpers', () => {
     localStorage.setItem(LS_KEY, '{invalid');
     expect(loadConsent()).toEqual(DEFAULT);
   });
-
   test('loadConsent fills missing fields', () => {
+    const timestamp = new Date().toISOString();
+    localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true, timestamp }));
+    expect(loadConsent()).toEqual({ ...DEFAULT, analytics: true, timestamp });
+  });
+
+  test('loadConsent returns DEFAULT and clears invalid timestamp', () => {
     localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true }));
-    expect(loadConsent()).toEqual({ ...DEFAULT, analytics: true });
+    expect(loadConsent()).toEqual(DEFAULT);
+    expect(localStorage.getItem(LS_KEY)).toBeNull();
+  });
+
+  test('mutating loadConsent result does not affect storage', () => {
+    const timestamp = new Date().toISOString();
+    localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true, timestamp }));
+    const result = loadConsent();
+    result.analytics = false;
+    const stored = JSON.parse(localStorage.getItem(LS_KEY));
+    expect(stored.analytics).toBe(true);
   });
 
   test('mutating loadConsent result does not affect storage', () => {
