@@ -5,7 +5,8 @@ function loadConsent(){
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
-      return { ...DEFAULT, ...c };
+      const merged = { ...DEFAULT, ...c };
+      return { ...merged };
     }
     return { ...DEFAULT };
   } catch {
