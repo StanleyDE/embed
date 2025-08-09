@@ -45,6 +45,18 @@ describe('consent helpers', () => {
     expect(loadConsent()).toEqual(DEFAULT);
   });
 
+  test('loadConsent returns DEFAULT when key types are invalid', () => {
+    const malformed = { essential: "yes", analytics: false, external: false, timestamp: null };
+    localStorage.setItem(LS_KEY, JSON.stringify(malformed));
+    expect(loadConsent()).toEqual(DEFAULT);
+  });
+
+  test('loadConsent returns DEFAULT when extra keys are present', () => {
+    const extra = { ...DEFAULT, foo: 'bar' };
+    localStorage.setItem(LS_KEY, JSON.stringify(extra));
+    expect(loadConsent()).toEqual(DEFAULT);
+  });
+
   test('saveConsent writes to localStorage', () => {
     const result = saveConsent({ analytics: true });
     const stored = JSON.parse(localStorage.getItem(LS_KEY));

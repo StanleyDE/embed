@@ -5,16 +5,19 @@ function loadConsent(){
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
-      const hasKeys = ["essential", "analytics", "external", "timestamp"].every((k) =>
+      const keys = ["essential", "analytics", "external", "timestamp"];
+      const hasAllKeys = keys.every((k) =>
         Object.prototype.hasOwnProperty.call(c, k)
       );
+      const noExtraKeys = Object.keys(c).every((k) => keys.includes(k));
       const validTypes =
         typeof c.essential === "boolean" &&
         typeof c.analytics === "boolean" &&
         typeof c.external === "boolean" &&
         (typeof c.timestamp === "string" || c.timestamp === null);
-      if (hasKeys && validTypes) {
-        return { ...DEFAULT, ...c };
+      if (hasAllKeys && noExtraKeys && validTypes) {
+        const cleaned = keys.reduce((acc, k) => ({ ...acc, [k]: c[k] }), {});
+        return { ...DEFAULT, ...cleaned };
       }
     }
     return { ...DEFAULT };
