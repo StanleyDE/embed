@@ -27,6 +27,11 @@ describe('consent helpers', () => {
     expect(loadConsent()).toEqual(DEFAULT);
   });
 
+  test('loadConsent fills missing fields', () => {
+    localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true }));
+    expect(loadConsent()).toEqual({ ...DEFAULT, analytics: true });
+  });
+
   test('saveConsent writes to localStorage', () => {
     const result = saveConsent({ analytics: true });
     const stored = JSON.parse(localStorage.getItem(LS_KEY));

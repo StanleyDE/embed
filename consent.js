@@ -4,7 +4,10 @@ const DEFAULT = { essential: true, analytics: false, external: false, timestamp:
 function loadConsent(){
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
-    return c ? c : { ...DEFAULT };
+    if (c && typeof c === "object" && !Array.isArray(c)) {
+      return { ...DEFAULT, ...c };
+    }
+    return { ...DEFAULT };
   } catch {
     return { ...DEFAULT };
   }
