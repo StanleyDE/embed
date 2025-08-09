@@ -116,7 +116,7 @@
       /* Nav fade on scroll */
     .nav{transition: background .25s ease, opacity .25s ease, transform .28s ease, backdrop-filter .25s ease, border-color .25s ease}
     .nav.nav-dim{opacity:.75;background:rgba(11,11,12,.62);border-bottom-color:rgba(35,35,38,.5);backdrop-filter:blur(6px)}
-    .nav.nav-hide{transform:translateY(-110%);opacity:0;pointer-events:none}
+    .nav.nav-hide{transform:translateY(-120%);opacity:0;pointer-events:none}
       /* Globale Anker-Korrektur für Fixed-Header */
     section[id]{scroll-margin-top:calc(var(--navH,64px) + 12px)}
   </style>
@@ -327,11 +327,11 @@
   <script>
     // Reveal disabled (removed)
 
-    // Nav dim on downward scroll
+    // Nav hide on downward scroll (final)
     (function(){
       const nav = document.querySelector('.nav');
       if(!nav) return;
-      // Header-Höhe in CSS-Variable schreiben, damit Layout nicht springt
+      // Keep layout offset stable under fixed header
       function setNavH(){
         const h = Math.round(nav.getBoundingClientRect().height);
         document.documentElement.style.setProperty('--navH', h + 'px');
@@ -340,26 +340,20 @@
       window.addEventListener('resize', ()=>{ clearTimeout(window.__navRz); window.__navRz = setTimeout(setNavH, 100); }, {passive:true});
 
       let lastY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      const HIDE_AFTER = 60; // ab dieser Scrolltiefe darf die Navi ausblenden
-      const DELTA = 8;      // minimale Änderung, um Richtung zu werten
-
       function onScroll(){
         const y = window.pageYOffset || document.documentElement.scrollTop || 0;
         const dy = y - lastY;
-        if(Math.abs(dy) < DELTA) return; // kleine Bewegungen ignorieren
-
-        if(y <= 4){
-          nav.classList.remove('nav-dim','nav-hide');
-        } else if(dy > 0){ // runter
-          nav.classList.add('nav-dim');
-          if(y > HIDE_AFTER) nav.classList.add('nav-hide');
-        } else { // rauf
-          nav.classList.remove('nav-hide');
-          nav.classList.remove('nav-dim');
+        if(y <= 0){
+          nav.classList.remove('nav-hide','nav-dim');
+        } else if(dy > 2){ // scrolling down
+          nav.classList.add('nav-hide','nav-dim');
+        } else if(dy < -2){ // scrolling up
+          nav.classList.remove('nav-hide','nav-dim');
         }
         lastY = y;
       }
       window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
     })();
 
 
