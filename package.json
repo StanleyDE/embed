@@ -1,7 +1,9 @@
 {
   "name": "embed",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cookie consent embed example",
+  "author": "",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "jest"
