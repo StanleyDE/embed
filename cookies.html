@@ -259,6 +259,7 @@
     const statusEl = document.getElementById('consent-status');
     const revokeBtn = document.getElementById('revoke-consent');
     const revokeFab = document.getElementById('revoke-fab');
+    const openSettings = document.getElementById('open-settings');
 
     // Init
     document.addEventListener('DOMContentLoaded', () => {
@@ -301,6 +302,7 @@
 
     // Controls
     btnSettings.addEventListener('click', openModal);
+    openSettings.addEventListener('click', openModal);
     modalClose.addEventListener('click', closeModal);
     revokeBtn.addEventListener('click', revokeConsent);
     revokeFab.addEventListener('click', openModal);
