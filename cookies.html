@@ -229,18 +229,13 @@
     </div>
   </dialog>
 
+  <script src="consent.js"></script>
   <script>
     // ===== Consent Manager (Plain JS, ohne Dependencies) =====
-    const LS_KEY = "consent_v1";
-    const DEFAULT = { essential: true, analytics: false, external: false, timestamp: null };
     let consent = loadConsent();
 
-    function loadConsent(){
-      try{ const c = JSON.parse(localStorage.getItem(LS_KEY)); return c? c : {...DEFAULT}; }catch{ return {...DEFAULT}; }
-    }
-    function saveConsent(next){
-      consent = { ...consent, ...next, timestamp: new Date().toISOString() };
-      localStorage.setItem(LS_KEY, JSON.stringify(consent));
+    function persistConsent(next){
+      consent = saveConsent(next);
       updateUI();
       applyConsent();
     }
@@ -318,13 +313,13 @@
       toggleExternal.setAttribute('aria-pressed', String(on));
     });
 
-    btnReject.addEventListener('click', ()=> saveConsent({ analytics:false, external:false }));
-    btnAccept.addEventListener('click', ()=> saveConsent({ analytics:true, external:true }));
-    savePartial.addEventListener('click', ()=> saveConsent({
+    btnReject.addEventListener('click', ()=> persistConsent({ analytics:false, external:false }));
+    btnAccept.addEventListener('click', ()=> persistConsent({ analytics:true, external:true }));
+    savePartial.addEventListener('click', ()=> persistConsent({
       analytics: toggleAnalytics.dataset.on === 'true',
       external:  toggleExternal.dataset.on === 'true'
     }));
-    saveAll.addEventListener('click', ()=> saveConsent({ analytics:true, external:true }));
+    saveAll.addEventListener('click', ()=> persistConsent({ analytics:true, external:true }));
 
     function openModal(){ modal.showModal(); }
     function closeModal(){ modal.close(); }
