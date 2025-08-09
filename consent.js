@@ -5,7 +5,17 @@ function loadConsent(){
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
-      return { ...DEFAULT, ...c };
+      const hasKeys = ["essential", "analytics", "external", "timestamp"].every((k) =>
+        Object.prototype.hasOwnProperty.call(c, k)
+      );
+      const validTypes =
+        typeof c.essential === "boolean" &&
+        typeof c.analytics === "boolean" &&
+        typeof c.external === "boolean" &&
+        (typeof c.timestamp === "string" || c.timestamp === null);
+      if (hasKeys && validTypes) {
+        return { ...DEFAULT, ...c };
+      }
     }
     return { ...DEFAULT };
   } catch {

@@ -30,9 +30,19 @@ describe('consent helpers', () => {
     expect(loadConsent()).toEqual(DEFAULT);
   });
 
-  test('loadConsent fills missing fields', () => {
+  test('loadConsent returns DEFAULT when value is a number', () => {
+    localStorage.setItem(LS_KEY, JSON.stringify(42));
+    expect(loadConsent()).toEqual(DEFAULT);
+  });
+
+  test('loadConsent returns DEFAULT when value is an array', () => {
+    localStorage.setItem(LS_KEY, JSON.stringify([true, false]));
+    expect(loadConsent()).toEqual(DEFAULT);
+  });
+
+  test('loadConsent returns DEFAULT when keys are missing', () => {
     localStorage.setItem(LS_KEY, JSON.stringify({ analytics: true }));
-    expect(loadConsent()).toEqual({ ...DEFAULT, analytics: true });
+    expect(loadConsent()).toEqual(DEFAULT);
   });
 
   test('saveConsent writes to localStorage', () => {
