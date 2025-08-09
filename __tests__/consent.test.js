@@ -30,11 +30,15 @@ describe('consent helpers', () => {
     expect(loadConsent()).toEqual(DEFAULT);
     expect(localStorage.getItem(LS_KEY)).toBeNull();
   });
-  test('loadConsent returns stored values when valid', () => {
+  test('loadConsent returns stored values and ignores result mutations', () => {
     const timestamp = new Date().toISOString();
     const stored = { essential: false, analytics: true, external: true, timestamp };
     localStorage.setItem(LS_KEY, JSON.stringify(stored));
-    expect(loadConsent()).toEqual(stored);
+    const result = loadConsent();
+    expect(result).toEqual(stored);
+    result.analytics = false;
+    const saved = JSON.parse(localStorage.getItem(LS_KEY));
+    expect(saved.analytics).toBe(true);
   });
 
   test('loadConsent returns DEFAULT and clears invalid timestamp', () => {
@@ -51,18 +55,6 @@ describe('consent helpers', () => {
     expect(loadConsent()).toEqual(DEFAULT);
     expect(localStorage.getItem(LS_KEY)).toBeNull();
   });
-
-  test('mutating loadConsent result does not affect storage', () => {
-    const timestamp = new Date().toISOString();
-    const stored = { essential: true, analytics: true, external: false, timestamp };
-    localStorage.setItem(LS_KEY, JSON.stringify(stored));
-    const result = loadConsent();
-    result.analytics = false;
-    const saved = JSON.parse(localStorage.getItem(LS_KEY));
-    expect(saved.analytics).toBe(true);
-  });
-
-
   test('saveConsent writes to localStorage', () => {
     const result = saveConsent({ analytics: true });
     const stored = JSON.parse(localStorage.getItem(LS_KEY));
