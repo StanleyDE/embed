@@ -14,6 +14,9 @@
 
     if(!stored || !stored.timestamp){
       modal.hidden = false;
+      if (typeof modal.focus === 'function') {
+        modal.focus();
+      }
     }
 
     function save(all){
