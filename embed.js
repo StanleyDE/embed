@@ -1,18 +1,13 @@
 (function(){
-  const { LS_KEY } = require('./consent');
+  const { loadConsent, saveConsent } = require('./consent');
 
   function init(){
     const modal = document.getElementById('cookie-modal');
     if(!modal) return;
 
-    let stored = null;
-    try {
-      stored = JSON.parse(localStorage.getItem(LS_KEY));
-    } catch {
-      // ignore parse errors
-    }
+    const consent = loadConsent();
 
-    if(!stored || !stored.timestamp){
+    if(!consent.timestamp){
       modal.hidden = false;
       if (typeof modal.focus === 'function') {
         modal.focus();
@@ -20,8 +15,7 @@
     }
 
     function save(all){
-      const data = { essential: true, analytics: all, external: all, timestamp: new Date().toISOString() };
-      localStorage.setItem(LS_KEY, JSON.stringify(data));
+      saveConsent({ analytics: all, external: all });
       modal.remove();
     }
 
