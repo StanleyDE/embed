@@ -1,5 +1,5 @@
 (function(){
-  const LS_KEY = 'consent_v1';
+  const { LS_KEY } = require('./consent');
 
   function init(){
     const modal = document.getElementById('cookie-modal');
