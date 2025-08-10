@@ -1,8 +1,10 @@
 describe('embed init', () => {
+  let fakeModal;
+
   beforeEach(() => {
     jest.resetModules();
 
-    const fakeModal = { hidden: true, remove: jest.fn() };
+    fakeModal = { hidden: true, remove: jest.fn(), focus: jest.fn() };
     global.document = {
       readyState: 'complete',
       getElementById: jest.fn((id) => {
@@ -18,7 +20,9 @@ describe('embed init', () => {
     };
   });
 
-  test('does not throw when buttons are missing', () => {
+  test('shows and focuses modal without buttons', () => {
     expect(() => require('../embed.js')).not.toThrow();
+    expect(fakeModal.hidden).toBe(false);
+    expect(fakeModal.focus).toHaveBeenCalled();
   });
 });
