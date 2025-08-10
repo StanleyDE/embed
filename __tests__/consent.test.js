@@ -75,6 +75,14 @@ describe('consent helpers', () => {
     expect(result.analytics).toBe(true);
   });
 
+  test('saveConsent ignores non-boolean values', () => {
+    const result = saveConsent({ analytics: 'yes', external: 1 });
+    const stored = JSON.parse(localStorage.getItem(LS_KEY));
+    expect(stored).toMatchObject({ analytics: false, external: false });
+    expect(result.analytics).toBe(false);
+    expect(result.external).toBe(false);
+  });
+
   test('resetConsent removes saved consent', () => {
     saveConsent({ analytics: true });
     resetConsent();
