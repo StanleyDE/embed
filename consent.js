@@ -29,7 +29,18 @@ function loadConsent() {
 }
 
 function saveConsent(next) {
-  const consent = { ...loadConsent(), ...next, timestamp: new Date().toISOString() };
+  const consent = { ...loadConsent() };
+
+  if (next && typeof next === "object") {
+    if (typeof next.analytics === "boolean") {
+      consent.analytics = next.analytics;
+    }
+    if (typeof next.external === "boolean") {
+      consent.external = next.external;
+    }
+  }
+
+  consent.timestamp = new Date().toISOString();
   localStorage.setItem(LS_KEY, JSON.stringify(consent));
   return consent;
 }
