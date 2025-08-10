@@ -1,4 +1,5 @@
-const { loadConsent, saveConsent, resetConsent, DEFAULT, LS_KEY } = require('../consent');
+import { beforeEach, describe, expect, test } from '@jest/globals';
+import { loadConsent, saveConsent, resetConsent, DEFAULT, LS_KEY } from '../consent.js';
 
 const localStorageMock = (() => {
   let store = {};

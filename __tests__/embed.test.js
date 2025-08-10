@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, test, jest } from '@jest/globals';
+
 describe('embed init', () => {
   let fakeModal;
 
@@ -20,8 +22,10 @@ describe('embed init', () => {
     };
   });
 
-  test('shows and focuses modal without buttons', () => {
-    expect(() => require('../embed.js')).not.toThrow();
+  test('shows and focuses modal without buttons', async () => {
+    await jest.isolateModulesAsync(async () => {
+      await import('../embed.js');
+    });
     expect(fakeModal.hidden).toBe(false);
     expect(fakeModal.focus).toHaveBeenCalled();
   });
@@ -56,8 +60,10 @@ describe('embed interactions', () => {
     };
   });
 
-  test('accept click saves positive consent and removes modal', () => {
-    require('../embed.js');
+  test('accept click saves positive consent and removes modal', async () => {
+    await jest.isolateModulesAsync(async () => {
+      await import('../embed.js');
+    });
     fakeAccept.cb();
 
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);
@@ -69,8 +75,10 @@ describe('embed interactions', () => {
     expect(fakeModal.remove).toHaveBeenCalled();
   });
 
-  test('reject click saves negative consent', () => {
-    require('../embed.js');
+  test('reject click saves negative consent', async () => {
+    await jest.isolateModulesAsync(async () => {
+      await import('../embed.js');
+    });
     fakeReject.cb();
 
     expect(localStorage.setItem).toHaveBeenCalledTimes(1);

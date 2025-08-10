@@ -1,7 +1,7 @@
-const LS_KEY = "consent_v1";
-const DEFAULT = { essential: true, analytics: false, external: false, timestamp: null };
+export const LS_KEY = "consent_v1";
+export const DEFAULT = { essential: true, analytics: false, external: false, timestamp: null };
 
-function loadConsent() {
+export function loadConsent() {
   try {
     const c = JSON.parse(localStorage.getItem(LS_KEY));
     if (c && typeof c === "object" && !Array.isArray(c)) {
@@ -28,16 +28,13 @@ function loadConsent() {
   }
 }
 
-function saveConsent(next) {
+export function saveConsent(next) {
   const consent = { ...loadConsent(), ...next, timestamp: new Date().toISOString() };
   localStorage.setItem(LS_KEY, JSON.stringify(consent));
   return consent;
 }
 
-function resetConsent() {
+export function resetConsent() {
   localStorage.removeItem(LS_KEY);
 }
 
-if (typeof module !== "undefined") {
-  module.exports = { LS_KEY, DEFAULT, loadConsent, saveConsent, resetConsent };
-}
