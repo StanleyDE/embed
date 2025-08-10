@@ -6,10 +6,19 @@
     if(!modal) return;
 
     let stored = null;
+    let raw = null;
     try {
-      stored = JSON.parse(localStorage.getItem(LS_KEY));
-    } catch {
-      // ignore parse errors
+      raw = localStorage.getItem(LS_KEY);
+    } catch (err) {
+      console.warn && console.warn('localStorage.getItem failed', err);
+    }
+
+    if (raw) {
+      try {
+        stored = JSON.parse(raw);
+      } catch {
+        // ignore parse errors
+      }
     }
 
     if(!stored || !stored.timestamp){
@@ -21,8 +30,12 @@
 
     function save(all){
       const data = { essential: true, analytics: all, external: all, timestamp: new Date().toISOString() };
-      localStorage.setItem(LS_KEY, JSON.stringify(data));
-      modal.remove();
+      try {
+        localStorage.setItem(LS_KEY, JSON.stringify(data));
+        modal.remove();
+      } catch (err) {
+        console.warn && console.warn('localStorage.setItem failed', err);
+      }
     }
 
     const accept = document.getElementById('btn-accept');

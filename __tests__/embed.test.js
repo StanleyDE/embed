@@ -81,3 +81,51 @@ describe('embed interactions', () => {
     expect(typeof data.timestamp).toBe('string');
   });
 });
+
+describe('localStorage failures', () => {
+  let fakeModal;
+  let fakeAccept;
+
+  beforeEach(() => {
+    jest.resetModules();
+
+    fakeModal = { hidden: true, remove: jest.fn(), focus: jest.fn() };
+    fakeAccept = { addEventListener: jest.fn((_, cb) => { fakeAccept.cb = cb; }) };
+
+    global.document = {
+      readyState: 'complete',
+      getElementById: jest.fn((id) => {
+        if (id === 'cookie-modal') return fakeModal;
+        if (id === 'btn-accept') return fakeAccept;
+        return null;
+      }),
+      addEventListener: jest.fn(),
+    };
+
+    global.console = { warn: jest.fn() };
+  });
+
+  test('shows modal when getItem throws', () => {
+    global.localStorage = {
+      getItem: jest.fn(() => { throw new Error('fail'); }),
+      setItem: jest.fn(),
+    };
+
+    expect(() => require('../embed.js')).not.toThrow();
+    expect(fakeModal.hidden).toBe(false);
+    expect(console.warn).toHaveBeenCalled();
+  });
+
+  test('keeps modal when setItem throws', () => {
+    global.localStorage = {
+      getItem: jest.fn(() => null),
+      setItem: jest.fn(() => { throw new Error('fail'); }),
+    };
+
+    require('../embed.js');
+    fakeAccept.cb();
+
+    expect(console.warn).toHaveBeenCalled();
+    expect(fakeModal.remove).not.toHaveBeenCalled();
+  });
+});
