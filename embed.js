@@ -1,5 +1,11 @@
 (function(){
-  const { loadConsent, saveConsent } = require('./consent');
+  // Support both CommonJS (Node/tests) and browser globals
+  let loadConsent, saveConsent;
+  if (typeof require === 'function') {
+    ({ loadConsent, saveConsent } = require('./consent'));
+  } else if (typeof window !== 'undefined') {
+    ({ loadConsent, saveConsent } = window);
+  }
 
   function init(){
     const modal = document.getElementById('cookie-modal');
