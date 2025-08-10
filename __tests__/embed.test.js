@@ -26,3 +26,58 @@ describe('embed init', () => {
     expect(fakeModal.focus).toHaveBeenCalled();
   });
 });
+
+describe('embed interactions', () => {
+  let fakeModal;
+  let fakeAccept;
+  let fakeReject;
+
+  beforeEach(() => {
+    jest.resetModules();
+
+    fakeModal = { hidden: true, remove: jest.fn() };
+    fakeAccept = { addEventListener: jest.fn((_, cb) => { fakeAccept.cb = cb; }) };
+    fakeReject = { addEventListener: jest.fn((_, cb) => { fakeReject.cb = cb; }) };
+
+    global.document = {
+      readyState: 'complete',
+      getElementById: jest.fn((id) => {
+        if (id === 'cookie-modal') return fakeModal;
+        if (id === 'btn-accept') return fakeAccept;
+        if (id === 'btn-reject') return fakeReject;
+        return null;
+      }),
+      addEventListener: jest.fn(),
+    };
+
+    global.localStorage = {
+      getItem: jest.fn(() => null),
+      setItem: jest.fn(),
+    };
+  });
+
+  test('accept click saves positive consent and removes modal', () => {
+    require('../embed.js');
+    fakeAccept.cb();
+
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    const [key, value] = localStorage.setItem.mock.calls[0];
+    expect(key).toBe('consent_v1');
+    const data = JSON.parse(value);
+    expect(data).toMatchObject({ essential: true, analytics: true, external: true });
+    expect(typeof data.timestamp).toBe('string');
+    expect(fakeModal.remove).toHaveBeenCalled();
+  });
+
+  test('reject click saves negative consent', () => {
+    require('../embed.js');
+    fakeReject.cb();
+
+    expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+    const [key, value] = localStorage.setItem.mock.calls[0];
+    expect(key).toBe('consent_v1');
+    const data = JSON.parse(value);
+    expect(data).toMatchObject({ essential: true, analytics: false, external: false });
+    expect(typeof data.timestamp).toBe('string');
+  });
+});
