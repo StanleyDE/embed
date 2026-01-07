@@ -1,10 +1,25 @@
+Das ist das perfekte Mindset-Upgrade. Wir behalten das **High-End-Design** (Bento-Grid, Dark Mode, Glow), aber wir ändern die **Copywriting-Strategie** komplett.
+
+Weg vom "Freelancer, der Videos schneidet", hin zur **"Growth Unit, die Assets baut"**.
+
+Hier ist die aktualisierte Website-Datei. Die Änderungen im Detail:
+
+1. **Hero-Section:** Aggressiver und ergebnisorientiert ("Content in Umsatz").
+2. **Die 3 Säulen:** Die Leistungen sind jetzt exakt nach deinem Profil (Creator, Corporate, Performance) strukturiert.
+3. **The System:** Ein neuer Abschnitt, der deinen USP (Audit -> Strategy -> AI -> Optimierung) erklärt.
+4. **Proof:** Die SpiritTV-Zahlen sind prominenter (2.4M Views).
+5. **About:** Ein kurzer, persönlicher "Founder Note"-Block ("Ich baue keine Videos für die Schublade"), um Vertrauen zu schaffen.
+
+Hier ist der Code (Copy & Paste):
+
+```html
 <!doctype html>
 <html lang="de" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>stanverse – Premium YouTube & Social Growth</title>
-  <meta name="description" content="YouTube‑Kanalmanagement, High-End Editing, Thumbnails & SEO. Du lieferst Rohmaterial – wir liefern Wachstum." />
+  <title>stanverse – We Don't Guess. We Grow.</title>
+  <meta name="description" content="Digital Growth Unit. Wir verwandeln Content in Umsatz für Creator, Brands und E-Commerce. Data-driven & AI-powered." />
   <link rel="canonical" href="https://stanverse.de/" />
   <meta name="theme-color" content="#050505" />
   <style>
@@ -49,10 +64,11 @@
 
     /* --- UTILS --- */
     .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 80px 0; position: relative; }
+    section { padding: 100px 0; position: relative; }
     a { text-decoration: none; color: inherit; transition: color 0.2s; }
     h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
     p { color: var(--muted); margin-bottom: 1.5em; }
+    strong { color: #fff; font-weight: 600; }
 
     /* Scroll Animations */
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -129,15 +145,15 @@
     }
     @keyframes pulse { 0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); } }
 
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-grid > div:last-child { display: none; } }
 
     .hero h1 {
-      font-size: clamp(40px, 8vw, 72px); line-height: 1.05; margin: 20px 0;
+      font-size: clamp(40px, 8vw, 68px); line-height: 1.05; margin: 20px 0;
       background: linear-gradient(180deg, #fff 0%, #a5b4fc 100%);
       -webkit-background-clip: text; color: transparent;
     }
-    .hero .lead { font-size: clamp(18px, 2vw, 20px); max-width: 540px; margin: 0 auto 32px; if(min-width: 900px){ margin-left:0; } }
+    .hero .lead { font-size: clamp(18px, 2vw, 20px); max-width: 580px; margin: 0 auto 32px; if(min-width: 900px){ margin-left:0; } }
 
     /* Bento Grid Cards */
     .bento-card {
@@ -215,10 +231,10 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Agency",
     "name": "stanverse",
     "url": "https://stanverse.de/",
-    "description": "Premium YouTube & Social Media Management.",
+    "description": "Digital Growth Unit. High-End Video Production & Algorithmus-Systeme.",
     "areaServed": "DE"
   }
   </script>
@@ -230,11 +246,11 @@
       <a href="#" class="logo">stanverse.</a>
       
       <div class="desktop-links">
-        <a href="#leistungen" class="nav-link">Leistungen</a>
-        <a href="#prozess" class="nav-link">Prozess</a>
-        <a href="#cases" class="nav-link">Ergebnisse</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="#kontakt" class="btn primary" style="padding: 8px 16px; font-size: 14px;">Gespräch buchen</a>
+        <a href="#services" class="nav-link">Lösungen</a>
+        <a href="#system" class="nav-link">System</a>
+        <a href="#proof" class="nav-link">Proof</a>
+        <a href="#about" class="nav-link">Über uns</a>
+        <a href="#kontakt" class="btn primary" style="padding: 8px 16px; font-size: 14px;">Audit anfragen</a>
       </div>
 
       <button class="menu-toggle" aria-label="Menu">
@@ -244,11 +260,11 @@
   </nav>
 
   <div class="mobile-menu">
-    <a href="#leistungen" class="nav-link" onclick="toggleMenu()">Leistungen</a>
-    <a href="#prozess" class="nav-link" onclick="toggleMenu()">Prozess</a>
-    <a href="#cases" class="nav-link" onclick="toggleMenu()">Ergebnisse</a>
-    <a href="#faq" class="nav-link" onclick="toggleMenu()">FAQ</a>
-    <a href="#kontakt" class="btn primary" onclick="toggleMenu()">Jetzt anfragen</a>
+    <a href="#services" class="nav-link" onclick="toggleMenu()">Lösungen</a>
+    <a href="#system" class="nav-link" onclick="toggleMenu()">Das System</a>
+    <a href="#proof" class="nav-link" onclick="toggleMenu()">Proof</a>
+    <a href="#about" class="nav-link" onclick="toggleMenu()">Über uns</a>
+    <a href="#kontakt" class="btn primary" onclick="toggleMenu()">Audit anfragen</a>
   </div>
 
   <main>
@@ -256,32 +272,33 @@
       <div class="hero-glow"></div>
       <div class="wrap hero-grid">
         <div class="fade-in-up">
-          <div class="chip" style="margin-bottom:24px"><span style="color:var(--acc)">●</span> Verfügbar für Q1/2026</div>
-          <h1>Content, der nicht nur Views, sondern <span style="color:#fff; text-decoration:underline text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Leads</span> generiert.</h1>
-          <p class="lead">Wir verwandeln dein Rohmaterial in einen High-Performance YouTube-Kanal. Strategie, Schnitt, Thumbnails & SEO aus einer Hand.</p>
+          <div class="chip" style="margin-bottom:24px"><span style="color:var(--acc)">●</span> Digital Growth Unit</div>
+          <h1>Wir verwandeln Content in <span style="color:#fff; text-decoration:underline text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Umsatz</span>.</h1>
+          <p class="lead">Die Growth-Partner für Creator & Brands. Data-driven. AI-powered. Wir bauen Systeme für Reichweite, die Leads generieren.</p>
           
           <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 40px;">
-            <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary">Strategiegespräch (kostenlos)</a>
-            <a href="#cases" class="btn">Cases ansehen</a>
+            <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary">Kostenloses Kanal-Audit</a>
+            <a href="#proof" class="btn">Ergebnisse ansehen</a>
           </div>
 
           <div style="display:flex; gap:32px;">
             <div class="stat-box">
-              <div class="stat-val">1M+</div>
-              <div class="stat-label">Organic Reach</div>
+              <div class="stat-val">2.4M+</div>
+              <div class="stat-label">Views (SpiritTV)</div>
             </div>
             <div class="stat-box">
-              <div class="stat-val">14%</div>
-              <div class="stat-label">Avg. CTR</div>
+              <div class="stat-val">B2B & B2C</div>
+              <div class="stat-label">Growth Systems</div>
             </div>
           </div>
+          <p style="margin-top:24px; font-size:14px; color:var(--muted); font-style:italic;">"We Don't Guess. We Grow."</p>
         </div>
 
         <div class="fade-in-up" style="transition-delay: 0.1s; position:relative;">
           <div style="background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); border:1px solid var(--line); border-radius: 24px; padding: 24px; backdrop-filter: blur(10px); transform: rotate(-2deg);">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-family:monospace; color:var(--muted); font-size:12px;">
-              <span>DASHBOARD</span>
-              <span>LIVE DATA ●</span>
+              <span>GROWTH ENGINE</span>
+              <span>LIVE ●</span>
             </div>
             <div style="height: 180px; display:flex; align-items:flex-end; gap:8px;">
               <div style="flex:1; background:var(--acc); height:40%; opacity:0.3; border-radius:4px;"></div>
@@ -292,117 +309,126 @@
             </div>
             <div style="margin-top:20px; display:flex; gap:12px;">
               <span class="chip">Retention ↑</span>
-              <span class="chip">Leads ↑</span>
+              <span class="chip">Conversion ↑</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="leistungen">
+    <section id="services">
       <div class="wrap">
         <div class="fade-in-up">
-          <h2>Alles, was ein Kanal braucht.</h2>
-          <p>Kein Stückwerk. Wir übernehmen das komplette Backend deines Kanals.</p>
+          <h2>Unsere 3 Säulen.</h2>
+          <p>Wir bauen Assets, keine Wegwerf-Videos.</p>
         </div>
         
         <div class="cards-grid">
           <div class="bento-card fade-in-up">
             <div style="width:40px; height:40px; background:rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             </div>
-            <h3>YouTube Management</h3>
-            <p>Uploads, Endcards, Kapitel, Community-Tab Pflege. Wir sorgen für konstanten Output ohne deinen Stress.</p>
+            <h3>Creator Growth Engine</h3>
+            <p style="font-size:14px; color:var(--acc2); margin-bottom:8px;">Für Influencer & Personal Brands</p>
+            <p><strong>Retention Editing & Packaging.</strong> Wir schneiden, damit Zuschauer bleiben. Psychologisch optimierte Thumbnails & Titel für maximale Klicks.</p>
           </div>
 
           <div class="bento-card fade-in-up" style="transition-delay: 0.1s">
              <div style="width:40px; height:40px; background:rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <h3>High-End Editing</h3>
-            <p>Schnitt für Watchtime. Pace, B-Roll, Sound Design und Animationen, die den Zuschauer halten.</p>
+            <h3>Corporate Trust Builder</h3>
+            <p style="font-size:14px; color:var(--acc2); margin-bottom:8px;">Für KMUs & Startups</p>
+            <p><strong>Social Recruiting & Expert Positioning.</strong> Videos, die Vertrauen aufbauen und Fachkräfte anziehen. Podcast-Style & Image-Building.</p>
           </div>
 
           <div class="bento-card fade-in-up" style="transition-delay: 0.2s">
             <div style="width:40px; height:40px; background:rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
-            <h3>Thumbnails & SEO</h3>
-            <p>Psychologisch optimierte Titel und Thumbnails für maximale CTR. Keywords, die ranken.</p>
-          </div>
-
-           <div class="bento-card fade-in-up" style="transition-delay: 0.3s">
-            <div style="width:40px; height:40px; background:rgba(255,255,255,0.1); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </div>
-            <h3>Social Branding</h3>
-            <p>Instagram & LinkedIn als Lead-Magnet. Templates und Strategien für deine digitale Visitenkarte.</p>
+            <h3>Performance Content</h3>
+            <p style="font-size:14px; color:var(--acc2); margin-bottom:8px;">Für E-Commerce & Brands</p>
+            <p><strong>UGC & Ad Creatives.</strong> Schnelle, aggressive Videos für Meta & TikTok Ads. Authentisch wie UGC, konvertierend wie Ads.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="prozess">
+    <section id="system">
       <div class="wrap">
         <div style="background: linear-gradient(to right, rgba(255,255,255,0.03), transparent); border-left: 1px solid var(--acc); padding: 40px; border-radius: 0 20px 20px 0;">
-          <h2 style="margin-bottom: 24px;">Dein Aufwand: <span style="color:var(--acc)">Minimal.</span></h2>
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:32px;">
+          <h2 style="margin-bottom: 24px;">The Stanverse System.</h2>
+          <p>Warum bei uns kaufen? Weil wir einen Prozess haben, der Zufall eliminiert.</p>
+          
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:32px; margin-top:40px;">
             <div>
-              <div style="font-size:48px; font-weight:800; color:rgba(255,255,255,0.1); line-height:1; margin-bottom:12px;">01</div>
-              <h4>Upload</h4>
-              <p style="font-size:14px">Du lädst Rohmaterial & Briefing in unseren Shared Folder.</p>
+              <div style="font-size:14px; text-transform:uppercase; color:var(--acc); font-weight:700;">Phase 1</div>
+              <h4 style="margin:8px 0;">The Audit</h4>
+              <p style="font-size:14px">Wir analysieren den Ist-Zustand (inkl. OBS-Video-Analyse). Wo verlierst du Zuschauer?</p>
             </div>
             <div>
-              <div style="font-size:48px; font-weight:800; color:rgba(255,255,255,0.1); line-height:1; margin-bottom:12px;">02</div>
-              <h4>Produktion</h4>
-              <p style="font-size:14px">Wir schneiden, designen & optimieren. Du bekommst einen Review-Link.</p>
+              <div style="font-size:14px; text-transform:uppercase; color:var(--acc); font-weight:700;">Phase 2</div>
+              <h4 style="margin:8px 0;">The Strategy</h4>
+              <p style="font-size:14px">Kein Raten. Wir klonen, was funktioniert (Benchmarking) und optimieren es für deine Nische.</p>
+            </div>
+            <div>
+              <div style="font-size:14px; text-transform:uppercase; color:var(--acc); font-weight:700;">Phase 3</div>
+              <h4 style="margin:8px 0;">AI Production</h4>
+              <p style="font-size:14px">Wir nutzen KI für Skripte und Sound, um schneller und effizienter zu sein als klassische Agenturen.</p>
             </div>
              <div>
-              <div style="font-size:48px; font-weight:800; color:rgba(255,255,255,0.1); line-height:1; margin-bottom:12px;">03</div>
-              <h4>Growth</h4>
-              <p style="font-size:14px">Nach Freigabe veröffentlichen wir. Du erhältst monatliche Reportings.</p>
+              <div style="font-size:14px; text-transform:uppercase; color:var(--acc); font-weight:700;">Phase 4</div>
+              <h4 style="margin:8px 0;">Optimization</h4>
+              <p style="font-size:14px">Nach dem Upload ist vor dem Upload. A/B-Testing von Thumbnails für maximale CTR.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="cases">
+    <section id="proof">
       <div class="wrap">
         <div style="margin-bottom:40px;" class="fade-in-up">
-          <h2>Ergebnisse (Proof)</h2>
-          <p>Daten lügen nicht. Auszug aus aktuellen Projekten.</p>
+          <h2>Proof of Concept.</h2>
+          <p>Case Study: SpiritTV.</p>
         </div>
 
         <div class="case-grid">
-          <div class="bento-card case-tile fade-in-up">
+          <div class="bento-card case-tile wide fade-in-up">
             <div class="case-head">
-              <span class="chip">SpiritTV • SEO</span>
-              <h3 style="margin-top:8px">Top-Rankings & Evergreen Traffic</h3>
-              <div style="margin-top:12px; font-family:monospace; color:var(--acc2)">+128k Views / Monat</div>
+              <span class="chip">Case Study SpiritTV</span>
+              <h3 style="margin-top:8px; font-size:28px;">Von 0 auf 2,4 Millionen Views</h3>
+              <p style="max-width:600px; margin-top:8px;">Durch konsequentes SEO-Ranking und Shorts-Skalierung in weniger als 9 Monaten.</p>
+              <div style="margin-top:12px; font-family:monospace; color:var(--acc2); display:flex; gap:16px;">
+                <span>+128k Views/Monat</span>
+                <span>Top-Ranking "Horoskop"</span>
+              </div>
             </div>
-            <div class="chart-container">
-              <svg class="chart" data-points="40, 52, 68, 82, 100, 120, 128, 54" preserveAspectRatio="none"></svg>
+            <div class="chart-container" style="height:280px;">
+              <svg class="chart" data-points="10, 25, 45, 80, 150, 210, 350, 480, 600" preserveAspectRatio="none"></svg>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="bento-card case-tile fade-in-up" style="transition-delay:0.1s">
-            <div class="case-head">
-               <span class="chip">Format-Test • Shorts</span>
-              <h3 style="margin-top:8px">Viralität durch Hook-Optimierung</h3>
-              <div style="margin-top:12px; font-family:monospace; color:var(--acc2)">270k Views in 14 Tagen</div>
-            </div>
-            <div class="chart-container">
-               <svg class="chart" data-points="1, 3, 12, 13, 14, 16, 29, 44, 63, 86, 126, 183, 234, 270" preserveAspectRatio="none"></svg>
+    <section id="about" style="padding: 60px 0;">
+      <div class="wrap">
+        <div class="bento-card fade-in-up" style="flex-direction:row; gap:40px; align-items:center; flex-wrap:wrap;">
+          <div style="flex:1; min-width:300px;">
+            <div class="chip" style="margin-bottom:16px;">About Stanverse</div>
+            <h2 style="margin-bottom:16px;">Ich baue keine Videos für die Schublade. Ich baue Assets.</h2>
+            <p>Der Markt ist voll mit "schönen" Videos, die niemand sieht. Firmen scheitern nicht an der Qualität, sondern an der Distribution.</p>
+            <p>Mein Ansatz ist technisch und datengetrieben. Ich sehe YouTube nicht als Kunstgalerie, sondern als Suchmaschine und Lead-Generator. Wenn du jemanden suchst, der dir nach dem Mund redet, bin ich der Falsche. Wenn du wachsen willst, lass uns reden.</p>
+            <div style="margin-top:20px;">
+              <strong>Stan</strong><br>
+              <span style="font-size:14px; color:var(--muted)">Founder & Head of Growth</span>
             </div>
           </div>
-          
-          <div class="bento-card case-tile wide fade-in-up" style="min-height:250px; justify-content:center; align-items:center; text-align:center;">
-            <div>
-              <h3>Instagram Brand Kit</h3>
-              <p style="max-width:400px; margin:12px auto;">Vom chaotischen Feed zur digitalen Visitenkarte. Einheitliche Templates, Bio-Optimierung und Story-Strategie.</p>
-              <span class="chip" style="background:rgba(255,255,255,0.1)">Visual Identity Upgrade</span>
-            </div>
+          <div style="flex:1; min-width:300px; display:flex; justify-content:center;">
+             <div style="width:250px; height:250px; background:linear-gradient(45deg, var(--surface), #222); border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; color:var(--line-strong);">
+               <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+             </div>
           </div>
         </div>
       </div>
@@ -410,23 +436,19 @@
 
     <section id="faq">
       <div class="wrap" style="max-width:800px;">
-        <h2 class="fade-in-up" style="margin-bottom:32px">Häufige Fragen</h2>
+        <h2 class="fade-in-up" style="margin-bottom:32px">CEO FAQ</h2>
         <div class="fade-in-up">
           <details open>
-            <summary>Wie schnell können wir starten?</summary>
-            <p>Nach dem 30-minütigen Kickoff-Call kann der erste Batch in der Regel innerhalb von 7-10 Tagen produziert und geplant werden.</p>
+            <summary>Was unterscheidet Stanverse von einer Agentur?</summary>
+            <p>Wir sind keine "Kreativ-Agentur", die dir bunte Videos verkauft. Wir sind eine Growth Unit. Wir arbeiten mit klaren KPIs (Views, CTR, Leads) und nutzen KI-Systeme, um schneller und günstiger zu skalieren als klassische Player.</p>
           </details>
           <details>
-            <summary>Muss ich das Skript schreiben?</summary>
-            <p>Nicht zwingend. Wir können auf Basis von Bulletpoints arbeiten oder gemeinsam Themen entwickeln. Ein grober roter Faden (Outline) reicht oft aus.</p>
+            <summary>Wie messen wir Erfolg?</summary>
+            <p>Nicht an "Gefällt mir". Wir messen Retention (Wie lange schauen Kunden?), CTR (Klicken sie?) und Conversion (Kaufen sie?). Du bekommst monatliche Reports, keine Floskeln.</p>
           </details>
           <details>
-            <summary>Gibt es eine Vertragslaufzeit?</summary>
-            <p>Wir starten oft mit einem 30-Tage-Pilotprojekt, um zu sehen, ob die Chemie stimmt. Danach arbeiten wir meist auf Retainer-Basis (monatlich kündbar oder Quartalspakete).</p>
-          </details>
-          <details>
-            <summary>Übernehmt ihr auch Community Management?</summary>
-            <p>Ja, im "Core"-Paket enthalten sind das Pinnen von Kommentaren und Moderation. Deep-Dive Antworten auf Fachfragen sollten jedoch vom Experten (dir) kommen.</p>
+            <summary>Was muss ich liefern?</summary>
+            <p>Im besten Fall nur das Rohmaterial (Video/Audio) und deine Expertise. Wir übernehmen Strategie, Schnitt, Packaging und Upload. Bei Bedarf schreiben wir sogar die Skripte (AI-Supported).</p>
           </details>
         </div>
       </div>
@@ -437,13 +459,13 @@
         <div class="bento-card fade-in-up" style="max-width:900px; margin:0 auto; background:linear-gradient(180deg, var(--surface), #050505);">
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:40px;">
             <div style="padding:24px;">
-              <h2>Lass uns sprechen.</h2>
-              <p>Erzähl uns kurz von deinem Projekt. Wir melden uns innerhalb von 24h.</p>
+              <h2>Audit anfordern.</h2>
+              <p>Finde heraus, warum dein Kanal stagniert und wie wir das ändern.</p>
               
               <ul style="list-style:none; padding:0; margin-top:32px; color:var(--muted); font-size:14px; line-height:2;">
-                <li>✓ Kostenlose Analyse (30 Min)</li>
-                <li>✓ Konkrete Roadmap, kein Sales-BS</li>
-                <li>✓ Unverbindliches Angebot</li>
+                <li>✓ Analyse Status Quo (OBS Review)</li>
+                <li>✓ Identifikation der Bottlenecks</li>
+                <li>✓ Strategie-Vorschlag</li>
               </ul>
             </div>
 
@@ -457,15 +479,23 @@
                 <input type="email" name="Email" required placeholder="name@firma.de">
               </div>
               <div>
+                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:6px;">Ziel</label>
+                <select style="width:100%; background:#08080a; border:1px solid var(--line); color:#fff; padding:14px; border-radius:12px;" name="Ziel">
+                  <option>Creator Growth (YouTube)</option>
+                  <option>Corporate Trust (Recruiting/Image)</option>
+                  <option>Performance (Ads/E-Com)</option>
+                </select>
+              </div>
+              <div>
                 <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:6px;">Nachricht</label>
-                <textarea name="Msg" rows="4" required placeholder="Kurz zu deinem Vorhaben..."></textarea>
+                <textarea name="Msg" rows="3" required placeholder="Link zum Kanal / Kurzbeschreibung..."></textarea>
               </div>
               
               <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">
                 Mit dem Absenden akzeptierst du die <a href="/datenschutz" style="text-decoration:underline;">Datenschutzhinweise</a>.
               </div>
               
-              <button type="submit" class="btn primary" style="justify-content:center; width:100%;">Anfrage senden</button>
+              <button type="submit" class="btn primary" style="justify-content:center; width:100%;">Audit anfragen</button>
             </form>
           </div>
         </div>
@@ -476,7 +506,7 @@
 
   <footer>
     <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-      <div>&copy; <span id="year"></span> stanverse.</div>
+      <div>&copy; <span id="year"></span> stanverse. We Don't Guess. We Grow.</div>
       <div style="display:flex; gap:24px;">
         <a href="/impressum">Impressum</a>
         <a href="/datenschutz">Datenschutz</a>
@@ -549,7 +579,6 @@
         const x = i * step;
         const y = h - ((p-min)/range * h * 0.7 + 20); // 70% height usage + padding
         if (i > 0) {
-          // simple spline smoothing could go here, but linear is fine for tech look
           dLine += ` L ${x} ${y}`;
           dArea += ` L ${x} ${y}`;
         }
@@ -588,3 +617,5 @@
   </script>
 </body>
 </html>
+
+```
