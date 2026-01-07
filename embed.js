@@ -1,9 +1,13 @@
 /* embed.js */
 (function() {
-  // Imports simulieren (Browser-safe)
-  const { loadConsent, saveConsent, hasConsented } = (typeof window.Consent !== 'undefined') 
-    ? window.Consent 
-    : require('./consent');
+  // 1. Check: Wurde consent.js geladen?
+  if (typeof window.Consent === 'undefined') {
+    console.error("Fehler: window.Consent ist nicht definiert. Stelle sicher, dass 'consent.js' VOR 'embed.js' geladen wird.");
+    return;
+  }
+
+  // 2. Import aus dem globalen Objekt
+  const { loadConsent, saveConsent } = window.Consent;
 
   // Konfiguration für externe Skripte (Beispiel)
   const MANAGED_SCRIPTS = [
