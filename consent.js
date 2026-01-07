@@ -54,8 +54,10 @@ function resetConsent() {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { LS_KEY, DEFAULT, loadConsent, saveConsent, resetConsent };
 } else {
-  // FIX: Explizit an window hängen, damit embed.js sie findet
-  window.loadConsent = loadConsent;
-  window.saveConsent = saveConsent;
-  window.resetConsent = resetConsent;
+  // FIX: Wir erstellen das Objekt 'Consent', nach dem embed.js sucht
+  window.Consent = {
+    loadConsent: loadConsent,
+    saveConsent: saveConsent,
+    resetConsent: resetConsent
+  };
 }
