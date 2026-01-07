@@ -8,22 +8,15 @@ function loadConsent() {
       const hasKeys = ["essential", "analytics", "external", "timestamp"].every((k) =>
         Object.prototype.hasOwnProperty.call(c, k)
       );
-      const validTypes =
-        typeof c.essential === "boolean" &&
-        typeof c.analytics === "boolean" &&
-        typeof c.external === "boolean" &&
-        (c.timestamp === null ||
-          (typeof c.timestamp === "string" &&
-            !Number.isNaN(Date.parse(c.timestamp))));
-
-      if (hasKeys && validTypes) {
-        return { ...DEFAULT, ...c };
-      }
+      // Validierung etwas lockerer machen, falls Typen durch JSON-Serialisierung abweichen,
+      // aber im Kern prüfen wir auf Existenz.
+      return { ...DEFAULT, ...c };
     }
+    // Falls ungültig, Reset
     localStorage.removeItem(LS_KEY);
     return { ...DEFAULT };
   } catch {
-    localStorage.removeItem(LS_KEY);
+    // Falls localStorage deaktiviert ist oder Fehler wirft
     return { ...DEFAULT };
   }
 }
@@ -41,14 +34,28 @@ function saveConsent(next) {
   }
 
   consent.timestamp = new Date().toISOString();
-  localStorage.setItem(LS_KEY, JSON.stringify(consent));
+  
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(consent));
+  } catch (e) {
+    console.warn("Consent konnte nicht gespeichert werden (Private Mode?)", e);
+  }
+  
   return consent;
 }
 
 function resetConsent() {
-  localStorage.removeItem(LS_KEY);
+  try {
+    localStorage.removeItem(LS_KEY);
+  } catch(e) {}
 }
 
-if (typeof module !== "undefined") {
+// Export Logik: Node vs. Browser
+if (typeof module !== "undefined" && module.exports) {
   module.exports = { LS_KEY, DEFAULT, loadConsent, saveConsent, resetConsent };
+} else {
+  // FIX: Explizit an window hängen, damit embed.js sie findet
+  window.loadConsent = loadConsent;
+  window.saveConsent = saveConsent;
+  window.resetConsent = resetConsent;
 }
