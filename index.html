@@ -399,11 +399,15 @@
       100% { left: 200%; }
     }
 
-    /* --- NEU: Floating Badge für Proof Section --- */
+    /* --- NEU: Floating Badge für Proof Section (POSITION FIX) --- */
     .floating-badge {
       position: absolute;
-      bottom: 40px; 
-      left: -30px; /* Ragt links raus -> erzeugt Tiefe */
+      /* NEU: Nach unten rechts verschoben, damit das Bild frei bleibt */
+      bottom: -20px; 
+      right: -20px;
+      /* Reset der linken Position */
+      left: auto;
+      
       background: rgba(14, 14, 16, 0.85);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.1);
@@ -422,14 +426,16 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Mobile Anpassung: Badge nicht rausstehen lassen */
+    /* Mobile Anpassung */
     @media (max-width: 900px) {
       .floating-badge {
-        left: 50%; 
-        transform: translateX(-50%);
-        bottom: -20px;
+        position: relative;
+        left: auto; right: auto; bottom: auto;
+        transform: none;
+        margin-top: -30px; /* Zieht es etwas hoch über das Bild */
+        margin-left: auto; margin-right: auto;
         width: max-content;
-        animation: none; /* Kein Floating auf Mobile, spart Performance */
+        animation: none; 
       }
     }
 
@@ -516,8 +522,8 @@
           <div class="dashboard-card" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
             
             <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
-              <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">CHANNEL HEALTH</div>
-              <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM ACTIVE</div>
+              <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div>
+              <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM AKTIV</div>
             </div>
 
             <div class="dashboard-row">
@@ -525,7 +531,7 @@
                 <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 3.5 3.5 4.5-4.5"/><path d="M18 11l4-4"/><path d="M7 7l7 5-3.5 3.5-5.5-5.5"/></svg>
                 </div>
-                <span style="font-size:14px; color:#fff;">Viral Score</span>
+                <span style="font-size:14px; color:#fff;">Viral-Faktor</span>
               </div>
               <div style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
             </div>
@@ -535,9 +541,9 @@
                 <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                 </div>
-                <span style="font-size:14px; color:#fff;">Tech Setup</span>
+                <span style="font-size:14px; color:#fff;">Technik</span>
               </div>
-              <div style="color:#10b981; font-weight:600; font-size:14px;">Optimized</div>
+              <div style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
             </div>
 
             <div class="dashboard-row">
@@ -545,9 +551,9 @@
                 <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <span style="font-size:14px; color:#fff;">Assets</span>
+                <span style="font-size:14px; color:#fff;">Dateien</span>
               </div>
-              <div style="color:var(--muted); font-size:13px;">Auto-Upload ready</div>
+              <div style="color:var(--muted); font-size:13px;">Bereit zum Upload</div>
             </div>
 
             <div style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
@@ -556,7 +562,7 @@
               <div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div>
               <div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
               <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;">
-                 <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">NOW</div>
+                 <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">JETZT</div>
               </div>
             </div>
 
@@ -692,8 +698,8 @@
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </div>
                     <div>
-                      <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Performance</div>
-                      <div style="font-size:18px; color:#fff; font-weight:800;">+300% Growth</div>
+                      <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Ergebnis</div>
+                      <div style="font-size:18px; color:#fff; font-weight:800;">+300% Wachstum</div>
                     </div>
                   </div>
                 </div>
