@@ -346,6 +346,58 @@
       font-weight: 600;
       color: var(--acc);
     }
+    
+    /* --- NEU: Hero Tech Grid & Dashboard (UPDATED) --- */
+    .hero-grid-bg {
+      position: absolute; inset: 0; z-index: -2;
+      background-size: 50px 50px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .dashboard-card {
+      background: rgba(14, 14, 16, 0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .dashboard-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .dashboard-row:last-child { border-bottom: none; }
+
+    .pulse-dot {
+      width: 8px; height: 8px; background: #10b981; border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Schimmer-Effekt auf dem Primary Button */
+    .btn.primary {
+      position: relative; overflow: hidden;
+    }
+    .btn.primary::after {
+      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-20deg);
+      animation: shine 6s infinite;
+    }
+    @keyframes shine {
+      0%, 80% { left: -100%; }
+      100% { left: 200%; }
+    }
 
   </style>
   <script type="application/ld+json">
@@ -392,27 +444,32 @@
 
   <main>
     <section class="hero" id="start">
+      <div class="hero-grid-bg"></div>
       <div class="hero-glow"></div>
+      
       <div class="wrap hero-grid">
         <div class="fade-in-up">
-          <div class="chip" style="margin-bottom:24px"><span style="color:var(--acc)">●</span> Operative Growth Unit</div>
+          <div class="chip" style="margin-bottom:24px; border-color: rgba(99,102,241,0.3); color: #fff;">
+            <span class="pulse-dot" style="margin-right:8px; display:inline-block;"></span> 
+            Operative Growth Unit
+          </div>
           
           <h1>Ihr Content. <span style="color:#fff; text-decoration:underline; text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Unsere Technik.</span><br>Eine starke Marke.</h1>
           
-          <p class="lead">Wir übernehmen die komplette technische Produktion und Distribution, damit Sie sich nur auf den Inhalt konzentrieren. Von der Strategie bis zum Upload.</p>
+          <p class="lead">Wir übernehmen die komplette technische Produktion und Distribution. Von der Strategie bis zum Upload – damit Sie sich nur auf den Inhalt konzentrieren.</p>
           
           <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 40px;">
             <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary">Potenzial-Analyse (Kostenlos)</a>
-            <a href="#proof" class="btn">Referenz SpiritTV</a>
+            <a href="#proof" class="btn">Referenz SpiritTV ansehen</a>
           </div>
 
-          <div style="display:flex; gap:40px;">
-            <div class="stat-box">
+          <div style="display:flex; gap:40px; border-top: 1px solid var(--line); padding-top: 30px;">
+            <div>
               <div class="stat-val-hero counter-stat" data-target="2.4" data-suffix="M+">0</div>
-              <div class="stat-label-hero">Aufrufe</div>
+              <div class="stat-label-hero">Aufrufe generiert</div>
             </div>
             
-            <div class="stat-box">
+            <div>
               <div class="stat-val-hero counter-stat" data-target="239" data-suffix="k+">0</div>
               <div class="stat-label-hero">Std. Watchtime</div>
             </div>
@@ -420,20 +477,55 @@
         </div>
 
         <div class="fade-in-up" style="transition-delay: 0.1s; position:relative;">
-          <div style="background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border:1px solid var(--line); border-radius: 24px; padding: 32px; backdrop-filter: blur(10px); transform: rotate(-1deg);">
-            <div style="display:flex; justify-content:space-between; margin-bottom:24px; font-family:monospace; color:var(--muted); font-size:12px; letter-spacing: 1px;">
-              <span>BRAND STATUS</span>
-              <span style="color: #10b981;">PREMIUM ●</span>
+          <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--acc); filter:blur(60px); opacity:0.4;"></div>
+          
+          <div class="dashboard-card" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
+            
+            <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
+              <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">CHANNEL HEALTH</div>
+              <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM ACTIVE</div>
             </div>
-            <div style="height: 200px; display:flex; align-items:center; justify-content:center; gap:16px;">
-              <div style="width:60px; height:100px; border:2px solid var(--line-strong); border-radius:8px; display:flex; align-items:center; justify-content:center; opacity:0.5;">9:16</div>
-              <div style="width:140px; height:90px; border:2px solid var(--acc); border-radius:8px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 20px var(--acc-glow); color:#fff; font-weight:bold;">16:9</div>
-              <div style="width:80px; height:80px; border:2px solid var(--line-strong); border-radius:8px; display:flex; align-items:center; justify-content:center; opacity:0.5;">1:1</div>
+
+            <div class="dashboard-row">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 3.5 3.5 4.5-4.5"/><path d="M18 11l4-4"/><path d="M7 7l7 5-3.5 3.5-5.5-5.5"/></svg>
+                </div>
+                <span style="font-size:14px; color:#fff;">Viral Score</span>
+              </div>
+              <div style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
             </div>
-            <div style="margin-top:24px; display:flex; gap:12px; border-top: 1px solid var(--line); padding-top: 20px;">
-              <span class="chip">Instagram / YT ✓</span>
-              <span class="chip">Corporate Identity ✓</span>
+
+            <div class="dashboard-row">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <span style="font-size:14px; color:#fff;">Tech Setup</span>
+              </div>
+              <div style="color:#10b981; font-weight:600; font-size:14px;">Optimized</div>
             </div>
+
+            <div class="dashboard-row">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <span style="font-size:14px; color:#fff;">Assets</span>
+              </div>
+              <div style="color:var(--muted); font-size:13px;">Auto-Upload ready</div>
+            </div>
+
+            <div style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
+              <div style="flex:1; background:var(--line); height:30%; border-radius:2px;"></div>
+              <div style="flex:1; background:var(--line); height:50%; border-radius:2px;"></div>
+              <div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div>
+              <div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
+              <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;">
+                 <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">NOW</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
