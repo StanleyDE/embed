@@ -130,7 +130,6 @@
 
     .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.1; margin: 24px 0; }
     
-    /* FIX 1: CSS Syntax Korrektur (if -> @media) */
     .hero .lead { 
       font-size: clamp(18px, 2vw, 20px); 
       max-width: 600px; 
@@ -157,7 +156,6 @@
     }
     .bento-card:hover::after { opacity: 1; }
 
-    /* FIX 2: Min-Width auf 280px reduziert für kleine Handys */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
 
     /* --- CASES --- */
@@ -170,47 +168,28 @@
     .chart-container { width: 100%; pointer-events: none; }
     svg.chart { overflow: visible; display: block; width: 100%; height: 100%; }
 
-/* --- SYSTEM SECTION CUSTOM STYLES (PREMIUM UPDATE) --- */
+    /* --- SYSTEM SECTION CUSTOM STYLES --- */
     .system-card {
-      /* 1. Hintergrund: Ein leichter Verlauf von "Surface" zu fast Schwarz schafft Tiefe */
       background: linear-gradient(160deg, var(--surface) 0%, #050505 100%);
-      
-      /* 2. Rahmen: Subtil rundherum, aber links der starke Akzent */
       border: 1px solid var(--line);
-      border-left: 3px solid var(--acc); /* Etwas dickerer Akzent für mehr "Punch" */
-      
-      /* 3. High-End Finish: 
-         - Inset Shadow oben (weißlich) simuliert eine Lichtkante.
-         - Großer Drop-Shadow unten lässt die Karte "schweben". */
+      border-left: 3px solid var(--acc);
       box-shadow: 
         inset 0 1px 0 rgba(255,255,255,0.05), 
         0 24px 60px -12px rgba(0,0,0,0.6);
-      
-      padding: 60px; /* Mehr "Luft" wirkt luxuriöser */
-      border-radius: 24px; /* Modernere, weichere Ecken */
+      padding: 60px;
+      border-radius: 24px;
       position: relative;
-      overflow: hidden; /* Wichtig für den Glow-Effekt */
+      overflow: hidden;
     }
-
-    /* 4. Der "Secret Sauce" Glow: Ein zarter violetter Schein oben links */
     .system-card::before {
-      content: "";
-      position: absolute;
-      top: -100px; left: -100px;
+      content: ""; position: absolute; top: -100px; left: -100px;
       width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
-    
-    /* Damit der Text über dem Glow liegt */
     .system-card > * { position: relative; z-index: 1; }
-
     @media (max-width: 768px) {
-      .system-card {
-        padding: 30px 24px; /* Kompakt auf Mobile */
-        border-radius: 16px;
-      }
+      .system-card { padding: 30px 24px; border-radius: 16px; }
     }
 
     /* --- FAQ --- */
@@ -236,8 +215,28 @@
     footer { border-top: 1px solid var(--line); padding: 60px 0; font-size: 15px; color: var(--muted); background: #020202; }
     
     .stat-box { border-left: 2px solid var(--line); padding-left: 20px; }
-    .stat-val { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.03em; }
-    .stat-label { font-size: 14px; color: var(--muted); margin-top: 4px;}
+    
+    /* NEW: High-Impact Numbers (Like NSY Style) */
+    .stat-val-hero { 
+      font-size: 42px; 
+      font-weight: 900; 
+      color: transparent;
+      background: linear-gradient(to right, #fff, var(--muted));
+      -webkit-background-clip: text;
+      background-clip: text;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    
+    .stat-label-hero {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: var(--acc);
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -287,8 +286,10 @@
       <div class="wrap hero-grid">
         <div class="fade-in-up">
           <div class="chip" style="margin-bottom:24px"><span style="color:var(--acc)">●</span> Operative Growth Unit</div>
+          
           <h1>Ihr Content. <span style="color:#fff; text-decoration:underline; text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Unsere Technik.</span><br>Eine starke Marke.</h1>
-          <p class="lead">Wir sind der operative Partner für etablierte Creator & Medienhäuser. Wir übersetzen Ihre Inhalte in Reichweite und pflegen Ihre digitale Visitenkarte.</p>
+          
+          <p class="lead">Wir übernehmen die komplette technische Produktion und Distribution, damit Sie sich nur auf den Inhalt konzentrieren. Von der Strategie bis zum Upload.</p>
           
           <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 40px;">
             <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary">Potenzial-Analyse (Kostenlos)</a>
@@ -297,12 +298,12 @@
 
           <div style="display:flex; gap:40px;">
             <div class="stat-box">
-              <div class="stat-val">2.4M+</div>
-              <div class="stat-label">Views generiert</div>
+              <div class="stat-val-hero">2.4M+</div>
+              <div class="stat-label-hero">Aufrufe</div>
             </div>
             <div class="stat-box">
-              <div class="stat-val">100%</div>
-              <div class="stat-label">Technische Entlastung</div>
+              <div class="stat-val-hero">+36k</div>
+              <div class="stat-label-hero">Neue Abonnenten</div>
             </div>
           </div>
         </div>
@@ -373,23 +374,23 @@
           
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:40px; margin-top:50px;">
             <div>
-              <div style="font-size:13px; text-transform:uppercase; color:var(--acc); font-weight:700; letter-spacing:1px;">Schritt 1</div>
-              <h4 style="margin:12px 0;">Das Audit</h4>
+              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 1</div>
+              <h4 style="margin-bottom:12px;">Das Audit</h4>
               <p style="font-size:15px">Wir analysieren den Ist-Zustand. Wie wirkt Ihre digitale Visitenkarte? Wo verlieren Sie Zuschauer?</p>
             </div>
             <div>
-              <div style="font-size:13px; text-transform:uppercase; color:var(--acc); font-weight:700; letter-spacing:1px;">Schritt 2</div>
-              <h4 style="margin:12px 0;">Die Strategie</h4>
+              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 2</div>
+              <h4 style="margin-bottom:12px;">Die Strategie</h4>
               <p style="font-size:15px">Wir entwickeln ein Format und Design, das Seriosität ausstrahlt und gleichzeitig vom Algorithmus belohnt wird.</p>
             </div>
             <div>
-              <div style="font-size:13px; text-transform:uppercase; color:var(--acc); font-weight:700; letter-spacing:1px;">Schritt 3</div>
-              <h4 style="margin:12px 0;">Produktion</h4>
+              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 3</div>
+              <h4 style="margin-bottom:12px;">Produktion</h4>
               <p style="font-size:15px">Wir übernehmen Schnitt, Audio und Design. Durch KI-Support arbeiten wir schneller als klassische TV-Produktionen.</p>
             </div>
              <div>
-              <div style="font-size:13px; text-transform:uppercase; color:var(--acc); font-weight:700; letter-spacing:1px;">Schritt 4</div>
-              <h4 style="margin:12px 0;">Full Service</h4>
+              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 4</div>
+              <h4 style="margin-bottom:12px;">Full Service</h4>
               <p style="font-size:15px">Sie laden das Rohmaterial hoch – wir liefern den fertigen Upload inkl. Titelbild. Ihre Marke wächst im Hintergrund.</p>
             </div>
           </div>
@@ -408,16 +409,27 @@
           <div class="bento-card case-tile wide fade-in-up">
             <div class="case-head" style="z-index:10; position:relative;">
               <span class="chip">Erfolgsgeschichte</span>
-              <h3 style="margin-top:12px; font-size:32px;">Digitale Transformation: Von 0 auf 2,4 Mio. Views</h3>
+              <h3 style="margin-top:12px; font-size:32px;">Aus dem Nichts zu 2,4 Mio. Views</h3>
               <p style="max-width:650px; margin-top:16px; color: #d4d4d8;">
-                Die Herausforderung: Klassische TV-Inhalte erreichten online die Zielgruppe nicht.<br>
-                Die Lösung: Modernisierung der digitalen Visitenkarte (Thumbnails/Design) und technische Anpassung der Formate.
+                Die Herausforderung: Klassische Inhalte erreichten online die Zielgruppe nicht.<br>
+                Das Ergebnis: Eine treue Community und ein Kanal, der sich durch <strong>6.400€ Ad-Revenue</strong> selbst trägt (Proof of Concept).
               </p>
-              <div style="margin-top:24px; font-family:monospace; color:var(--acc2); display:flex; flex-wrap:wrap; gap:24px; font-size:16px;">
-                <span>+128.000 Views/Monat</span>
-                <span>Top-Ranking bei Google</span>
-                <span>Neue Zielgruppen erschlossen</span>
+              
+              <div style="margin-top:24px; display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:24px;">
+                <div>
+                  <strong style="display:block; font-size:24px; color:var(--acc2); margin-bottom:4px;">2.4M+</strong>
+                  <span style="font-size:14px; color:var(--muted);">Aufrufe</span>
+                </div>
+                <div>
+                  <strong style="display:block; font-size:24px; color:var(--acc2); margin-bottom:4px;">+36.000</strong>
+                  <span style="font-size:14px; color:var(--muted);">Neue Abonnenten</span>
+                </div>
+                 <div>
+                  <strong style="display:block; font-size:24px; color:var(--acc2); margin-bottom:4px;">239.000h</strong>
+                  <span style="font-size:14px; color:var(--muted);">Watchtime</span>
+                </div>
               </div>
+
             </div>
             <div class="chart-container" style="height:320px; width:100%; position:absolute; bottom:0; left:0;">
               <svg class="chart" data-points="10, 25, 45, 80, 150, 240, 380, 520, 650" preserveAspectRatio="none"></svg>
