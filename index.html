@@ -170,21 +170,46 @@
     .chart-container { width: 100%; pointer-events: none; }
     svg.chart { overflow: visible; display: block; width: 100%; height: 100%; }
 
-/* --- SYSTEM SECTION CUSTOM STYLES (FIX 3) --- */
+/* --- SYSTEM SECTION CUSTOM STYLES (PREMIUM UPDATE) --- */
     .system-card {
-      /* FIX: Statt Verlauf nach Transparent nun feste Surface-Farbe, damit Text nicht "rausfällt" */
-      background: var(--surface); 
-      border: 1px solid var(--line); /* Zarter Rahmen rundherum */
-      border-left: 2px solid var(--acc); /* Dein violetter Akzent links bleibt */
+      /* 1. Hintergrund: Ein leichter Verlauf von "Surface" zu fast Schwarz schafft Tiefe */
+      background: linear-gradient(160deg, var(--surface) 0%, #050505 100%);
       
-      padding: 40px 40px 40px 60px; /* Desktop Padding */
-      border-radius: 16px; /* Rundherum saubere Ecken (statt links eckig) */
+      /* 2. Rahmen: Subtil rundherum, aber links der starke Akzent */
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--acc); /* Etwas dickerer Akzent für mehr "Punch" */
+      
+      /* 3. High-End Finish: 
+         - Inset Shadow oben (weißlich) simuliert eine Lichtkante.
+         - Großer Drop-Shadow unten lässt die Karte "schweben". */
+      box-shadow: 
+        inset 0 1px 0 rgba(255,255,255,0.05), 
+        0 24px 60px -12px rgba(0,0,0,0.6);
+      
+      padding: 60px; /* Mehr "Luft" wirkt luxuriöser */
+      border-radius: 24px; /* Modernere, weichere Ecken */
+      position: relative;
+      overflow: hidden; /* Wichtig für den Glow-Effekt */
     }
+
+    /* 4. Der "Secret Sauce" Glow: Ein zarter violetter Schein oben links */
+    .system-card::before {
+      content: "";
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Damit der Text über dem Glow liegt */
+    .system-card > * { position: relative; z-index: 1; }
 
     @media (max-width: 768px) {
       .system-card {
-        padding: 30px 24px; /* Mobile Padding */
-        /* Border-radius bleibt hier 16px, passt also perfekt */
+        padding: 30px 24px; /* Kompakt auf Mobile */
+        border-radius: 16px;
       }
     }
 
