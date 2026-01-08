@@ -117,7 +117,6 @@
       display: flex; flex-direction: column; gap: 24px;
       transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    /* Top padding im Mobile Menu erhöht, damit Inhalte nicht ganz oben kleben */
     .mobile-menu { padding-top: 40px; }
     .mobile-menu.open { transform: translateX(0); }
 
@@ -128,7 +127,6 @@
 
     /* --- HERO --- */
     .hero { min-height: 80vh; display: flex; align-items: center; padding-top: 40px; overflow: hidden; }
-    /* Dynamic Background Orb */
     .hero-glow {
       position: absolute; width: 700px; height: 700px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(3,3,4,0) 70%);
@@ -143,7 +141,6 @@
       font-size: clamp(38px, 6vw, 64px); line-height: 1.1; margin: 24px 0;
     }
     
-    /* FIX: Korrekte Media Query für den Lead-Text statt ungültigem "if" */
     .hero .lead { 
       font-size: clamp(18px, 2vw, 20px); 
       max-width: 600px; 
@@ -163,7 +160,6 @@
       position: relative; overflow: hidden;
     }
     .bento-card:hover { border-color: var(--line-strong); transform: translateY(-4px); }
-    /* Subtle glow on hover */
     .bento-card::after {
       content:""; position: absolute; top:0; left:0; right:0; bottom:0;
       background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.03), transparent 40%);
@@ -211,10 +207,7 @@
     /* --- FOOTER --- */
     footer { border-top: 1px solid var(--line); padding: 60px 0; font-size: 15px; color: var(--muted); background: #020202; }
     
-    /* Stats Numbers */
-    .stat-box {
-      border-left: 2px solid var(--line); padding-left: 20px;
-    }
+    .stat-box { border-left: 2px solid var(--line); padding-left: 20px; }
     .stat-val { font-size: 36px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.03em; }
     .stat-label { font-size: 14px; color: var(--muted); margin-top: 4px;}
 
@@ -504,8 +497,13 @@
                 <textarea name="message" rows="4" required placeholder="Beschreiben Sie kurz Ihre aktuelle Situation..."></textarea>
               </div>
               
-              <div style="font-size:13px; color:var(--muted);">
-                Mit dem Absenden akzeptieren Sie die <a href="/datenschutz" style="text-decoration:underline;">Datenschutzhinweise</a>.
+              <div style="display:flex; gap:12px; align-items:start; font-size:13px; color:var(--muted); margin-top:8px;">
+                <input type="checkbox" id="privacy" name="privacy" required 
+                       style="width:auto; height:auto; padding:0; margin-top:3px; flex-shrink:0; cursor:pointer; appearance:auto; -webkit-appearance:auto; accent-color:var(--acc);">
+                <label for="privacy" style="cursor:pointer; line-height:1.5;">
+                  Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. 
+                  Weitere Infos in der <a href="/datenschutz" target="_blank" style="text-decoration:underline; color:#fff;">Datenschutzerklärung</a>.
+                </label>
               </div>
               
               <button type="submit" class="btn primary" style="justify-content:center; width:100%; margin-top:10px;">Audit kostenlos anfragen</button>
