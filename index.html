@@ -112,11 +112,13 @@
     /* Mobile Menu Toggle */
     .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
     .mobile-menu {
-      position: fixed; top: var(--navH); left: 0; right: 0; bottom: 0;
-      background: var(--bg); z-index: 999; padding: 24px;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 2000; padding: 24px;
       display: flex; flex-direction: column; gap: 24px;
       transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    /* Top padding im Mobile Menu erhöht, damit Inhalte nicht ganz oben kleben */
+    .mobile-menu { padding-top: 40px; }
     .mobile-menu.open { transform: translateX(0); }
 
     @media (max-width: 768px) {
@@ -140,7 +142,17 @@
     .hero h1 {
       font-size: clamp(38px, 6vw, 64px); line-height: 1.1; margin: 24px 0;
     }
-    .hero .lead { font-size: clamp(18px, 2vw, 20px); max-width: 600px; margin: 0 auto 32px; if(min-width: 900px){ margin-left:0; } color: var(--muted); }
+    
+    /* FIX: Korrekte Media Query für den Lead-Text statt ungültigem "if" */
+    .hero .lead { 
+      font-size: clamp(18px, 2vw, 20px); 
+      max-width: 600px; 
+      margin: 0 auto 32px; 
+      color: var(--muted); 
+    }
+    @media (min-width: 900px) {
+      .hero .lead { margin-left: 0; }
+    }
 
     /* Bento Grid Cards */
     .bento-card {
@@ -239,6 +251,9 @@
   </nav>
 
   <div class="mobile-menu">
+    <button onclick="toggleMenu()" style="align-self: flex-end; background:none; border:none; color:#fff; padding:8px; cursor:pointer; margin-bottom:20px;" aria-label="Menü schließen">
+       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
     <a href="#services" class="nav-link" onclick="toggleMenu()">Lösungen</a>
     <a href="#system" class="nav-link" onclick="toggleMenu()">Prozess</a>
     <a href="#proof" class="nav-link" onclick="toggleMenu()">Referenzen</a>
@@ -252,7 +267,7 @@
       <div class="wrap hero-grid">
         <div class="fade-in-up">
           <div class="chip" style="margin-bottom:24px"><span style="color:var(--acc)">●</span> Operative Growth Unit</div>
-          <h1>Ihr Content. <span style="color:#fff; text-decoration:underline text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Unsere Technik.</span><br>Eine starke Marke.</h1>
+          <h1>Ihr Content. <span style="color:#fff; text-decoration:underline; text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Unsere Technik.</span><br>Eine starke Marke.</h1>
           <p class="lead">Wir sind der operative Partner für etablierte Creator & Medienhäuser. Wir übersetzen Ihre Inhalte in Reichweite und pflegen Ihre digitale Visitenkarte.</p>
           
           <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 40px;">
