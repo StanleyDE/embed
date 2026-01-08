@@ -164,16 +164,15 @@
     .case-tile.wide { grid-column: span 12; background: linear-gradient(120deg, #18181b 0%, #050505 100%); }
     @media (max-width: 768px) { .case-tile { grid-column: span 12; } }
 
-    /* --- NEW PROOF SECTION STYLES (Split Layout - Landscape Update) --- */
+    /* --- PROOF SECTION STYLES (Split Layout - Landscape) --- */
     .proof-split {
       display: grid;
-      /* Mehr Platz für das Bild rechts (1.2fr), damit es wirken kann */
       grid-template-columns: 0.9fr 1.2fr; 
       gap: 50px;
       position: relative;
       z-index: 2;
       height: 100%;
-      align-items: center; /* Vertikal zentriert sieht bei Querformat besser aus */
+      align-items: center; 
     }
     
     .proof-content {
@@ -217,6 +216,20 @@
       margin-top: 32px;
       padding-top: 32px;
       border-top: 1px solid var(--line);
+    }
+
+    /* Animation Classes for Cycle */
+    .cycle-item {
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      display: block;
+    }
+    .cycle-item.swap-out {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    .cycle-item.swap-in {
+      opacity: 0;
+      transform: translateY(10px);
     }
     
     .chart-overlay {
@@ -520,22 +533,26 @@
                     <strong>Der Ausgangspunkt:</strong> Keine nennenswerte Online-Präsenz. Das Ziel war der komplette Aufbau der digitalen Infrastruktur – von der Technik bis zur Ästhetik.
                   </p>
                   <p style="color: var(--muted); font-size: 16px;">
-                    <strong>Die Umsetzung:</strong> Full-Stack Betreuung. Einrichtung der Streaming-Server, Optimierung der Studio-Setups und TV-Grafiken. Dazu eine aggressive Content-Strategie: Schnitt, SEO und virale Reels, die den Kanal in 9 Monaten profitabel machten.
+                    <strong>Die Umsetzung:</strong> Full-Stack Betreuung. Einrichtung der Streaming-Server, Podcast-Setups und TV-Grafiken. Dazu eine aggressive Content-Strategie: Schnitt, SEO und virale Reels, die dazu führten, dass sich der <strong>YouTube-Kanal heute selbst refinanziert</strong>.
                   </p>
                   
                   <div class="stats-grid">
-                    <div>
-                      <strong style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">1M+</strong>
-                      <span style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Reel Reichweite</span>
+                    
+                    <div class="cycle-container" data-alt-val="2.4M+" data-alt-label="Gesamt-Views">
+                      <strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">1.3M+</strong>
+                      <span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Reel Views</span>
                     </div>
-                    <div>
-                      <strong style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">100%</strong>
-                      <span style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Refinanziert</span>
+
+                    <div class="cycle-container" data-alt-val="239k" data-alt-label="Std. Watchtime">
+                       <strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">100%</strong>
+                       <span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Refinanziert</span>
                     </div>
-                     <div>
-                      <strong style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">9 Mon.</strong>
-                      <span style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Setup & Growth</span>
+
+                    <div class="cycle-container" data-alt-val="+36k" data-alt-label="Neue Fans">
+                      <strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">9 Mon.</strong>
+                      <span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Setup & Growth</span>
                     </div>
+                  
                   </div>
                 </div>
 
@@ -606,6 +623,7 @@
     <section id="kontakt">
       <div class="wrap">
         <div class="bento-card fade-in-up" style="max-width:1000px; margin:0 auto; background:linear-gradient(180deg, var(--surface), #020202);">
+          
           <div class="contact-grid">
             <div style="padding:10px;">
               <h2>Lassen Sie uns sprechen.</h2>
@@ -728,7 +746,7 @@
       });
     });
 
-    // 6. Number Counter Animation (In-View Trigger)
+    // 6. Number Counter Animation (Header)
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -737,37 +755,83 @@
           const suffix = el.getAttribute('data-suffix') || '';
           
           let startTimestamp = null;
-          const duration = 2000; // 2 Sekunden Animationsdauer
+          const duration = 2000; 
           
           const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            
-            // Ease-out expo function für smooth landing
             const ease = 1 - Math.pow(2, -10 * progress);
-            
             const current = (ease * target);
-            
-            // Formatierung: Wenn Ziel Kommazahl (z.B. 2.4), dann mit 1 Dezimalstelle, sonst ganzzahlig
             const isFloat = target % 1 !== 0;
             el.innerText = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
             
             if (progress < 1) {
               window.requestAnimationFrame(step);
             } else {
-              el.innerText = target + suffix; // Sicherstellen, dass Endwert exakt ist
+              el.innerText = target + suffix;
             }
           };
-          
           window.requestAnimationFrame(step);
-          statsObserver.unobserve(el); // Nur einmal animieren
+          statsObserver.unobserve(el);
         }
       });
     }, { threshold: 0.5 });
-    
     document.querySelectorAll('.counter-stat').forEach(el => statsObserver.observe(el));
 
-    // 7. Chart Renderer
+    // 7. STATS CYCLER (The "Cool Animation" for Proof Section)
+    function initCycleStats() {
+      const containers = document.querySelectorAll('.cycle-container');
+      
+      setInterval(() => {
+        containers.forEach(container => {
+          // Aktuelle Elemente
+          const valEl = container.querySelector('.stat-val');
+          const labelEl = container.querySelector('.stat-label');
+          
+          // Daten für den Swap
+          const currentVal = valEl.innerText;
+          const currentLabel = labelEl.innerText;
+          const nextVal = container.getAttribute('data-alt-val');
+          const nextLabel = container.getAttribute('data-alt-label');
+          
+          // 1. Ausblenden (Fade Out / Slide Up)
+          valEl.classList.add('swap-out');
+          labelEl.classList.add('swap-out');
+          
+          setTimeout(() => {
+            // 2. Text tauschen
+            valEl.innerText = nextVal;
+            labelEl.innerText = nextLabel;
+            
+            // Attribute updaten für nächsten Zyklus
+            container.setAttribute('data-alt-val', currentVal);
+            container.setAttribute('data-alt-label', currentLabel);
+            
+            // Klasse entfernen (Reset Position aber unsichtbar)
+            valEl.classList.remove('swap-out');
+            labelEl.classList.remove('swap-out');
+            
+            // Vorbereiten für Slide In
+            valEl.classList.add('swap-in');
+            labelEl.classList.add('swap-in');
+            
+            // Force Reflow
+            void valEl.offsetWidth;
+            
+            // 3. Einblenden (Fade In / Slide To Normal)
+            valEl.classList.remove('swap-in');
+            labelEl.classList.remove('swap-in');
+            
+          }, 500); // Wartezeit entspricht CSS transition time
+        });
+      }, 4000); // Alle 4 Sekunden wechseln
+    }
+    
+    // Start cycler when loaded
+    document.addEventListener('DOMContentLoaded', initCycleStats);
+
+
+    // 8. Chart Renderer
     function getPoint(point, i, a, smoothing) {
       const cp = (current, previous, next, reverse) => {
         const p = previous || current;
