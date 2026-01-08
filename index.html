@@ -399,6 +399,40 @@
       100% { left: 200%; }
     }
 
+    /* --- NEU: Floating Badge für Proof Section --- */
+    .floating-badge {
+      position: absolute;
+      bottom: 40px; 
+      left: -30px; /* Ragt links raus -> erzeugt Tiefe */
+      background: rgba(14, 14, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 24px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      animation: float-y 6s ease-in-out infinite;
+    }
+
+    @keyframes float-y {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* Mobile Anpassung: Badge nicht rausstehen lassen */
+    @media (max-width: 900px) {
+      .floating-badge {
+        left: 50%; 
+        transform: translateX(-50%);
+        bottom: -20px;
+        width: max-content;
+        animation: none; /* Kein Floating auf Mobile, spart Performance */
+      }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -651,7 +685,16 @@
                 <div class="proof-visual">
                   <div class="proof-img-container">
                     <img src="https://i.ibb.co/93nGPsf3/Davor-3.png" alt="SpiritTV Transformation" class="proof-img" style="background-color: #1a1a1c;">
-                    
+                  </div>
+
+                  <div class="floating-badge">
+                    <div style="background:#10b981; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div>
+                      <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Performance</div>
+                      <div style="font-size:18px; color:#fff; font-weight:800;">+300% Growth</div>
+                    </div>
                   </div>
                 </div>
               </div>
