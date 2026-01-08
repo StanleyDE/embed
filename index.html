@@ -246,13 +246,16 @@
     .evo-label.old { background: rgba(0,0,0,0.7); color: #aaa; border: 1px solid rgba(255,255,255,0.1); }
     .evo-label.new { background: var(--acc); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
 
-    /* Connector Linie (Deko) */
+    /* Connector Linie (Deko) - NEUES DESIGN: BOGEN OBEN */
     .evo-connector {
       position: absolute;
-      top: 30%; left: 55%;
-      width: 80px; height: 80px;
-      z-index: 2;
+      top: 15%; /* Weiter oben für den Bogen-Effekt */
+      left: 40%;
+      width: 100px;
+      height: 60px;
+      z-index: 10; /* Sichtbar über den Bildern */
       pointer-events: none;
+      filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)); /* Leuchteffekt */
     }
     
     /* Hover Effekt für den ganzen Stack */
@@ -264,10 +267,10 @@
       transform: rotate(0deg) scale(1.05) translateX(10px);
     }
 
-    /* Das schwebende Stats-Badge (POSITION UPDATE) */
+    /* Das schwebende Stats-Badge */
     .floating-badge {
       position: absolute;
-      bottom: -60px; /* Weiter nach unten geschoben */
+      bottom: -60px;
       right: -10px;
       background: rgba(14, 14, 16, 0.9);
       backdrop-filter: blur(12px);
@@ -319,11 +322,17 @@
       transform: translateY(10px);
     }
     
+    /* FIX: Chart Overlay - Volle Breite und Maskierung */
     .chart-overlay {
-      position: absolute; bottom: -20px; right: -20px;
-      width: 70%; height: 60%; opacity: 0.12; 
+      position: absolute; bottom: 0; left: 0; right: 0;
+      width: 100%; height: 80%; 
+      opacity: 0.15; 
       pointer-events: none; z-index: 1;
-      mask-image: linear-gradient(to top, black, transparent);
+      /* Maskierung für sanften Übergang */
+      mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%), linear-gradient(to top, black 20%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%), linear-gradient(to top, black 20%, transparent 100%);
+      mask-composite: intersect;
+      -webkit-mask-composite: source-in;
     }
 
     .case-head { padding: 40px; position: relative; z-index: 10; }
@@ -731,9 +740,10 @@
                       <div class="evo-label old">Vorher / Alt</div>
                     </div>
 
-                    <svg class="evo-connector" viewBox="0 0 100 100" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4">
-                       <path d="M0,0 Q50,0 80,50 T100,100" />
-                     </svg>
+                    <svg class="evo-connector" viewBox="0 0 100 60" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
+                       <path d="M5,50 Q50,-10 95,50" stroke-dasharray="4 4" />
+                       <path d="M85,42 L95,50 L88,58" stroke-width="2" stroke-dasharray="0" />
+                    </svg>
                     
                     <div class="evo-card after">
                       <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" alt="Nachher Stanverse" class="evo-img">
