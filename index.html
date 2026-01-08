@@ -284,6 +284,13 @@
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
     }
     
+    /* FIX: Textarea Verhalten */
+    textarea {
+      resize: vertical; /* Erlaubt nur ziehen nach oben/unten */
+      min-height: 120px; /* Mindesthöhe */
+      max-height: 400px; /* Maximale Höhe */
+    }
+    
     /* NEW: Responsive Contact Layout Fix */
     .contact-grid {
       display: grid;
@@ -292,11 +299,11 @@
     }
     @media (max-width: 800px) {
       .contact-grid {
-        grid-template-columns: 1fr; /* Force 1 column on mobile */
+        grid-template-columns: 1fr; 
         gap: 40px;
       }
       #kontakt .bento-card {
-        padding: 24px !important; /* Weniger Padding auf Handy für mehr Platz */
+        padding: 24px !important; 
       }
     }
 
@@ -316,7 +323,6 @@
       letter-spacing: -0.05em;
       line-height: 1.1;
       margin-bottom: 4px;
-      /* Wichtig für die Animation, damit die Zahl nicht springt */
       font-variant-numeric: tabular-nums; 
     }
     
