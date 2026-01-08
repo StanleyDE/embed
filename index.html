@@ -187,31 +187,25 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      /* Perspektive für 3D-Effekt */
       perspective: 1000px; 
     }
     
     .proof-img-container {
       width: 100%;
-      /* Breiteres Limit für Querformat (vorher 300px) */
       max-width: 550px; 
-      /* Das korrekte 2:1 Format (2000x1000) */
-      aspect-ratio: 2/1; 
+      aspect-ratio: 2/1; /* 2000x1000 Format */
       background: #111;
       border: 1px solid var(--line-strong);
-      border-radius: 16px; /* Etwas runder */
+      border-radius: 16px; 
       overflow: hidden;
       box-shadow: 0 30px 60px -15px rgba(0,0,0,0.9);
-      
-      /* Leichte Drehung wirkt wie ein Screen */
       transform: rotateY(-5deg) rotateX(2deg); 
       transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     
     .proof-img-container:hover {
-      /* Beim Hover "gerade rücken" und vergrößern */
       transform: rotateY(0deg) rotateX(0deg) scale(1.03);
-      box-shadow: 0 40px 80px -20px rgba(99, 102, 241, 0.15); /* Leichter Glow */
+      box-shadow: 0 40px 80px -20px rgba(99, 102, 241, 0.15); 
     }
     
     .proof-img { width: 100%; height: 100%; object-fit: cover; }
@@ -237,9 +231,10 @@
       .proof-visual { margin-top: 0; justify-content: center; }
       .proof-img-container { 
         max-width: 100%; 
-        transform: rotateY(0deg) rotateX(0deg); /* Kein 3D auf Mobile */
+        transform: rotateY(0deg) rotateX(0deg); 
       }
       .stats-grid { justify-items: center; text-align: center; }
+      .chart-overlay { width: 100%; opacity: 0.1; }
     }
 
     .case-head { padding: 40px; position: relative; z-index: 10; }
@@ -305,6 +300,8 @@
       letter-spacing: -0.05em;
       line-height: 1.1;
       margin-bottom: 4px;
+      /* Wichtig für die Animation, damit die Zahl nicht springt */
+      font-variant-numeric: tabular-nums; 
     }
     
     .stat-label-hero {
@@ -376,12 +373,13 @@
 
           <div style="display:flex; gap:40px;">
             <div class="stat-box">
-              <div class="stat-val-hero">2.4M+</div>
+              <div class="stat-val-hero counter-stat" data-target="2.4" data-suffix="M+">0</div>
               <div class="stat-label-hero">Aufrufe</div>
             </div>
+            
             <div class="stat-box">
-              <div class="stat-val-hero">+36k</div>
-              <div class="stat-label-hero">Neue Abonnenten</div>
+              <div class="stat-val-hero counter-stat" data-target="239" data-suffix="k+">0</div>
+              <div class="stat-label-hero">Std. Watchtime</div>
             </div>
           </div>
         </div>
@@ -522,9 +520,11 @@
 
                 <div class="proof-visual">
                   <div class="proof-img-container">
-                    <img src="https://i.ibb.co/pk7V6wP/Davor-1.png" alt="SpiritTV Transformation" class="proof-img" style="background-color: #1a1a1c;">
+                    <img src="thumbnail-vorher-nachher.jpg" alt="SpiritTV Transformation" class="proof-img" style="background-color: #1a1a1c;">
                     
                     <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; opacity:0.5; font-size:14px; pointer-events:none;">
+                      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="margin-bottom:8px; display:block; margin:0 auto;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><polygon points="10 8 16 11 10 14 10 8"/></svg>
+                      2000 x 1000px
                     </div>
                   </div>
                 </div>
@@ -711,7 +711,46 @@
       });
     });
 
-    // 6. Chart Renderer
+    // 6. Number Counter Animation (In-View Trigger)
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.getAttribute('data-target'));
+          const suffix = el.getAttribute('data-suffix') || '';
+          
+          let startTimestamp = null;
+          const duration = 2000; // 2 Sekunden Animationsdauer
+          
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            
+            // Ease-out expo function für smooth landing
+            const ease = 1 - Math.pow(2, -10 * progress);
+            
+            const current = (ease * target);
+            
+            // Formatierung: Wenn Ziel Kommazahl (z.B. 2.4), dann mit 1 Dezimalstelle, sonst ganzzahlig
+            const isFloat = target % 1 !== 0;
+            el.innerText = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+            
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              el.innerText = target + suffix; // Sicherstellen, dass Endwert exakt ist
+            }
+          };
+          
+          window.requestAnimationFrame(step);
+          statsObserver.unobserve(el); // Nur einmal animieren
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    document.querySelectorAll('.counter-stat').forEach(el => statsObserver.observe(el));
+
+    // 7. Chart Renderer
     function getPoint(point, i, a, smoothing) {
       const cp = (current, previous, next, reverse) => {
         const p = previous || current;
