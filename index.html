@@ -170,17 +170,21 @@
     .chart-container { width: 100%; pointer-events: none; }
     svg.chart { overflow: visible; display: block; width: 100%; height: 100%; }
 
-    /* --- SYSTEM SECTION CUSTOM STYLES (FIX 3) --- */
+/* --- SYSTEM SECTION CUSTOM STYLES (FIX 3) --- */
     .system-card {
-      background: linear-gradient(to right, rgba(255,255,255,0.02), transparent);
-      border-left: 2px solid var(--acc);
+      /* FIX: Statt Verlauf nach Transparent nun feste Surface-Farbe, damit Text nicht "rausfällt" */
+      background: var(--surface); 
+      border: 1px solid var(--line); /* Zarter Rahmen rundherum */
+      border-left: 2px solid var(--acc); /* Dein violetter Akzent links bleibt */
+      
       padding: 40px 40px 40px 60px; /* Desktop Padding */
-      border-radius: 0 20px 20px 0;
+      border-radius: 16px; /* Rundherum saubere Ecken (statt links eckig) */
     }
+
     @media (max-width: 768px) {
       .system-card {
-        padding: 30px 24px; /* Mobile Padding - viel platzsparender */
-        border-radius: 16px; /* Sieht auf Mobile sauberer aus als "abgeschnitten" */
+        padding: 30px 24px; /* Mobile Padding */
+        /* Border-radius bleibt hier 16px, passt also perfekt */
       }
     }
 
