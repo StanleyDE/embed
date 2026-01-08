@@ -458,27 +458,35 @@
               </div>
             </div>
 
-            <form action="mailto:hi@stanverse.de" method="POST" enctype="text/plain" style="display:flex; flex-direction:column; gap:20px;">
+            <form action="https://api.web3forms.com/submit" method="POST" style="display:flex; flex-direction:column; gap:20px;">
+              
+              <input type="hidden" name="access_key" value="64735d1c-939a-4b3c-b3f1-17c55541547c">
+              
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
               <div>
                 <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Ihr Name</label>
-                <input type="text" name="Name" required placeholder="Vorname Nachname">
+                <input type="text" name="name" required placeholder="Vorname Nachname">
               </div>
+
               <div>
                 <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Geschäftliche E-Mail</label>
-                <input type="email" name="Email" required placeholder="name@domain.de">
+                <input type="email" name="email" required placeholder="name@domain.de">
               </div>
+
               <div>
                 <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Ihr Fokus</label>
-                <select name="Ziel">
+                <select name="service">
                   <option>Kanal-Wachstum (Creator B2C)</option>
                   <option>Branding & Digitale Visitenkarte</option>
                   <option>Corporate Trust (B2B)</option>
                   <option>Sonstiges</option>
                 </select>
               </div>
+
               <div>
                 <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Nachricht / Link zum Kanal</label>
-                <textarea name="Msg" rows="4" required placeholder="Beschreiben Sie kurz Ihre aktuelle Situation..."></textarea>
+                <textarea name="message" rows="4" required placeholder="Beschreiben Sie kurz Ihre aktuelle Situation..."></textarea>
               </div>
               
               <div style="font-size:13px; color:var(--muted);">
