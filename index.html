@@ -283,6 +283,22 @@
       outline: none; border-color: var(--acc);
       box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
     }
+    
+    /* NEW: Responsive Contact Layout Fix */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 60px;
+    }
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: 1fr; /* Force 1 column on mobile */
+        gap: 40px;
+      }
+      #kontakt .bento-card {
+        padding: 24px !important; /* Weniger Padding auf Handy für mehr Platz */
+      }
+    }
 
     /* --- FOOTER --- */
     footer { border-top: 1px solid var(--line); padding: 60px 0; font-size: 15px; color: var(--muted); background: #020202; }
@@ -521,7 +537,7 @@
                 <div class="proof-visual">
                   <div class="proof-img-container">
                     <img src="https://i.ibb.co/pk7V6wP/Davor-1.png" alt="SpiritTV Transformation" class="proof-img" style="background-color: #1a1a1c;">
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -585,7 +601,7 @@
     <section id="kontakt">
       <div class="wrap">
         <div class="bento-card fade-in-up" style="max-width:1000px; margin:0 auto; background:linear-gradient(180deg, var(--surface), #020202);">
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:60px;">
+          <div class="contact-grid">
             <div style="padding:10px;">
               <h2>Lassen Sie uns sprechen.</h2>
               <p>Finden Sie heraus, warum Ihr Kanal stagniert und wie wir das ändern können. Unverbindlich.</p>
