@@ -190,7 +190,7 @@
       min-height: 350px; 
     }
 
-    /* EVOLUTION STACK STYLES (NEU) */
+    /* EVOLUTION STACK STYLES */
     .evolution-stack {
       position: relative;
       width: 100%;
@@ -264,11 +264,11 @@
       transform: rotate(0deg) scale(1.05) translateX(10px);
     }
 
-    /* Das schwebende Stats-Badge */
+    /* Das schwebende Stats-Badge (POSITION UPDATE) */
     .floating-badge {
       position: absolute;
-      bottom: 20px; 
-      right: -20px;
+      bottom: -40px; /* Weiter nach unten geschoben */
+      right: -10px;
       background: rgba(14, 14, 16, 0.9);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.1);
@@ -293,7 +293,7 @@
       .evolution-stack { height: 250px; margin: 0 auto; }
       .evo-card.before { left: 5%; width: 60%; }
       .evo-card.after { right: 5%; width: 65%; }
-      .floating-badge { position: relative; bottom: auto; right: auto; margin-top: 20px; display: inline-flex; animation: none; }
+      .floating-badge { position: relative; bottom: auto; right: auto; margin-top: 30px; display: inline-flex; animation: none; }
     }
     
     .stats-grid {
@@ -728,7 +728,7 @@
                   <div class="evolution-stack">
                     <div class="evo-card before">
                       <img src="https://i.ibb.co/hFDR7jkx/Thumbnails-122.png" alt="Vorher" class="evo-img">
-                      <div class="evo-label old">Input / Alt</div>
+                      <div class="evo-label old">Vorher / Alt</div>
                     </div>
 
                     <svg class="evo-connector" viewBox="0 0 100 100" fill="none" stroke="var(--acc)" stroke-width="2" stroke-dasharray="6 4">
@@ -737,7 +737,7 @@
                     
                     <div class="evo-card after">
                       <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" alt="Nachher Stanverse" class="evo-img">
-                      <div class="evo-label new">Output / Stanverse</div>
+                      <div class="evo-label new">Nachher / stanverse</div>
                     </div>
                   
                     <div class="floating-badge">
