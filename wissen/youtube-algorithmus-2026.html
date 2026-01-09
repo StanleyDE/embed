@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <title>Der YouTube-Algorithmus 2026: Die Post-Retention-Ära | stanverse</title>
-  <meta name="description" content="Eine umfassende Analyse der Community-Bridge-Architektur und KI-gesteuerten Discovery. Warum Retention nicht mehr reicht und wie WSS und QCR die Zukunft bestimmen." />
+  <meta name="description" content="Eine umfassende Analyse: Warum Community Bridge und KI-Discovery wichtiger sind als Watchtime. Der komplette Guide für Creator und Marken." />
   
   <link rel="canonical" href="https://stanverse.de/wissen/youtube-algorithmus-2026" />
   
@@ -15,7 +15,7 @@
 
   <meta property="og:type" content="article" />
   <meta property="og:title" content="Der YouTube-Algorithmus 2026: Die Post-Retention-Ära" />
-  <meta property="og:description" content="Umfassende Analyse: Warum Community Bridge und KI-Discovery die Watchtime ersetzen." />
+  <meta property="og:description" content="Analyse: Warum Community Bridge und KI-Discovery die Watchtime ersetzen." />
   <meta property="og:image" content="https://stanverse.de/blog/img/algo-2026.jpg" />
 
   <script type="application/ld+json">
@@ -167,15 +167,24 @@
 
     /* Typography */
     .content { color: #d4d4d8; font-size: 18px; line-height: 1.8; }
+    
+    /* Scroll Margin Fix */
     .content h2, .content h3, .content h4 { scroll-margin-top: 150px; }
-    .content h2 { color: #fff; font-size: 32px; margin: 60px 0 24px; letter-spacing: -0.02em; font-weight: 800; border-left: 3px solid var(--acc); padding-left: 20px; }
-    .content h3 { color: #fff; font-size: 24px; margin: 40px 0 16px; font-weight: 700; }
+
+    .content h2 { color: #fff; font-size: 30px; margin: 60px 0 24px; letter-spacing: -0.02em; font-weight: 800; border-left: 3px solid var(--acc); padding-left: 20px; }
+    .content h3 { color: #fff; font-size: 22px; margin: 40px 0 16px; font-weight: 700; }
+    .content h4 { color: #fff; font-size: 18px; margin: 30px 0 12px; font-weight: 700; }
     .content p { margin-bottom: 24px; }
     .content ul, .content ol { margin-bottom: 24px; padding-left: 24px; }
     .content li { margin-bottom: 12px; color: #d4d4d8; }
     .content strong { color: #fff; font-weight: 700; }
     
-    /* Tabellen */
+    .content img { 
+      width: 100%; border-radius: 12px; margin: 40px 0 12px; 
+      border: 1px solid var(--line);
+    }
+    
+    /* Table Styling */
     .table-responsive { overflow-x: auto; margin: 40px 0; border: 1px solid var(--line); border-radius: 12px; }
     table { width: 100%; border-collapse: collapse; font-size: 16px; }
     th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--line); }
@@ -183,11 +192,16 @@
     td { color: var(--muted); }
     tr:last-child td { border-bottom: none; }
 
-    /* Formeln */
+    /* CSS Formula Style (Statt Latex) */
     .formula-box {
       background: var(--surface); padding: 24px; border-radius: 12px; border: 1px solid var(--line);
-      text-align: center; font-family: monospace; font-size: 18px; color: var(--acc); margin: 30px 0;
+      text-align: center; margin: 30px 0; font-family: 'Inter', sans-serif;
+      display: flex; justify-content: center; align-items: center; gap: 12px;
+      font-size: 18px; color: #fff;
     }
+    .fraction { display: inline-block; text-align: center; vertical-align: middle; margin: 0 0.2em; }
+    .fraction > span { display: block; padding: 0.1em; }
+    .fraction span.bottom { border-top: 2px solid var(--muted); }
 
     /* Glow Card / Highlight Box */
     .glow-card {
@@ -261,7 +275,7 @@
         <a href="../index.html#services" class="nav-link">Lösungen</a>
         <a href="../index.html#system" class="nav-link">Prozess</a>
         <a href="../index.html#proof" class="nav-link">Referenzen</a>
-        <a href="index.html" class="nav-link" style="color:#fff;">Wissen</a>
+        <a href="index.html" class="nav-link">Wissen</a>
         <a href="../index.html#about" class="nav-link">Über uns</a>
         <a href="../index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
       </div>
@@ -278,7 +292,7 @@
     <a href="../index.html#services" class="nav-link">Lösungen</a>
     <a href="../index.html#system" class="nav-link">Prozess</a>
     <a href="../index.html#proof" class="nav-link">Referenzen</a>
-    <a href="index.html" class="nav-link" style="color:#fff;">Wissen</a>
+    <a href="index.html" class="nav-link">Wissen</a>
     <a href="../index.html#about" class="nav-link">Über uns</a>
     <a href="../index.html#kontakt" class="btn primary">Audit anfragen</a>
   </div>
@@ -291,36 +305,37 @@
         <span>20 Min. Lesezeit</span>
       </div>
       <h1 class="blog-title">Der YouTube-Algorithmus 2026: Die Post-Retention-Ära</h1>
-      <p class="blog-intro">Eine umfassende Analyse der Community-Bridge-Architektur und KI-gesteuerten Discovery.</p>
+      <p class="blog-intro">Eine umfassende Analyse der Community-Bridge-Architektur und KI-gesteuerten Discovery. Warum die einfache Optimierung auf Klicks und Watchtime nicht mehr ausreicht.</p>
     </header>
 
     <div class="blog-grid">
       <div class="content">
         
         <div class="highlight-box glow-card">
-          <span class="box-title">Executive Summary</span>
-          <p style="margin:0;">Das digitale Medienökosystem des Jahres 2026 markiert eine fundamentale Zäsur in der Geschichte algorithmischer Kuratierung. Über ein Jahrzehnt lang, insbesondere zwischen 2015 und 2024, operierte die Plattform YouTube unter einem hegemonialen Paradigma: der Maximierung der Verweildauer (Retention).</p>
-          <p style="margin:20px 0 0 0;">Die zentrale These lautet: Retention ist nicht länger der primäre Proxy für Wertschöpfung. Sie wurde abgelöst durch ein komplexeres System der Satisfaction-Weighted Discovery (zufriedenheitsgewichtete Entdeckung) und das Protokoll der Community Bridge.</p>
+          <span class="box-title">Zusammenfassung</span>
+          <p style="margin:0;">Das digitale Medienökosystem des Jahres 2026 markiert eine fundamentale Wende. Über ein Jahrzehnt lang galt die Maximierung der Verweildauer (Retention) als das einzige Gesetz. Diese Ära ist vorbei. Der neue Algorithmus fragt nicht mehr nur: "Haben sie es gesehen?", sondern "Haben sie es wertgeschätzt und teilen sie es?".</p>
+          <p style="margin:20px 0 0 0;">Dieser Bericht analysiert den Status Quo im Januar 2026: Retention ist nicht länger der wichtigste Indikator für Erfolg. Sie wurde abgelöst durch "Zufriedenheit" (Satisfaction Scores) und die Fähigkeit, Communities zu verbinden.</p>
         </div>
 
-        <p>Der vorliegende Bericht liefert eine erschöpfende Analyse des Status Quo im Januar 2026. Basierend auf einer tiefgehenden Auswertung technischer Dokumentationen, Experteninterviews der YouTube-Growth-Teams und algorithmischer Leistungsdaten analysiert dieser Report die drei Säulen des Ökosystems 2026:</p>
+        <p>Wir analysieren hier die drei Säulen des neuen Ökosystems:</p>
         <ul>
-            <li><strong>Der Tod der reinen Retention:</strong> Der Übergang zu Watch Satisfaction Scores (WSS) und Quality Click Ratios (QCR).</li>
-            <li><strong>Die Community Bridge:</strong> Wie Netzwerktheorie und die „Hype“-Mechanik die Discovery-Logik transformieren.</li>
-            <li><strong>Das KI-Substrat:</strong> Die Rolle von Gemini, SynthID und multimodaler Indexierung.</li>
+            <li><strong>Das Ende der reinen Retention:</strong> Warum "Watch Satisfaction Scores" (WSS) und "Quality Click Ratios" (QCR) jetzt regieren.</li>
+            <li><strong>Die Community Bridge:</strong> Wie Netzwerkeffekte die Verbreitung von Inhalten steuern.</li>
+            <li><strong>Der KI-Unterbau:</strong> Wie Googles Gemini und multimodale Indexierung (Video-Verständnis durch KI) Metadaten wie Tags überflüssig machen.</li>
         </ul>
 
-        <h2 id="teil-1">Teil I: Der Paradigmenwechsel – Das Versagen von CTR und Retention</h2>
-        <h3>1.1 Die Erosion der klassischen Metriken</h3>
-        <p>In der prä-2025-Ära galten Click-Through-Rate (CTR) und Average View Duration (AVD) als die „Göttermetriken“ des YouTube-Wachstums. Content-Strategien wurden minutiös darauf ausgerichtet, diese Zahlen zu manipulieren – oft auf Kosten der Nutzererfahrung. Hohe Retention korrelierte zunehmend mit passivem Konsum („Doomscrolling“) statt mit bewusster Wertschätzung.</p>
-        <p>Im Jahr 2026 erkennt der Algorithmus, dass ein Nutzer ein 20-minütiges Video vollständig ansehen kann und die Plattform dennoch unzufrieden verlässt. Infolgedessen ist die Gewichtung der CTR in der Empfehlungslogik drastisch gesunken. Während sie 2023 noch schätzungsweise 35 % der Gewichtung ausmachte, liegt sie 2026 nur noch bei etwa 20 %. Im Gegenzug sind Signale der <strong>Viewer Satisfaction auf ca. 35 % gestiegen</strong>.</p>
+        <h2 id="teil-1">Teil I: Der Paradigmenwechsel – Das Versagen klassischer Metriken</h2>
         
-        <h3>1.2 Der neue Nordstern: Watch Satisfaction Score (WSS)</h3>
-        <p>Das Herzstück der Empfehlungsmaschine 2026 ist der WSS. Er wird berechnet durch:</p>
+        <h3>1.1 Der Verfall von Klickrate und Watchtime</h3>
+        <p>Früher galten Klickrate (CTR) und durchschnittliche Wiedergabedauer (AVD) als die heiligen Kennzahlen. Strategien wurden darauf ausgelegt, diese Zahlen künstlich zu erhöhen – oft auf Kosten der Nutzererfahrung. Doch YouTube hat erkannt: Hohe Watchtime bedeutet oft nur passiven Konsum ("Doomscrolling") und nicht echte Wertschätzung.</p>
+        <p>Im Jahr 2026 erkennt der Algorithmus, wenn ein Nutzer ein Video zwar ganz ansieht, die App danach aber frustriert verlässt. Deshalb ist die Gewichtung der Klickrate (CTR) von geschätzten 35% (2023) auf nur noch etwa 20% gesunken. Dafür zählen Signale der <strong>Zuschauerzufriedenheit</strong> jetzt ca. 35%.</p>
+        
+        <h3>1.2 Das neue Ziel: Watch Satisfaction Score (WSS)</h3>
+        <p>Der "Watch Satisfaction Score" ist die neue wichtigste Metrik. Er ist keine einzelne Zahl im Dashboard, sondern setzt sich zusammen aus:</p>
         <ul>
-            <li><strong>Direkte Befragung:</strong> Post-View-Umfragen („Hat dir dieses Video gefallen?“).</li>
-            <li><strong>Sentiment-Modellierung:</strong> Gemini-basiertes NLP analysiert die Tonalität von Kommentaren.</li>
-            <li><strong>Viewer Loyalty:</strong> Kehrt der Nutzer zur Plattform zurück oder schließt er die App frustriert?</li>
+            <li><strong>Direkte Befragung:</strong> Die kleinen Umfragen nach dem Video ("Hat dir das gefallen?").</li>
+            <li><strong>Stimmungs-Analyse:</strong> Die KI (Gemini) liest die Kommentare und versteht, ob die Stimmung positiv oder negativ ist – egal wie viele Kommentare es sind.</li>
+            <li><strong>Zuschauer-Treue:</strong> Kehrt der Nutzer in den nächsten Tagen zur Plattform oder zum Kanal zurück?</li>
         </ul>
 
         <div class="table-responsive">
@@ -328,134 +343,126 @@
                 <thead>
                     <tr>
                         <th>Metrik</th>
-                        <th>Gewichtung 2023 (Est.)</th>
-                        <th>Gewichtung 2026 (Est.)</th>
-                        <th>Primäre Funktion</th>
+                        <th>Gewichtung 2023 (Geschätzt)</th>
+                        <th>Gewichtung 2026 (Geschätzt)</th>
+                        <th>Funktion</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>CTR (Klickrate)</td>
+                        <td>Klickrate (CTR)</td>
                         <td>35%</td>
                         <td>20%</td>
-                        <td>Initiales Interesse</td>
+                        <td>Erstes Interesse</td>
                     </tr>
                     <tr>
-                        <td>Retention (AVD)</td>
+                        <td>Retention (Watchtime)</td>
                         <td>40%</td>
                         <td>25%</td>
-                        <td>Aufmerksamkeitsbindung</td>
+                        <td>Aufmerksamkeit halten</td>
                     </tr>
                     <tr>
-                        <td>Satisfaction (WSS)</td>
+                        <td>Zufriedenheit (WSS)</td>
                         <td>15%</td>
                         <td>35%</td>
-                        <td>Wertbestätigung</td>
+                        <td>Bestätigter Wert</td>
                     </tr>
                     <tr>
-                        <td>Community Bridge</td>
+                        <td>Community & Teilen</td>
                         <td>5%</td>
                         <td>15%</td>
-                        <td>Netzwerkexpansion</td>
+                        <td>Verbreitung</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <h3>1.3 Quality Click Ratio (QCR)</h3>
-        <p>Um Clickbait zu bekämpfen, misst die QCR den Prozentsatz der Klicks, die in einem „zufriedenen“ Zustand resultieren.</p>
+        <h3>1.3 Quality Click Ratio (QCR): Qualität vor Quantität</h3>
+        <p>Um Clickbait zu bekämpfen, misst YouTube die "Qualitäts-Klick-Rate". Sie berechnet den Anteil der Klicks, die zu einem zufriedenen Nutzer führen.</p>
         
         <div class="formula-box">
-            $$QCR = \frac{\text{Zufriedene Zuschauer}}{\text{Gesamtklicks}}$$
+           QCR = <span class="fraction"><span class="top">Zufriedene Zuschauer</span><span class="bottom">Gesamtklicks</span></span>
         </div>
 
-        <p>Ein Video mit einer CTR von 15 %, aber einer niedrigen QCR, wird im Empfehlungssystem gedrosselt. Ein Video mit einer CTR von nur 5 %, aber einer nahezu perfekten QCR, erreicht den Status als „Evergreen-Content“.</p>
+        <p>Ein Video mit einer hohen Klickrate (15%), aber wenigen zufriedenen Nutzern, wird abgestraft. Ein Video mit niedrigerer Klickrate (5%), bei dem aber fast jeder Zuschauer zufrieden ist, wird dagegen langfristig gefördert ("Evergreen-Status").</p>
 
         <h2 id="teil-2">Teil II: Die Ära der „Community Bridge“</h2>
-        <p>Die „Community Bridge“-Theorie postuliert, dass der Algorithmus aktiv nach Inhalten sucht, die isolierte Silos traversieren können. Ein „Bridge Actor“ ist ein Inhaltselement, das erfolgreich zwei disparate Interessengraphen (z. B. „Stricken“ und „Heavy Metal Musik“) verbindet.</p>
+        <p>Die Plattform ist in viele kleine "Nischen-Silos" zerfallen. Die "Community Bridge"-Theorie besagt, dass der Algorithmus aktiv nach Inhalten sucht, die diese Silos verbinden. Ein Video, das zum Beispiel die Interessen "Finanzen" und "Gaming" erfolgreich verknüpft, wird extrem gefördert.</p>
 
         <div class="highlight-box glow-card" style="background: rgba(99,102,241,0.05);">
-            <span class="box-title">Strategie</span>
-            <p style="margin:0; color:#d4d4d8;">Viralität definiert sich 2026 über die Fähigkeit, Community-Grenzen zu überschreiten. Ein Video, das seine Kernnische sättigt, erreicht „Retention“. Ein Video, das als Brücke fungiert, erreicht „Skalierung“.</p>
+            <span class="box-title">Strategie-Tipp</span>
+            <p style="margin:0; color:#d4d4d8;">Viralität entsteht 2026 durch das Überschreiten von Community-Grenzen. Wer nur seine Nische bedient, erreicht stabile Aufrufe ("Retention"). Wer Brücken baut, erreicht exponentielles Wachstum ("Skalierung").</p>
         </div>
 
-        <h3>2.2 Das „Hype“-Feature als Signal-Injektor</h3>
-        <p>Um die Entdeckung neuer Brücken-Akteure zu erleichtern, führte YouTube das „Hype“-Feature ein. Es ist exklusiv für Creator mit weniger als 500.000 Abonnenten konzipiert. Nutzer sind auf drei „Hypes“ pro Woche limitiert, was ein High-Fidelity-Signal echter Fürsprache liefert. Ein Hype-Signal ist für die initiale Entdeckung bis zu zehnmal mächtiger als ein Like.</p>
+        <h3>2.2 Das „Hype“-Feature</h3>
+        <p>Um kleinen Kanälen (unter 500.000 Abos) zu helfen, wurde das "Hype"-Feature eingeführt. Nutzer haben nur drei Hypes pro Woche. Das macht einen "Hype" zu einem viel stärkeren Signal als ein "Like". Wenn Nutzer ihre begrenzten Hypes für ein Video ausgeben, weiß der Algorithmus: Das ist Qualität.</p>
 
-        <h2 id="teil-3">Teil III: KI-gesteuerte Discovery</h2>
-        <p>Die Integration von Gemini 3.0 hat die Indexierung fundamental verändert. YouTube indexiert nicht mehr über Metadaten, sondern über <strong>Content Understanding</strong>.</p>
+        <h2 id="teil-3">Teil III: KI-gesteuerte Entdeckung</h2>
+        <p>Durch die Integration von Googles KI "Gemini" hat sich die Suche verändert. YouTube versteht den Inhalt eines Videos nun direkt, statt sich auf Titel und Tags zu verlassen.</p>
         
-        <h3>3.1 Pixel- und Audio-Tokenisierung</h3>
-        <p>Gemini verarbeitet Video nativ. Es „sieht“ das Video und identifiziert Objekte, Handlungen und Texteinblendungen. Wenn ein Video visuell „Kochen“ zeigt, aber die Metadaten „Autoreparatur“ behaupten, erkennt das System die Dissonanz und straft das Video ab.</p>
-        <p><strong>Implikation:</strong> Keyword Stuffing ist obsolet. Ein Video kann für ein Konzept ranken, auch wenn es im Titel nicht genannt wird, solange es visuell demonstriert wird.</p>
+        <h3>3.1 Die KI "sieht" das Video</h3>
+        <p>Gemini verarbeitet das Video Pixel für Pixel. Es erkennt Objekte, Handlungen und sogar Emotionen in Gesichtern. Wenn ein Video visuell "Kochen" zeigt, aber im Titel "Autoreparatur" steht, erkennt das System den Widerspruch und straft das Video ab.</p>
+        <p><strong>Die Folge:</strong> "Keyword Stuffing" (Wörter sinnlos in die Beschreibung packen) funktioniert nicht mehr. Ein Video kann für ein Thema gefunden werden, auch wenn das Wort nie fällt, solange das Konzept visuell klar ist.</p>
 
-        <h3>3.2 Generative Engine Optimization (GEO)</h3>
-        <p>Nutzer suchen zunehmend über Chat-Interfaces. Um in AI Overviews zitiert zu werden, müssen Creator Inhalte für Maschinenlesbarkeit strukturieren:</p>
+        <h3>3.2 Optimierung für KI-Suche (GEO)</h3>
+        <p>Da viele Nutzer über Chatbots (wie ChatGPT oder Gemini) suchen, müssen Videos maschinenlesbar sein:</p>
         <ul>
-            <li><strong>Chaptering:</strong> Präzise Zeitstempel als Datenanker.</li>
-            <li><strong>Informationsdichte:</strong> Hochrankender Content fokussiert auf Dichte statt Länge.</li>
-            <li><strong>Transkript-Fidelität:</strong> Akkurate Sprache ist die primäre Textquelle.</li>
+            <li><strong>Kapitelmarken:</strong> Dienen als Ankerpunkte für die KI.</li>
+            <li><strong>Informationsdichte:</strong> Die KI bevorzugt Inhalte, die viel Wissen in kurzer Zeit vermitteln.</li>
+            <li><strong>Klare Sprache:</strong> Das gesprochene Wort ist die wichtigste Textquelle für die KI.</li>
         </ul>
 
-        <h2 id="teil-4">Teil IV: Die Revolution im Wohnzimmer (Connected TV)</h2>
-        <p>Connected TV (CTV) hat das Mobilgerät als primäres Endgerät für Watch Time überholt. Dieser Shift diktiert einen Wandel von „Stopping the Scroll“ (Mobile) hin zu „Holding the Room“ (TV).</p>
+        <h2 id="teil-4">Teil IV: Die Revolution im Wohnzimmer (TV)</h2>
+        <p>Der Fernseher (Connected TV) hat das Smartphone als wichtigstes Gerät für lange Watchtime abgelöst. Das verändert die Strategie von "Schnell die Aufmerksamkeit gewinnen" hin zu "Den Raum unterhalten".</p>
         <ul>
-            <li><strong>Long-Form Content:</strong> Videos >15 Minuten werden auf TV massiv bevorzugt.</li>
-            <li><strong>TV-Quality Production:</strong> Cinematische Pacing und geringere Schnittfrequenz performen besser auf großen Bildschirmen.</li>
-            <li><strong>Interaktives TV:</strong> QR-Codes und nahtlose Handy-Synchronisation lösen das Problem der „Engagement-Friktion“.</li>
+            <li><strong>Längere Formate:</strong> Videos über 15 Minuten werden auf dem TV bevorzugt.</li>
+            <li><strong>Ruhigeres Tempo:</strong> Schnelle, hektische Schnitte (wie bei TikTok) wirken auf einem großen 65-Zoll-Bildschirm anstrengend. Ruhigere, filmische Qualität gewinnt.</li>
+            <li><strong>Interaktion:</strong> QR-Codes und die Verbindung zum Handy ermöglichen es Zuschauern, auch am TV zu liken oder einzukaufen.</li>
         </ul>
 
         <h2 id="teil-5">Teil V: Das Vertikale Ökosystem & Jewels</h2>
-        <p>Die erfolgreichsten Creator des Jahres 2026 nutzen eine „Pyramiden-Strategie“:</p>
+        <p>Erfolgreiche Creator nutzen 2026 eine Pyramiden-Strategie:</p>
         <ul>
-            <li><strong>Basis: Shorts</strong> (Hohe Reichweite, entdeckt neue Audienz). Shorts fungieren als Brücke zum Long-Form Content.</li>
-            <li><strong>Mitte: Long-Form/CTV</strong> (Hohes Vertrauen, befriedigt die Audienz).</li>
-            <li><strong>Spitze: Vertical Live/Jewels</strong> (Hohe Monetarisierung, vertieft Bindung). Hohe Jewel-Aktivität (Gifting) signalisiert intensive Bindung und boostet die Sichtbarkeit.</li>
+            <li><strong>Basis: Shorts</strong> (Hohe Reichweite, neue Zuschauer finden). Shorts dienen als Brücke zum Hauptkanal.</li>
+            <li><strong>Mitte: Lange Videos/TV</strong> (Hohes Vertrauen, Bindung aufbauen).</li>
+            <li><strong>Spitze: Livestreams & Jewels</strong> (Geld verdienen). Durch digitale Geschenke ("Jewels") in vertikalen Livestreams können Superfans ihre Lieblings-Creator direkt unterstützen. Hohe Aktivität hier signalisiert dem Algorithmus extreme Relevanz.</li>
         </ul>
 
-        <h2 id="teil-6">Teil VI: Die neuen Metriken (KPIs)</h2>
+        <h2 id="teil-6">Teil VI: Die neuen Kennzahlen (KPIs)</h2>
+        <p>Um 2026 erfolgreich zu sein, müssen Creator auf neue Werte achten:</p>
+        
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
                         <th>Metrik</th>
-                        <th>Ziel-Benchmark (2026)</th>
-                        <th>Algorithmischer Impact</th>
+                        <th>Ziel</th>
+                        <th>Auswirkung</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Satisfaction (WSS)</strong></td>
-                        <td>Top-Quartil</td>
-                        <td>Treiber für breite Empfehlungen</td>
+                        <td><strong>Zufriedenheit (WSS)</strong></td>
+                        <td>Top-Bereich</td>
+                        <td>Sorgt für breite Empfehlungen auf der Startseite.</td>
                     </tr>
                     <tr>
-                        <td><strong>Quality Click Ratio</strong></td>
-                        <td>> 60 % der CTR</td>
-                        <td>Determiniert „Clickbait“-Strafe</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Average View Duration</strong></td>
-                        <td>> 50%</td>
-                        <td>Basis für Werbeinventar</td>
+                        <td><strong>Qualitäts-Klick-Rate (QCR)</strong></td>
+                        <td>Hoch</td>
+                        <td>Verhindert Abstrafung durch Clickbait-Filter.</td>
                     </tr>
                     <tr>
                         <td><strong>Session Time</strong></td>
                         <td>> 1,5x Videolänge</td>
-                        <td>Boostet „Suggested Video“</td>
-                    </tr>
-                     <tr>
-                        <td><strong>Hype Velocity</strong></td>
-                        <td>Top 100 Leaderboard</td>
-                        <td>Platzierung im Explore-Tab</td>
+                        <td>Wenn dein Video dazu führt, dass Leute länger auf YouTube bleiben, wirst du belohnt.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <h2 id="fazit">Fazit: Die „Community“ ist der Algorithmus</h2>
-        <p>Im Jahr 2026 ist der „Algorithmus“ keine Blackbox aus Metadaten und Watch Time mehr. Er ist eine soziologische Maschine. YouTube hat erkannt, dass die Optimierung auf Sucht (Retention) ein fragiles Ökosystem schafft. Die Optimierung auf Zufriedenheit und Community-Verbindung schafft ein resilientes Ökosystem.</p>
-        <p><strong>Die Gewinner des Jahres 2026 sind nicht jene, die das System hacken, sondern jene, die das System mit dem füttern, wonach es verlangt: Menschlicher Wert, verifizierte Authentizität und Community-Kohäsion.</strong></p>
+        <h2 id="fazit">Fazit: Die Community ist der Algorithmus</h2>
+        <p>Der "Algorithmus" ist keine schwarze Box mehr, die nur auf Klicks achtet. Er ist eine soziologische Maschine geworden. YouTube hat verstanden: Die Optimierung auf reine Sucht (Retention) macht die Plattform anfällig. Die Optimierung auf Zufriedenheit macht sie stark.</p>
+        <p><strong>Die Gewinner des Jahres 2026 sind nicht jene, die versuchen, das System auszutricksen. Sondern jene, die das liefern, was das System sucht: Echten menschlichen Wert, Authentizität und starke Communitys.</strong></p>
 
         <div class="glow-card" style="margin-top: 60px; padding: 40px; border-radius:16px; background: linear-gradient(160deg, #111, #000); border: 1px solid var(--line);">
           <h3 style="margin-top:0;">Ist Ihr Kanal bereit für die Zukunft?</h3>
@@ -574,9 +581,10 @@
       });
     });
 
-    // 5. Active TOC Link
+    // 5. Active TOC Link (Fix: Only IDs)
     function updateActiveToc() {
-      const sections = document.querySelectorAll("h2");
+      // WICHTIG: Nur Überschriften, die auch eine ID haben (die im Menü stehen)
+      const sections = document.querySelectorAll("h2[id], h3[id]");
       const navLi = document.querySelectorAll(".toc-list .toc-link");
       let current = "";
       
@@ -589,7 +597,8 @@
 
       navLi.forEach((li) => {
         li.classList.remove("active");
-        if (li.getAttribute("href").includes(current) && current !== "") {
+        // Sicherstellen, dass das href auch matcht
+        if (li.getAttribute("href") === "#" + current && current !== "") {
           li.classList.add("active");
         }
       });
