@@ -8,7 +8,6 @@
   <meta name="description" content="Strategische Deep Dives für Creator und Medienhäuser. Analysen zu YouTube Algorithmen, Branding und technischer Skalierung." />
   
   <link rel="canonical" href="https://stanverse.de/wissen/" />
-  
   <link rel="icon" type="image/png" href="../favicon.png?v=1.1" />
   <link rel="apple-touch-icon" href="../favicon.png?v=1.1" /> 
   <meta name="theme-color" content="#050505" />
@@ -34,6 +33,7 @@
 
     * { box-sizing: border-box; outline-offset: 4px; }
     
+    /* STABILITY FIX: scrollbar-gutter prevents layout shift */
     html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
     
     body {
@@ -59,8 +59,13 @@
     p { color: var(--muted); margin-bottom: 1.5em; max-width: 70ch; }
     strong { color: #fff; font-weight: 600; }
 
-    /* Animations */
-    .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    /* ANIMATION FIX: Smoother, less jumpy */
+    .fade-in-up { 
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+      will-change: opacity, transform; /* Performance hint */
+    }
     .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
     /* UI Elements */
@@ -94,7 +99,7 @@
       color: var(--muted); backdrop-filter: blur(4px);
     }
 
-    /* --- NAV --- */
+    /* --- NAV (EXACT COPY FROM MAIN) --- */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(3, 3, 4, 0.75); 
@@ -104,21 +109,18 @@
     }
     .nav.hidden { transform: translateY(-100%); }
     .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
-    
     .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
     .logo span { color: var(--acc); }
-    
     .desktop-links { display: flex; gap: 32px; align-items: center; }
+    
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
     .nav-link:hover { color: #fff; }
-
-    /* Special Link Style (Wissen) */
+    
+    /* Active State for Wissen - subtle gradient text */
     .nav-special {
       font-size: 15px; font-weight: 600; 
       background: linear-gradient(90deg, #ffffff, #a5b4fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       color: #fff;
     }
     .nav-special:hover { opacity: 0.8; }
@@ -133,18 +135,17 @@
     .mobile-menu.open { transform: translateX(0); }
     @media (max-width: 768px) { .desktop-links { display: none; } .menu-toggle { display: block; } }
 
-    /* --- BLOG SPECIFIC STYLES --- */
+    /* --- BLOG LAYOUT --- */
     .blog-hero { padding: 100px 0 60px; text-align: center; }
     .blog-hero h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 24px 0; }
     .blog-hero p { font-size: 20px; max-width: 600px; margin: 0 auto; }
 
-    /* Grid */
     .article-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px;
       padding-bottom: 120px;
     }
 
-    /* Article Card Styles */
+    /* CARD STABILITY FIX */
     .article-card {
       display: flex; flex-direction: column; height: 100%;
       background: var(--surface);
@@ -155,7 +156,15 @@
     }
     .article-card:hover { transform: translateY(-4px); }
     
-    .card-img-wrap { height: 220px; width: 100%; position: relative; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .card-img-wrap { 
+      width: 100%; 
+      position: relative; 
+      overflow: hidden; 
+      border-bottom: 1px solid var(--line);
+      /* ANTI-JITTER FIX: Reserve space for image */
+      aspect-ratio: 16/9; 
+      background: #111;
+    }
     .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
     .article-card:hover .card-img { transform: scale(1.05); }
     
@@ -167,8 +176,8 @@
     .card-excerpt { font-size: 15px; color: var(--muted); margin-bottom: 24px; flex-grow: 1; }
     .card-link { font-size: 14px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 6px; }
 
-    /* SPOTLIGHT GLOW LOGIC (Universal) */
-    .glow-card { position: relative; border-radius: 16px; overflow: hidden; }
+    /* Glow Effect */
+    .glow-card { position: relative; }
     .glow-card::after {
       content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
       background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 1), transparent 40%);
@@ -179,7 +188,7 @@
     .glow-card:hover::after { opacity: 1; }
     .glow-card > * { position: relative; z-index: 5; }
 
-    /* --- FOOTER (Identisch zu Index) --- */
+    /* --- FOOTER (EXACT COPY FROM MAIN) --- */
     footer { 
       background: #020202; 
       border-top: 1px solid var(--line); 
@@ -233,7 +242,7 @@
     <a href="../index.html#services" class="nav-link">Lösungen</a>
     <a href="../index.html#system" class="nav-link">Prozess</a>
     <a href="../index.html#proof" class="nav-link">Referenzen</a>
-    <a href="index.html" class="nav-link">Wissen</a>
+    <a href="index.html" class="nav-link" style="color:#fff;">Wissen</a>
     <a href="../index.html#about" class="nav-link">Über uns</a>
     <a href="../index.html#kontakt" class="btn primary">Audit anfragen</a>
   </div>
@@ -246,9 +255,9 @@
     </section>
 
     <section class="wrap">
-      <div class="article-grid fade-in-up" style="transition-delay: 0.1s;">
+      <div class="article-grid">
         
-        <a href="youtube-algorithmus-2026.html" class="article-card glow-card">
+        <a href="youtube-algorithmus-2026.html" class="article-card glow-card fade-in-up" style="animation-delay: 0.1s;">
           <div class="card-img-wrap">
             <img src="https://stanverse.de/blog/img/algo-2026.jpg" alt="YouTube Algorithmus 2026" class="card-img" 
                  onerror="this.src='https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80'">
@@ -264,9 +273,9 @@
           </div>
         </a>
 
-        <div class="article-card glow-card" style="opacity: 0.6; cursor: default;">
+        <div class="article-card glow-card fade-in-up" style="opacity: 0.6; cursor: default; animation-delay: 0.2s;">
           <div class="card-img-wrap">
-             <div style="width:100%; height:100%; background: #111; display:flex; align-items:center; justify-content:center; color:var(--muted);">Coming Soon</div>
+             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:var(--muted);">Coming Soon</div>
           </div>
           <div class="card-content">
             <div class="card-meta">
@@ -279,9 +288,9 @@
           </div>
         </div>
 
-        <div class="article-card glow-card" style="opacity: 0.6; cursor: default;">
+        <div class="article-card glow-card fade-in-up" style="opacity: 0.6; cursor: default; animation-delay: 0.3s;">
            <div class="card-img-wrap">
-             <div style="width:100%; height:100%; background: #111; display:flex; align-items:center; justify-content:center; color:var(--muted);">Coming Soon</div>
+             <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:var(--muted);">Coming Soon</div>
           </div>
           <div class="card-content">
             <div class="card-meta">
