@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-  <title>YouTube Algorithmus 2026: Warum Retention allein nicht mehr reicht | stanverse Blog</title>
+  <title>YouTube Algorithmus 2026: Warum Retention allein nicht mehr reicht | stanverse</title>
   <meta name="description" content="Der YouTube Algorithmus wandelt sich radikal. Erfahren Sie, warum 2026 'Community Bridge' wichtiger ist als Watchtime und wie KI die Discovery verändert." />
-  <meta name="keywords" content="YouTube Algorithmus 2026, YouTube Strategie, Kanal Wachstum, Creator Economy, KI Video Analyse" />
   
   <link rel="canonical" href="https://stanverse.de/blog/youtube-algorithmus-2026" />
   <link rel="icon" type="image/png" href="./favicon.png?v=1.1" />
+  <link rel="apple-touch-icon" href="./favicon.png?v=1.1" /> 
   
   <meta name="theme-color" content="#050505" />
 
@@ -36,32 +36,36 @@
         "url": "https://stanverse.de/logo.png"
       }
     },
-    "datePublished": "2024-05-20",
-    "description": "Analyse der Zukunft von YouTube: KI-gesteuerte Discovery und der Community-Graph."
+    "datePublished": "2024-05-20"
   }
   </script>
 
   <style>
-    /* --- CORE STYLES (Imported from Index) --- */
+    /* --- CORE STYLES (1:1 Kopie von Index für Konsistenz) --- */
     @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1') format('woff2')}
     
     :root {
       --bg: #030304;
       --surface: #0e0e10;
-      --txt: #e4e4e7; /* Heller für Lesbarkeit */
-      --muted: #a1a1aa; 
+      --surface-hover: #1a1a1c;
+      --txt: #f3f3f6;
+      --muted: #b0b0b5; 
       --line: rgba(255,255,255,0.08); 
+      --line-strong: rgba(255,255,255,0.2);
+      
       --acc: #6366f1; 
       --acc-glow: rgba(99, 102, 241, 0.4);
+      --acc2: #38bdf8; 
       --navH: 80px;
     }
 
     * { box-sizing: border-box; outline-offset: 4px; }
     html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
+    
     body {
-      margin: 0; font-family: 'Inter', sans-serif;
+      margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background-color: var(--bg); color: var(--txt);
-      font-size: 18px; line-height: 1.8; /* Erhöhter Line-Height für Reading Experience */
+      font-size: 17px; line-height: 1.65;
       -webkit-font-smoothing: antialiased; padding-top: var(--navH);
     }
 
@@ -69,8 +73,61 @@
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
-    /* --- BLOG SPECIFIC STYLES --- */
+    /* UI Elements */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; font-weight: 600; font-size: 16px;
+      border-radius: 10px; cursor: pointer; transition: all 0.25s ease;
+      border: 1px solid var(--line-strong); background: rgba(255,255,255,0.03); color: var(--txt);
+      position: relative; z-index: 2;
+    }
+    .btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+    .btn.primary {
+      background: linear-gradient(135deg, var(--acc), #4f46e5);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 20px -4px var(--acc-glow); color: #fff; overflow: hidden;
+    }
+    .btn.primary:hover { box-shadow: 0 8px 30px -6px var(--acc-glow); }
+    .btn.primary::after {
+      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-20deg); animation: shine 6s infinite;
+    }
+    @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
+
+    /* --- NAV (IDENTISCH ZU INDEX) --- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(3, 3, 4, 0.75); 
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s ease;
+    }
+    .nav.hidden { transform: translateY(-100%); }
+    .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
+    .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
+    .logo span { color: var(--acc); }
+    .desktop-links { display: flex; gap: 32px; align-items: center; }
+    .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
+    .nav-link:hover { color: #fff; }
+    .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
+    
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 2000; padding: 24px; padding-top: 40px;
+      display: flex; flex-direction: column; gap: 24px;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    @media (max-width: 768px) { .desktop-links { display: none; } .menu-toggle { display: block; } }
+
+
+    /* --- BLOG CONTENT STYLES --- */
     
     /* Progress Bar */
     .progress-container {
@@ -79,95 +136,86 @@
     }
     .progress-bar {
       height: 3px; background: var(--acc); width: 0%;
-      box-shadow: 0 0 10px var(--acc);
-      transition: width 0.1s;
+      box-shadow: 0 0 10px var(--acc); transition: width 0.1s;
     }
 
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(3, 3, 4, 0.8); backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
-    .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; }
-    .logo span { color: var(--acc); }
-    
-    .btn {
-      display: inline-flex; align-items: center; padding: 10px 20px; 
-      font-weight: 600; font-size: 14px; border-radius: 8px; text-decoration: none;
-      background: linear-gradient(135deg, var(--acc), #4f46e5); color: #fff;
-      box-shadow: 0 4px 20px -4px var(--acc-glow);
-    }
-
-    /* Blog Header */
-    .blog-header {
-      padding: 100px 0 60px; text-align: center;
-      max-width: 900px; margin: 0 auto;
-    }
+    .blog-header { padding: 100px 0 60px; text-align: center; max-width: 900px; margin: 0 auto; }
     .blog-meta {
       display: flex; gap: 16px; justify-content: center; align-items: center;
       font-size: 14px; color: var(--muted); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
     }
     .blog-title {
-      font-size: clamp(32px, 5vw, 56px); line-height: 1.1; font-weight: 800; color: #fff; margin: 0 0 32px;
+      font-size: clamp(32px, 5vw, 56px); line-height: 1.1; font-weight: 800; color: #fff; margin: 0 0 32px; letter-spacing: -0.02em;
     }
     .blog-intro {
-      font-size: 20px; color: var(--muted); line-height: 1.6; max-width: 700px; margin: 0 auto;
+      font-size: 20px; color: #d4d4d8; line-height: 1.6; max-width: 700px; margin: 0 auto;
     }
 
-    /* Layout Grid */
     .blog-grid {
       display: grid; grid-template-columns: 1fr 280px; gap: 60px;
       max-width: 1100px; margin: 0 auto; padding: 0 24px 100px;
     }
     @media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr; } .toc-col { display: none; } }
 
-    /* Content Typography (Prose) */
-    .content { color: #d4d4d8; }
-    .content h2 { color: #fff; font-size: 32px; margin: 60px 0 24px; letter-spacing: -0.02em; }
-    .content h3 { color: #fff; font-size: 24px; margin: 40px 0 16px; }
+    /* Typography */
+    .content { color: #d4d4d8; font-size: 18px; line-height: 1.8; }
+    .content h2 { color: #fff; font-size: 32px; margin: 60px 0 24px; letter-spacing: -0.02em; font-weight: 800; }
+    .content h3 { color: #fff; font-size: 24px; margin: 40px 0 16px; font-weight: 700; }
     .content p { margin-bottom: 24px; }
-    .content ul { margin-bottom: 24px; padding-left: 20px; }
-    .content li { margin-bottom: 12px; color: var(--muted); }
+    .content ul, .content ol { margin-bottom: 24px; padding-left: 24px; }
+    .content li { margin-bottom: 12px; color: #d4d4d8; }
     .content strong { color: #fff; font-weight: 700; }
-    .content img { width: 100%; border-radius: 12px; margin: 40px 0; border: 1px solid var(--line); }
-
-    /* Highlight Box (Spotlight Effect) */
-    .highlight-box {
-      background: var(--surface); padding: 32px; border-radius: 16px;
-      border: 1px solid var(--line); margin: 40px 0;
-      position: relative; overflow: hidden;
+    
+    .content img { 
+      width: 100%; border-radius: 12px; margin: 40px 0 12px; 
+      border: 1px solid var(--line);
     }
-    /* Spotlight CSS Logic copy from Index */
-    .highlight-box::after {
+    .caption { font-size: 14px; color: var(--muted); text-align: center; display: block; margin-bottom: 40px; }
+
+    /* Glow Card / Highlight Box (Wiederverwendeter Spotlight Effekt) */
+    .glow-card {
+      position: relative; border-radius: 16px; border: 1px solid var(--line);
+      background: var(--surface); overflow: hidden;
+    }
+    .glow-card::after {
       content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
       background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 1), transparent 40%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor; mask-composite: exclude;
       opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 10;
     }
-    .highlight-box:hover::after { opacity: 1; }
-    
-    .box-title { color: var(--acc); font-size: 14px; font-weight: 700; text-transform: uppercase; margin-bottom: 12px; display: block; letter-spacing: 1px; }
+    .glow-card:hover::after { opacity: 1; }
+    .glow-card > * { position: relative; z-index: 5; }
 
-    /* Table of Contents (Sticky) */
+    .highlight-box { padding: 32px; margin: 40px 0; }
+    .box-title { color: var(--acc); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; display: block; letter-spacing: 1px; }
+
+    /* Sticky TOC */
     .toc-sticky { position: sticky; top: 120px; }
-    .toc-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .toc-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
     .toc-list { list-style: none; padding: 0; margin: 0; border-left: 1px solid var(--line); }
     .toc-link { 
-      display: block; padding: 8px 0 8px 20px; color: var(--muted); font-size: 14px; text-decoration: none; border-left: 2px solid transparent; margin-left: -1px; transition: all 0.2s;
+      display: block; padding: 8px 0 8px 24px; color: var(--muted); font-size: 14px; text-decoration: none; 
+      border-left: 2px solid transparent; margin-left: -1px; transition: all 0.2s;
     }
-    .toc-link:hover, .toc-link.active { color: #fff; border-left-color: var(--acc); }
+    .toc-link:hover { color: #fff; }
+    .toc-link.active { color: var(--acc); border-left-color: var(--acc); font-weight: 600; }
 
     /* Author Footer */
     .author-box {
       border-top: 1px solid var(--line); margin-top: 80px; padding-top: 40px;
       display: flex; gap: 20px; align-items: center;
     }
-    .author-img { width: 64px; height: 64px; border-radius: 50%; background: #222; object-fit: cover; }
-    
-    /* Footer simplified */
-    footer { border-top: 1px solid var(--line); padding: 40px 24px; text-align: center; color: var(--muted); font-size: 14px; margin-top: 60px;}
+
+    /* --- FOOTER (Identisch zu Index) --- */
+    footer { background: #020202; border-top: 1px solid var(--line); padding: 80px 0 40px; color: var(--muted); font-size: 14px; position: relative; z-index: 10; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
+    .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a:hover { color: var(--acc); }
+    .footer-bottom { border-top: 1px solid var(--line); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } }
 
   </style>
 </head>
@@ -176,20 +224,42 @@
   <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
 
   <nav class="nav">
-    <div class="nav-in">
+    <div class="wrap nav-in">
       <a href="index.html" class="logo">stanverse<span>.</span></a>
-      <a href="index.html#kontakt" class="btn">Audit anfragen</a>
+      
+      <div class="desktop-links">
+        <a href="index.html#services" class="nav-link">Lösungen</a>
+        <a href="index.html#system" class="nav-link">Prozess</a>
+        <a href="index.html#proof" class="nav-link">Referenzen</a>
+        <a href="#" class="nav-link" style="color:#fff;">Insights</a>
+        <a href="index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
+      </div>
+
+      <button class="menu-toggle" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
     </div>
   </nav>
 
+  <div class="mobile-menu">
+    <button onclick="toggleMenu()" style="align-self: flex-end; background:none; border:none; color:#fff; padding:8px; cursor:pointer; margin-bottom:20px;" aria-label="Menü schließen">
+       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <a href="index.html#services" class="nav-link">Lösungen</a>
+    <a href="index.html#system" class="nav-link">Prozess</a>
+    <a href="index.html#proof" class="nav-link">Referenzen</a>
+    <a href="#" class="nav-link" style="color:#fff;">Insights</a>
+    <a href="index.html#kontakt" class="btn primary">Audit anfragen</a>
+  </div>
+
   <article>
-    <header class="blog-header">
+    <header class="blog-header wrap">
       <div class="blog-meta">
         <span>Strategie</span>
         <span style="color:var(--acc)">•</span>
         <span>6 Min. Lesezeit</span>
       </div>
-      <h1 class="blog-title">Der YouTube Algorithmus 2026: Warum "Retention" tot ist.</h1>
+      <h1 class="blog-title">Der YouTube Algorithmus 2026:<br>Warum "Retention" tot ist.</h1>
       <p class="blog-intro">Wer heute noch nur auf die Click-Through-Rate starrt, hat bereits verloren. Wir analysieren die Zukunft von YouTube: Die Ära der "Community Bridge" und KI-gesteuerten Discovery.</p>
     </header>
 
@@ -199,21 +269,21 @@
         <div class="highlight-box glow-card">
           <span class="box-title">Key Takeaways</span>
           <ul style="margin:0; padding-left:20px; color:#fff;">
-            <li style="color:#fff; margin-bottom:8px;"><strong>Context over Clickbait:</strong> Der Algorithmus versteht 2026 den Kontext des Videos besser als Titel & Thumbnail.</li>
-            <li style="color:#fff; margin-bottom:8px;"><strong>The Human Bridge:</strong> In einer Flut von KI-Content wird menschliche Unperfektheit zum Premium-Asset.</li>
-            <li style="color:#fff;"><strong>Hybrid-Funnel:</strong> Shorts sind nicht mehr nur Reichweite, sondern der erste Filter für treue Fans.</li>
+            <li style="margin-bottom:8px;"><strong>Context over Clickbait:</strong> Der Algorithmus versteht 2026 den semantischen Kontext besser als Titel & Thumbnail.</li>
+            <li style="margin-bottom:8px;"><strong>The Human Bridge:</strong> In einer Flut von KI-Content wird menschliche Unperfektheit zum Premium-Asset.</li>
+            <li><strong>Hybrid-Funnel:</strong> Shorts sind nicht mehr nur Reichweite, sondern der erste Filter für treue Fans.</li>
           </ul>
         </div>
 
         <p>Es ist ein offenes Geheimnis: Der YouTube-Algorithmus ist keine statische Formel, sondern eine KI, die sich schneller entwickelt als die meisten Creator. Während wir 2024 noch über Thumbnails und die ersten 30 Sekunden diskutieren, bereitet sich Google im Hintergrund auf den nächsten großen Shift vor.</p>
         
         <h2 id="section-1">1. Das Ende der klassischen Metriken</h2>
-        <p>Bisher galt die Formel: Hohe CTR + Hohe Retention = Viralität. Das Problem? Diese Metriken lassen sich gamifizieren. Clickbait und hektische Schnitte (mrbeastification) haben die Plattform überschwemmt.</p>
+        <p>Bisher galt die Formel: Hohe CTR + Hohe Retention = Viralität. Das Problem? Diese Metriken lassen sich gamifizieren. Clickbait und hektische Schnitte (die sogenannte "MrBeastification") haben die Plattform überschwemmt.</p>
         <p>Für 2026 sehen wir einen Shift hin zur <strong>"Satisfaction Score 2.0"</strong>. Die KI analysiert nicht nur, <em>wie lange</em> jemand schaut, sondern <em>wie</em> er danach interagiert. Scrollt er weiter? Schaut er ein weiteres Video vom selben Kanal? Oder verlässt er die App frustriert?</p>
         
-        <div class="highlight-box glow-card">
+        <div class="highlight-box glow-card" style="background: rgba(99,102,241,0.05);">
           <span class="box-title">Insider Tipp</span>
-          <p style="margin:0; color:#d4d4d8;">Optimieren Sie auf "Session Time" statt "Video Time". Wenn Ihr Video dazu führt, dass der Nutzer 20 Minuten länger auf YouTube bleibt (auch bei anderen Videos), belohnt der Algorithmus Sie.</p>
+          <p style="margin:0; color:#d4d4d8;">Optimieren Sie auf "Session Time" statt nur "Video Time". Wenn Ihr Video dazu führt, dass der Nutzer 20 Minuten länger auf YouTube bleibt (auch bei anderen Videos), belohnt der Algorithmus Sie massiv.</p>
         </div>
 
         <h2 id="section-2">2. Die "Community Bridge" Theorie</h2>
@@ -231,6 +301,7 @@
         <p>Das bedeutet für SEO: Keyword-Stuffing in der Beschreibung ist tot. Stattdessen müssen Sie sicherstellen, dass der <strong>Inhalt des Videos</strong> semantisch hält, was der Titel verspricht. Wenn Sie im Titel "iPhone Review" schreiben, aber 10 Minuten über Ihren Urlaub reden, wird die KI das abstrafen – selbst wenn die Zuschauer dranbleiben.</p>
 
         <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1000&q=80" alt="YouTube Analytics Dashboard Zukunft" loading="lazy">
+        <span class="caption">Die Analytics der Zukunft: Fokus auf "Audience Affinity" statt reinen Views.</span>
 
         <h2 id="section-4">4. Handlungsempfehlung für Creator</h2>
         <p>Warten Sie nicht auf 2026. Beginnen Sie jetzt, Ihre Strategie anzupassen:</p>
@@ -240,7 +311,7 @@
           <li><strong>Technische Hygiene:</strong> Nutzen Sie Kapitelmarken, präzise Untertitel und sauberes Audio, um der KI das "Verstehen" Ihres Contents zu erleichtern.</li>
         </ol>
 
-        <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line);">
+        <div style="margin-top: 60px; padding: 40px; border-radius:16px; background: linear-gradient(160deg, #111, #000); border: 1px solid var(--line);">
           <h3 style="margin-top:0;">Ist Ihr Kanal bereit für die Zukunft?</h3>
           <p>Lassen Sie uns Ihren Status Quo analysieren. Wir finden die technischen Bremsklötze, die Sie aktuell Reichweite kosten.</p>
           <a href="index.html#kontakt" class="btn primary">Kostenloses Audit anfragen</a>
@@ -250,7 +321,7 @@
           <div style="width:64px; height:64px; background:linear-gradient(45deg, #333, #111); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; border:1px solid var(--line);">S</div>
           <div>
             <div style="color:#fff; font-weight:700;">Stan</div>
-            <div style="font-size:14px; color:var(--muted);">Gründer von stanverse. Spezialist für technische Skalierung.</div>
+            <div style="font-size:14px; color:var(--muted);">Gründer von stanverse. Spezialist für technische Skalierung & YouTube Strategie.</div>
           </div>
         </div>
 
@@ -266,9 +337,9 @@
             <li><a href="#section-4" class="toc-link">Handlungsempfehlung</a></li>
           </ul>
           
-          <div class="highlight-box glow-card" style="margin-top: 40px; padding: 20px;">
-            <div style="font-size:13px; color:var(--muted); margin-bottom:10px;">Brauchen Sie Hilfe bei der Umsetzung?</div>
-            <a href="index.html#kontakt" style="color:var(--acc); font-weight:700; font-size:14px; text-decoration:none;">Zum Audit &rarr;</a>
+          <div class="glow-card" style="margin-top: 40px; padding: 24px;">
+            <div style="font-size:13px; color:var(--muted); margin-bottom:12px;">Brauchen Sie Hilfe bei der Umsetzung?</div>
+            <a href="index.html#kontakt" style="color:var(--acc); font-weight:700; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:6px;">Zum Audit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </aside>
@@ -277,20 +348,74 @@
 
   <footer>
     <div class="wrap">
-      &copy; 2024 stanverse. <a href="index.html" style="color:var(--muted); text-decoration:underline;">Zur Startseite</a>
+      <div class="footer-grid">
+        <div class="footer-brand">
+           <a href="index.html" class="logo" style="font-size:20px;">stanverse<span>.</span></a>
+           <p>Der technische Wachstumspartner für ambitionierte Creator und Medienmarken.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="index.html#services">Lösungen</a>
+            <a href="index.html#system">Prozess</a>
+            <a href="index.html#proof">Erfolge</a>
+            <a href="index.html#kontakt">Audit</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <div class="footer-links">
+            <a href="/impressum">Impressum</a>
+            <a href="/datenschutz">Datenschutz</a>
+            <a href="/agb">AGB</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="year"></span> stanverse.</div>
+        <div style="display:flex; gap:16px; align-items:center;">
+           <span style="width:6px; height:6px; background:#333; border-radius:50%;"></span>
+           <span>Made in Germany</span>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script>
-    // 1. Progress Bar
+    // 1. Mobile Menu Toggle
+    function toggleMenu() {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    }
+    document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+
+    // 2. Navbar Hide on Scroll
+    let lastScroll = 0;
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('hidden');
+      } else {
+        nav.classList.remove('hidden');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // 3. Progress Bar
     window.onscroll = function() {
       let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       let scrolled = (winScroll / height) * 100;
       document.getElementById("progressBar").style.width = scrolled + "%";
+      
+      // Update TOC Active State (Optimized Logic)
+      updateActiveToc();
     };
 
-    // 2. Spotlight Effect (Universal)
+    // 4. Spotlight Effect (Universal)
     const cards = document.querySelectorAll('.glow-card');
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
@@ -300,24 +425,30 @@
       });
     });
 
-    // 3. Active TOC Link
-    const sections = document.querySelectorAll("h2");
-    const navLi = document.querySelectorAll(".toc-list .toc-link");
-    window.addEventListener("scroll", () => {
+    // 5. Active TOC Link (Improved Logic)
+    function updateActiveToc() {
+      const sections = document.querySelectorAll("h2");
+      const navLi = document.querySelectorAll(".toc-list .toc-link");
       let current = "";
+      
+      // Nutzt "Drittel-Regel": Wenn das Element im oberen Drittel ist, wird es aktiv
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
-        if (scrollY >= sectionTop - 150) {
+        if (window.scrollY >= sectionTop - (window.innerHeight / 3)) {
           current = section.getAttribute("id");
         }
       });
+
       navLi.forEach((li) => {
         li.classList.remove("active");
-        if (li.getAttribute("href").includes(current)) {
+        if (li.getAttribute("href").includes(current) && current !== "") {
           li.classList.add("active");
         }
       });
-    });
+    }
+
+    // Update Year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
