@@ -245,21 +245,6 @@
     }
     .evo-label.old { background: rgba(0,0,0,0.7); color: #aaa; border: 1px solid rgba(255,255,255,0.1); }
     .evo-label.new { background: var(--acc); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
-
-    /* Connector Linie (Deko) - FIX: POSITION & FORM */
-    .evo-connector {
-      position: absolute;
-      top: 11%;             /* WIE GEWÜNSCHT: 11% */
-      left: 50%;            /* Horizontal zentriert */
-      transform: translateX(-50%); /* Exakte Mitte, KEINE Rotation mehr */
-      
-      width: 200px;         /* Etwas breiter für den Bogen */
-      height: 100px;
-      z-index: 20;
-      pointer-events: none;
-      filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.8));
-      overflow: visible;
-    }
     
     /* Hover Effekt für den ganzen Stack */
     .evolution-stack:hover .evo-card.before {
@@ -742,11 +727,6 @@
                       <img src="https://i.ibb.co/hFDR7jkx/Thumbnails-122.png" alt="Vorher" class="evo-img">
                       <div class="evo-label old">Vorher / Alt</div>
                     </div>
-
-                    <svg class="evo-connector" viewBox="0 0 200 100" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
-                       <path d="M20,80 Q100,0 180,80" stroke-dasharray="6 4" />
-                       <path d="M172,70 L180,80 L170,88" stroke-dasharray="0" />
-                    </svg>
                     
                     <div class="evo-card after">
                       <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" alt="Nachher Stanverse" class="evo-img">
@@ -805,20 +785,20 @@
         <h2 class="fade-in-up" style="margin-bottom:40px">Häufige Fragen</h2>
         <div class="fade-in-up">
           <details open>
-            <summary>Für wen ist dieser Service geeignet?</summary>
-            <p>Wir arbeiten primär mit Kunden, die bereits "Proof of Concept" haben (umsatzstarke Creator, Firmen, TV-Sender) und nun professionell skalieren wollen, ohne sich mit der Technik herumzuschlagen.</p>
+            <summary>Ab wann lohnt sich eine Zusammenarbeit?</summary>
+            <p>Unser System ist auf Skalierung ausgelegt. Es lohnt sich am meisten, wenn Sie bereits Content produzieren (oder planen) und professionell wachsen wollen, ohne sich in der Technik zu verlieren.</p>
           </details>
           <details>
-            <summary>Was bedeutet "Digitale Visitenkarte"?</summary>
-            <p>Wenn ein potenzieller Sponsor oder Kunde Sie googelt, landet er auf Ihrem Instagram oder YouTube Kanal. Wir sorgen dafür, dass dieser erste Eindruck perfekt ist und Ihre Preise rechtfertigt.</p>
+            <summary>Habe ich noch Kontrolle über meine Inhalte?</summary>
+            <p>Absolut. Sie behalten die 100%ige kreative Hoheit. Wir liefern die technische Infrastruktur und Strategie, aber nichts geht online, ohne dass Sie zufrieden sind.</p>
           </details>
           <details>
             <summary>Wie viel Zeit muss ich investieren?</summary>
-            <p>So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (Video/Audio). Strategie, Schnitt, Optimierung und Veröffentlichung übernehmen wir komplett.</p>
+            <p>So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (Video/Audio, ca. 2-4h Aufwand/Monat). Strategie, Schnitt, Optimierung und Veröffentlichung übernehmen wir komplett.</p>
           </details>
            <details>
-            <summary>Machen Sie auch "nur" Beratung?</summary>
-            <p>Ja. Mit unserem Audit-Paket analysieren wir Ihren Kanal und decken Fehler auf, ohne dass Sie eine langfristige Produktion buchen müssen.</p>
+            <summary>Wie schnell sehe ich Ergebnisse?</summary>
+            <p>Das hängt vom Startpunkt ab. Bei bestehenden Kanälen oft innerhalb von 4 Wochen durch Optimierung. Bei Neustarts dauert der Aufbau der "Digitalen Visitenkarte" ca. 2-3 Monate bis zum vollen Momentum.</p>
           </details>
         </div>
       </div>
@@ -857,7 +837,7 @@
               </div>
 
               <div>
-                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Geschäftliche E-Mail</label>
+                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">E-Mail Adresse</label>
                 <input type="email" name="email" required placeholder="name@domain.de">
               </div>
 
