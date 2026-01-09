@@ -233,16 +233,6 @@
       .hero .lead { margin-left: 0; }
     }
 
-    /* Floating Hero Animation */
-    @keyframes float-hero {
-      0% { transform: rotate(-2deg) translateY(0px); }
-      50% { transform: rotate(-2deg) translateY(-15px); }
-      100% { transform: rotate(-2deg) translateY(0px); }
-    }
-    .hero-floating {
-      animation: float-hero 6s ease-in-out infinite;
-    }
-
     /* --- TRUST BAR (AVATAR PILE) --- */
     .trust-bar {
       margin-top: 32px;
@@ -289,28 +279,36 @@
     }
 
     /* --- GLOBAL GLOW CARD SYSTEM --- */
+    /* Basis-Styling für alle Karten */
     .bento-card, .system-card, .case-tile, details {
       position: relative;
       border-radius: 16px;
+      /* Basis Border */
       border: 1px solid var(--line);
       background: var(--surface);
       overflow: hidden;
     }
     
+    /* Die Klasse .glow-card aktiviert den Spotlight-Effekt */
     .glow-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      padding: 1px;
+      padding: 1px; /* Dicke des leuchtenden Randes */
       border-radius: inherit;
+      
+      /* Der Farbverlauf für das Spotlight */
       background: radial-gradient(
         600px circle at var(--mouse-x) var(--mouse-y),
         rgba(99, 102, 241, 1),
         transparent 40%
       );
+      
+      /* Masking: Nur den Rand zeigen */
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
+      
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
@@ -318,6 +316,8 @@
     }
 
     .glow-card:hover::after { opacity: 1; }
+    
+    /* Content Protection - damit der Inhalt klickbar bleibt */
     .glow-card > * { position: relative; z-index: 5; }
 
 
@@ -545,11 +545,89 @@
       .footer-brand { margin-bottom: 10px; }
     }
 
-    /* --- HERO DASHBOARD --- */
-    /* NEU: Interaktiver Wrapper für das Dashboard */
-    .dashboard-link { text-decoration: none; display: block; position: relative; z-index: 10; }
-    .dashboard-link:hover .dashboard-card { transform: rotate(-2deg) scale(1.02); border-color: rgba(99,102,241,0.3); }
+    /* --- HERO DASHBOARD 3D INTERACTION --- */
+    
+    /* Container for 3D perspective */
+    .hero-floating {
+      perspective: 1000px; 
+      transform-style: preserve-3d;
+      transition: transform 0.1s; /* Quick response to mouse */
+    }
 
+    /* The Card itself */
+    .dashboard-card {
+      background: rgba(14, 14, 16, 0.7); /* Slightly more opaque */
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(16px);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+      
+      /* 3D Properties */
+      transform-style: preserve-3d;
+      transform: rotateX(0) rotateY(0);
+      transition: transform 0.1s ease-out, box-shadow 0.3s, border-color 0.3s;
+      cursor: pointer;
+    }
+
+    /* Interactive States */
+    .dashboard-card:hover {
+      border-color: rgba(99, 102, 241, 0.5); /* Glow border on hover */
+      box-shadow: 0 30px 60px -15px rgba(99, 102, 241, 0.2); /* Colored shadow */
+    }
+    
+    .dashboard-card:active {
+      transform: scale(0.98) !important; /* Tactile click feedback */
+    }
+
+    /* Parallax Elements (Text floats above card) */
+    .dashboard-row, .stat-header {
+      transform: translateZ(20px); /* Lifts text up */
+    }
+    .chart-bars {
+      transform: translateZ(30px); /* Bars stick out more */
+    }
+
+    /* Dynamic Glare Effect */
+    .dashboard-card::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 20px;
+      background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+      z-index: 10;
+    }
+    .dashboard-card:hover::after { opacity: 1; }
+
+    /* Animations inside the card */
+    .pulse-dot {
+      width: 8px; height: 8px; background: #10b981; border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .bar {
+      flex: 1; background: var(--line); border-radius: 2px;
+      transition: height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+    }
+    .dashboard-card:hover .bar { background: rgba(99, 102, 241, 0.5); }
+    .dashboard-card:hover .bar.active { background: #6366f1; }
+
+    /* Values that light up */
+    .val-highlight { transition: color 0.3s, text-shadow 0.3s; }
+    .dashboard-card:hover .val-highlight { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.5); }
+
+    /* Stat Val Hero */
     .stat-val-hero { 
       font-size: 42px; font-weight: 900; color: transparent;
       background: linear-gradient(to right, #fff, var(--muted)); -webkit-background-clip: text; background-clip: text;
@@ -565,41 +643,9 @@
       mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
       pointer-events: none;
     }
-
-    .dashboard-card {
-      background: rgba(14, 14, 16, 0.6);
-      border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px); border-radius: 20px;
-      padding: 24px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
-      position: relative; overflow: hidden;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth Transition */
-    }
     
     .dashboard-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .dashboard-row:last-child { border-bottom: none; }
-    
-    /* Interactive values on hover */
-    .dashboard-link:hover .dashboard-row .value { color: #fff; text-shadow: 0 0 10px rgba(16,185,129,0.5); }
-    .value { transition: color 0.3s, text-shadow 0.3s; }
-
-    .pulse-dot {
-      width: 8px; height: 8px; background: #10b981; border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      animation: pulse-green 2s infinite;
-    }
-    @keyframes pulse-green {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-    
-    /* CTA Badge in Dashboard */
-    .dash-cta {
-      position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
-      font-size: 10px; color: #fff; background: var(--acc); padding: 1px 4px; border-radius: 2px;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-3px); } }
 
   </style>
 </head>
@@ -686,10 +732,11 @@
         <div class="fade-in-up" style="transition-delay: 0.1s; position:relative;">
           <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--acc); filter:blur(60px); opacity:0.4;"></div>
           
-          <a href="#kontakt" class="dashboard-link">
-            <div class="dashboard-card hero-floating" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
+          <div class="hero-floating" style="margin-left: auto; max-width: 420px; transform: rotate(-2deg);" id="dashboard-wrapper">
+            
+            <div class="dashboard-card" id="hero-card" onclick="document.getElementById('kontakt').scrollIntoView({behavior: 'smooth'})">
               
-              <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
+              <div class="stat-header" style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
                 <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div>
                 <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM AKTIV</div>
               </div>
@@ -701,7 +748,7 @@
                   </div>
                   <span style="font-size:14px; color:#fff;">Viral-Faktor</span>
                 </div>
-                <div class="value" style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
+                <div class="val-highlight" style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
               </div>
 
               <div class="dashboard-row">
@@ -711,7 +758,7 @@
                   </div>
                   <span style="font-size:14px; color:#fff;">Technik</span>
                 </div>
-                <div class="value" style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
+                <div class="val-highlight" style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
               </div>
 
               <div class="dashboard-row">
@@ -724,19 +771,19 @@
                 <div style="color:var(--muted); font-size:13px;">Bereit zum Upload</div>
               </div>
 
-              <div style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
-                <div style="flex:1; background:var(--line); height:30%; border-radius:2px;"></div>
-                <div style="flex:1; background:var(--line); height:50%; border-radius:2px;"></div>
-                <div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div>
-                <div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
-                <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;">
-                   <div class="dash-cta">JETZT</div>
+              <div class="chart-bars" style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
+                <div class="bar" style="height:30%;"></div>
+                <div class="bar" style="height:50%;"></div>
+                <div class="bar" style="height:40%;"></div>
+                <div class="bar" style="height:70%;"></div>
+                <div class="bar active" style="height:100%; background:linear-gradient(to top, var(--acc), #a5b4fc); position:relative;">
+                   <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">JETZT</div>
                 </div>
               </div>
 
             </div>
-          </a>
-        </div>
+          </div>
+          </div>
       </div>
     </section>
 
@@ -1025,7 +1072,7 @@
             <a href="#services">Lösungen</a>
             <a href="#system">Prozess</a>
             <a href="#proof">Erfolge</a>
-            <a href="wissen/index.html">Wissen</a>
+            <a href="wissen/index.html" class="nav-special">Wissen</a>
             <a href="#kontakt">Audit</a>
           </div>
         </div>
@@ -1084,22 +1131,46 @@
     // 4. Update Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 5. MOUSE GLOW & SPOTLIGHT BORDER EFFECT (Universal)
-    // Select all target elements using the unified .glow-card class
+    // 5. MOUSE GLOW & SPOTLIGHT BORDER EFFECT
     const cards = document.querySelectorAll('.glow-card, .dashboard-card');
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
-        // Calculate mouse position relative to the element
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        // Update CSS variables for the gradient position
         card.style.setProperty('--mouse-x', `${x}px`);
         card.style.setProperty('--mouse-y', `${y}px`);
       });
     });
+    
+    // 6. 3D TILT EFFECT FOR DASHBOARD (Vanilla JS)
+    const dashCard = document.getElementById('hero-card');
+    const dashWrapper = document.getElementById('dashboard-wrapper');
+    
+    if(dashCard && dashWrapper) {
+      dashWrapper.addEventListener('mousemove', (e) => {
+        const rect = dashWrapper.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Calculate center
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // Rotate values (divide by 25 for subtle effect)
+        const rotateX = (y - centerY) / -20;
+        const rotateY = (x - centerX) / 20;
+        
+        dashCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      
+      // Reset on leave
+      dashWrapper.addEventListener('mouseleave', () => {
+        dashCard.style.transform = `rotateX(0) rotateY(0)`;
+      });
+    }
 
-    // 6. Number Counter Animation (Header)
+    // 7. Number Counter Animation (Header)
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1131,7 +1202,7 @@
     }, { threshold: 0.5 });
     document.querySelectorAll('.counter-stat').forEach(el => statsObserver.observe(el));
 
-    // 7. STATS CYCLER (The "Cool Animation" for Proof Section)
+    // 8. STATS CYCLER
     function initCycleStats() {
       const containers = document.querySelectorAll('.cycle-container');
       
@@ -1147,7 +1218,7 @@
           const nextVal = container.getAttribute('data-alt-val');
           const nextLabel = container.getAttribute('data-alt-label');
           
-          // 1. Ausblenden (Fade Out / Slide Up)
+          // 1. Ausblenden
           valEl.classList.add('swap-out');
           labelEl.classList.add('swap-out');
           
@@ -1156,11 +1227,11 @@
             valEl.innerText = nextVal;
             labelEl.innerText = nextLabel;
             
-            // Attribute updaten für nächsten Zyklus
+            // Attribute updaten
             container.setAttribute('data-alt-val', currentVal);
             container.setAttribute('data-alt-label', currentLabel);
             
-            // Klasse entfernen (Reset Position aber unsichtbar)
+            // Klasse entfernen
             valEl.classList.remove('swap-out');
             labelEl.classList.remove('swap-out');
             
@@ -1168,23 +1239,20 @@
             valEl.classList.add('swap-in');
             labelEl.classList.add('swap-in');
             
-            // Force Reflow
             void valEl.offsetWidth;
             
-            // 3. Einblenden (Fade In / Slide To Normal)
+            // 3. Einblenden
             valEl.classList.remove('swap-in');
             labelEl.classList.remove('swap-in');
             
-          }, 500); // Wartezeit entspricht CSS transition time
+          }, 500); 
         });
-      }, 4000); // Alle 4 Sekunden wechseln
+      }, 4000); 
     }
-    
-    // Start cycler when loaded
     document.addEventListener('DOMContentLoaded', initCycleStats);
 
 
-    // 8. Chart Renderer
+    // 9. Chart Renderer
     function getPoint(point, i, a, smoothing) {
       const cp = (current, previous, next, reverse) => {
         const p = previous || current;
