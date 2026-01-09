@@ -393,9 +393,40 @@
       }
     }
 
-    /* --- FOOTER --- */
-    footer { border-top: 1px solid var(--line); padding: 60px 0; font-size: 15px; color: var(--muted); background: #020202; }
+    /* --- FOOTER IMPROVEMENTS --- */
+    footer { 
+      background: #020202; 
+      border-top: 1px solid var(--line); 
+      padding: 80px 0 40px; 
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
+    .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a:hover { color: var(--acc); }
     
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-brand { margin-bottom: 10px; }
+    }
+
     .stat-box { border-left: 2px solid var(--line); padding-left: 20px; }
     
     /* NEW: High-Impact Numbers (Like NSY Style) */
@@ -798,7 +829,7 @@
           </details>
            <details>
             <summary>Wie schnell sehe ich Ergebnisse?</summary>
-            <p>Das hängt vom Startpunkt ab. Bei bestehenden Kanälen oft innerhalb von 4 Wochen durch Optimierung. Bei Neustarts dauert der Aufbau der "Digitalen Visitenkarte" ca. 2-3 Monate bis zum vollen Momentum.</p>
+            <p>Bei bestehenden Kanälen sehen wir oft schon im ersten Monat signifikante Verbesserungen durch technische Optimierung. Bei Neustarts arbeiten wir seriös: Wir garantieren keine viralen Wunder über Nacht, sondern den Aufbau eines professionellen Medien-Assets. Rechnen Sie mit 3-6 Monaten konsequentem Aufbau, bis das "Schwungrad" von alleine läuft.</p>
           </details>
         </div>
       </div>
@@ -875,12 +906,39 @@
   </main>
 
   <footer>
-    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
-      <div>&copy; <span id="year"></span> stanverse. Strategisches Wachstum.</div>
-      <div style="display:flex; gap:32px;">
-        <a href="/impressum">Impressum</a>
-        <a href="/datenschutz">Datenschutz</a>
-        <a href="https://instagram.com/stanverse" target="_blank">Instagram</a>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+           <a href="#" class="logo" style="font-size:20px;">stanverse<span>.</span></a>
+           <p>Der technische Wachstumspartner für ambitionierte Creator und Medienmarken.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="#services">Lösungen</a>
+            <a href="#system">Prozess</a>
+            <a href="#proof">Erfolge</a>
+            <a href="#kontakt">Audit</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <div class="footer-links">
+            <a href="/impressum">Impressum</a>
+            <a href="/datenschutz">Datenschutz</a>
+            <a href="/agb">AGB</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="year"></span> stanverse.</div>
+        <div style="display:flex; gap:16px; align-items:center;">
+           <span style="width:6px; height:6px; background:#333; border-radius:50%;"></span>
+           <span>Made in Germany</span>
+        </div>
       </div>
     </div>
   </footer>
