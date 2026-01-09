@@ -82,8 +82,20 @@
       border: 1px solid rgba(99, 102, 241, 0.4);
       box-shadow: 0 4px 20px -4px var(--acc-glow);
       color: #fff;
+      position: relative; overflow: hidden;
     }
     .btn.primary:hover { box-shadow: 0 8px 30px -6px var(--acc-glow); }
+    
+    .btn.primary::after {
+      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-20deg);
+      animation: shine 6s infinite;
+    }
+    @keyframes shine {
+      0%, 80% { left: -100%; }
+      100% { left: 200%; }
+    }
 
     .chip {
       display: inline-flex; align-items: center; gap: 6px;
@@ -93,11 +105,13 @@
       color: var(--muted); backdrop-filter: blur(4px);
     }
 
-    /* --- NAV --- */
+    /* --- NAV (OPTIMIERT) --- */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(3,3,4,0.85); backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
+      background: rgba(3, 3, 4, 0.75); 
+      backdrop-filter: blur(20px); 
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       transition: transform 0.3s ease;
     }
     .nav.hidden { transform: translateY(-100%); }
@@ -147,8 +161,8 @@
     @media (min-width: 900px) {
       .hero .lead { margin-left: 0; }
     }
-    
-    /* NEU: Sanftes Schweben für das Dashboard */
+
+    /* Floating Hero Animation */
     @keyframes float-hero {
       0% { transform: rotate(-2deg) translateY(0px); }
       50% { transform: rotate(-2deg) translateY(-15px); }
@@ -158,24 +172,50 @@
       animation: float-hero 6s ease-in-out infinite;
     }
 
-    /* NEU: Trust Bar (Logos) */
+    /* --- NEUE TRUST BAR (AVATAR PILE) --- */
     .trust-bar {
       margin-top: 32px;
       padding-top: 24px;
       border-top: 1px solid var(--line);
       display: flex;
-      gap: 24px;
       align-items: center;
-      opacity: 0.6;
+      gap: 16px;
+      flex-wrap: wrap;
     }
-    .trust-label {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+
+    .avatar-group {
+      display: flex;
+      align-items: center;
+    }
+    
+    .avatar-circle {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 3px solid var(--bg); /* Rand in Hintergrundfarbe zum "Ausschneiden" */
+      background: #222;
+      object-fit: cover;
+      margin-left: -12px; /* Überlappung */
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .avatar-circle:first-child { margin-left: 0; z-index: 3; }
+    .avatar-circle:nth-child(2) { z-index: 2; }
+    .avatar-circle:nth-child(3) { z-index: 1; }
+
+    .trust-text {
+      font-size: 14px;
       color: var(--muted);
-      margin-right: 12px;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
     }
-    .partner-icon { height: 24px; width: auto; fill: currentColor; color: #fff; }
+    
+    .stars {
+      color: #fbbf24; /* Goldene Sterne */
+      font-size: 12px;
+      margin-bottom: 2px;
+      letter-spacing: 1px;
+    }
 
     /* Bento Grid Cards */
     .bento-card {
@@ -525,20 +565,6 @@
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
-    .btn.primary {
-      position: relative; overflow: hidden;
-    }
-    .btn.primary::after {
-      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: skewX(-20deg);
-      animation: shine 6s infinite;
-    }
-    @keyframes shine {
-      0%, 80% { left: -100%; }
-      100% { left: 200%; }
-    }
-
   </style>
   <script type="application/ld+json">
   {
@@ -603,10 +629,17 @@
             <a href="#proof" class="btn">Case Study ansehen</a>
           </div>
 
-          <div class="trust-bar">
-            <span class="trust-label">Powering:</span>
-            <svg class="partner-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            <span style="font-weight:800; color:#fff; letter-spacing:-0.5px;">SpiritTV</span>
+          <div class="trust-bar fade-in-up" style="transition-delay: 0.2s;">
+            <div class="avatar-group">
+              <img src="https://ui-avatars.com/api/?name=Spirit+TV&background=111&color=fff&size=128" alt="SpiritTV" class="avatar-circle">
+              <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&h=100&q=80" alt="Creator" class="avatar-circle">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Creator" class="avatar-circle">
+            </div>
+
+            <div class="trust-text">
+              <div class="stars">★★★★★</div>
+              <div>Vertraut von <strong style="color:#fff;">SpiritTV</strong> & Creatorn.</div>
+            </div>
           </div>
 
           <div style="display:flex; gap:40px; margin-top: 24px;">
