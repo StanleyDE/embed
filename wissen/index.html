@@ -8,78 +8,140 @@
   <meta name="description" content="Strategische Deep Dives für Creator und Medienhäuser. Analysen zu YouTube Algorithmen, Branding und technischer Skalierung." />
   
   <link rel="canonical" href="https://stanverse.de/wissen/" />
+  
   <link rel="icon" type="image/png" href="../favicon.png?v=1.1" />
   <link rel="apple-touch-icon" href="../favicon.png?v=1.1" /> 
   <meta name="theme-color" content="#050505" />
 
   <style>
+    /* --- FONTS & VARS (Identisch zur Startseite) --- */
     @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1') format('woff2')}
     
     :root {
       --bg: #030304;
       --surface: #0e0e10;
+      --surface-hover: #1a1a1c;
       --txt: #f3f3f6;
       --muted: #b0b0b5; 
       --line: rgba(255,255,255,0.08); 
+      --line-strong: rgba(255,255,255,0.2);
+      
       --acc: #6366f1; 
+      --acc-glow: rgba(99, 102, 241, 0.4);
+      --acc2: #38bdf8; 
       --navH: 80px;
     }
 
     * { box-sizing: border-box; outline-offset: 4px; }
+    
     html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
     
     body {
-      margin: 0; font-family: 'Inter', sans-serif;
+      height: 100%; overflow-x: hidden; margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background-color: var(--bg); color: var(--txt);
-      font-size: 17px; line-height: 1.65; padding-top: var(--navH);
+      font-size: 17px; line-height: 1.65;
+      -webkit-font-smoothing: antialiased; padding-top: var(--navH);
     }
 
     /* Scrollbar */
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
     /* Utils */
     .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 100px 0; position: relative; }
     a { text-decoration: none; color: inherit; transition: color 0.2s; }
-    .fade-in-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    
+    h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+    p { color: var(--muted); margin-bottom: 1.5em; max-width: 70ch; }
+    strong { color: #fff; font-weight: 600; }
 
-    /* NAV */
+    /* Animations */
+    .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* UI Elements */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; font-weight: 600; font-size: 16px;
+      border-radius: 10px; cursor: pointer; transition: all 0.25s ease;
+      border: 1px solid var(--line-strong); background: rgba(255,255,255,0.03); color: var(--txt);
+      position: relative; z-index: 2;
+    }
+    .btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+    
+    .btn.primary {
+      background: linear-gradient(135deg, var(--acc), #4f46e5);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 20px -4px var(--acc-glow); color: #fff; overflow: hidden;
+    }
+    .btn.primary:hover { box-shadow: 0 8px 30px -6px var(--acc-glow); }
+    .btn.primary::after {
+      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-20deg); animation: shine 6s infinite;
+    }
+    @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 99px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+      color: var(--muted); backdrop-filter: blur(4px);
+    }
+
+    /* --- NAV --- */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(3, 3, 4, 0.75); backdrop-filter: blur(20px);
+      background: rgba(3, 3, 4, 0.75); 
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s ease;
     }
+    .nav.hidden { transform: translateY(-100%); }
     .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
-    .logo { font-size: 22px; font-weight: 800; color: #fff; }
+    
+    .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
     .logo span { color: var(--acc); }
+    
     .desktop-links { display: flex; gap: 32px; align-items: center; }
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
-    .nav-link:hover, .nav-link.active { color: #fff; }
-    .btn {
-      display: inline-flex; align-items: center; padding: 10px 20px; font-weight: 600; font-size: 15px;
-      border-radius: 10px; background: linear-gradient(135deg, var(--acc), #4f46e5); color: #fff;
-      box-shadow: 0 4px 20px -4px rgba(99, 102, 241, 0.4);
+    .nav-link:hover { color: #fff; }
+
+    .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
+    .mobile-menu {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg); z-index: 2000; padding: 24px; padding-top: 40px;
+      display: flex; flex-direction: column; gap: 24px;
+      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    .mobile-menu.open { transform: translateX(0); }
+    @media (max-width: 768px) { .desktop-links { display: none; } .menu-toggle { display: block; } }
 
-    /* HEADER */
+    /* --- BLOG SPECIFIC STYLES --- */
     .blog-hero { padding: 100px 0 60px; text-align: center; }
-    .blog-hero h1 { font-size: clamp(40px, 5vw, 64px); font-weight: 900; margin: 0 0 24px; color: #fff; letter-spacing: -0.02em; }
-    .blog-hero p { font-size: 20px; color: var(--muted); max-width: 600px; margin: 0 auto; }
+    .blog-hero h1 { font-size: clamp(40px, 5vw, 64px); line-height: 1.1; margin: 24px 0; }
+    .blog-hero p { font-size: 20px; max-width: 600px; margin: 0 auto; }
 
-    /* ARTICLE GRID */
+    /* Grid */
     .article-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px;
       padding-bottom: 120px;
     }
 
-    /* ARTICLE CARD (Glow Effect included via class) */
+    /* Article Card Styles */
     .article-card {
       display: flex; flex-direction: column; height: 100%;
+      background: var(--surface);
+      /* Base Border */
+      border: 1px solid var(--line);
       border-radius: 16px; overflow: hidden;
-      background: var(--surface); border: 1px solid var(--line);
       transition: transform 0.3s ease;
+      position: relative;
     }
     .article-card:hover { transform: translateY(-4px); }
     
@@ -94,9 +156,9 @@
     .card-title { font-size: 22px; font-weight: 700; color: #fff; margin: 0 0 12px; line-height: 1.3; }
     .card-excerpt { font-size: 15px; color: var(--muted); margin-bottom: 24px; flex-grow: 1; }
     .card-link { font-size: 14px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 6px; }
-    
-    /* Universal Glow Logic */
-    .glow-card { position: relative; }
+
+    /* SPOTLIGHT GLOW LOGIC (Universal) */
+    .glow-card { position: relative; border-radius: 16px; overflow: hidden; }
     .glow-card::after {
       content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
       background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 1), transparent 40%);
@@ -107,11 +169,42 @@
     .glow-card:hover::after { opacity: 1; }
     .glow-card > * { position: relative; z-index: 5; }
 
-    /* FOOTER */
-    footer { background: #020202; border-top: 1px solid var(--line); padding: 60px 0; font-size: 14px; color: var(--muted); }
-    .footer-in { display: flex; justify-content: space-between; align-items: center; }
+    /* --- FOOTER --- */
+    footer { 
+      background: #020202; 
+      border-top: 1px solid var(--line); 
+      padding: 80px 0 40px; 
+      color: var(--muted);
+      font-size: 14px;
+      position: relative; z-index: 10;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
+    .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a:hover { color: var(--acc); }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--line); padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    @media (max-width: 768px) { 
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; } 
+      .footer-brand { margin-bottom: 10px; }
+    }
 
-    @media(max-width: 768px) { .nav-in { padding: 0 20px; } .mobile-menu-btn { display: block; } .desktop-links { display: none; } }
+    /* Cookie Banner (für consent.js) */
+    .cookie-banner {
+      position: fixed; bottom: 24px; right: 24px; width: 340px; z-index: 9999;
+      background: rgba(14, 14, 16, 0.95); backdrop-filter: blur(16px);
+      border: 1px solid var(--line); border-radius: 16px; padding: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transform: translateY(0); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+    }
+    .cookie-banner.hidden { transform: translateY(20px); opacity: 0; pointer-events: none; }
+    .cookie-text { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+    .cookie-actions { display: flex; gap: 12px; }
+
   </style>
 </head>
 <body>
@@ -124,21 +217,36 @@
         <a href="../index.html#services" class="nav-link">Lösungen</a>
         <a href="../index.html#system" class="nav-link">Prozess</a>
         <a href="../index.html#proof" class="nav-link">Referenzen</a>
-        <a href="#" class="nav-link active" style="color:#fff;">Wissen</a>
-        <a href="../index.html#kontakt" class="btn">Audit anfragen</a>
+        <a href="#" class="nav-link" style="color:#fff;">Wissen</a>
+        <a href="../index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
       </div>
+
+      <button class="menu-toggle" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
     </div>
   </nav>
+
+  <div class="mobile-menu">
+    <button onclick="toggleMenu()" style="align-self: flex-end; background:none; border:none; color:#fff; padding:8px; cursor:pointer; margin-bottom:20px;" aria-label="Menü schließen">
+       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <a href="../index.html#services" class="nav-link">Lösungen</a>
+    <a href="../index.html#system" class="nav-link">Prozess</a>
+    <a href="../index.html#proof" class="nav-link">Referenzen</a>
+    <a href="#" class="nav-link" style="color:#fff;">Wissen</a>
+    <a href="../index.html#kontakt" class="btn primary">Audit anfragen</a>
+  </div>
 
   <main>
     <section class="blog-hero wrap fade-in-up">
       <div class="chip" style="margin-bottom: 20px;">Knowledge Base</div>
       <h1>Wissen & Insights.</h1>
-      <p>Analysen, Strategien und Updates zum YouTube Algorithmus und digitalem Markenaufbau.</p>
+      <p>Strategische Analysen und Updates zum YouTube Algorithmus und digitalem Markenaufbau für Creator.</p>
     </section>
 
     <section class="wrap">
-      <div class="article-grid fade-in-up" style="animation-delay: 0.1s;">
+      <div class="article-grid fade-in-up" style="transition-delay: 0.1s;">
         
         <a href="youtube-algorithmus-2026.html" class="article-card glow-card">
           <div class="card-img-wrap">
@@ -190,15 +298,76 @@
     </section>
   </main>
 
+  <div id="cookie-banner" class="cookie-banner hidden">
+    <div class="cookie-text">
+      <strong>Datenschutz:</strong> Wir nutzen technisch notwendige Cookies, um diese Website zu betreiben. Es werden keine Tracking- oder Werbe-Cookies ohne Ihre Zustimmung gesetzt.
+    </div>
+    <div class="cookie-actions">
+      <button id="accept-cookies" class="btn primary" style="padding: 8px 16px; font-size: 13px;">Akzeptieren</button>
+      <button id="decline-cookies" class="btn" style="padding: 8px 16px; font-size: 13px;">Ablehnen</button>
+    </div>
+  </div>
+
   <footer>
-    <div class="wrap footer-in">
-      <div>&copy; <span id="year"></span> stanverse.</div>
-      <a href="../index.html" style="color:var(--muted);">Zur Startseite</a>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+           <a href="../index.html" class="logo" style="font-size:20px;">stanverse<span>.</span></a>
+           <p>Der technische Wachstumspartner für ambitionierte Creator und Medienmarken.</p>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <div class="footer-links">
+            <a href="../index.html#services">Lösungen</a>
+            <a href="../index.html#system">Prozess</a>
+            <a href="../index.html#proof">Erfolge</a>
+            <a href="#" style="color:var(--acc)">Wissen</a>
+            <a href="../index.html#kontakt">Audit</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Rechtliches</h4>
+          <div class="footer-links">
+            <a href="../impressum">Impressum</a>
+            <a href="../datenschutz">Datenschutz</a>
+            <a href="../agb">AGB</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; <span id="year"></span> stanverse.</div>
+        <div style="display:flex; gap:16px; align-items:center;">
+           <span style="width:6px; height:6px; background:#333; border-radius:50%;"></span>
+           <span>Made in Germany</span>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script>
-    // Spotlight Effect
+    // 1. Mobile Menu Toggle
+    function toggleMenu() {
+      document.querySelector('.mobile-menu').classList.toggle('open');
+    }
+    document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+
+    // 2. Navbar Hide on Scroll
+    let lastScroll = 0;
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.classList.add('hidden');
+      } else {
+        nav.classList.remove('hidden');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // 3. Spotlight Effect
     const cards = document.querySelectorAll('.glow-card');
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
@@ -208,7 +377,14 @@
       });
     });
 
+    // 4. Update Year
     document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // 5. Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
   </script>
   
   <script src="../consent.js"></script>
