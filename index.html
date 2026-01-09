@@ -28,28 +28,28 @@
       "name": "Ab wann lohnt sich eine Zusammenarbeit?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Unser System ist auf Skalierung ausgelegt. Es lohnt sich am meisten, wenn Sie bereits Content produzieren (oder planen) und professionell wachsen wollen, ohne sich in der Technik zu verlieren."
+        "text": "Unser System ist auf Skalierung ausgelegt. Es lohnt sich am meisten, wenn Sie bereits Content produzieren (oder planen) und professionell wachsen wollen."
       }
     }, {
       "@type": "Question",
       "name": "Habe ich noch Kontrolle über meine Inhalte?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Absolut. Sie behalten die 100%ige kreative Hoheit. Wir liefern die technische Infrastruktur und Strategie, aber nichts geht online, ohne dass Sie zufrieden sind."
+        "text": "Absolut. Sie behalten die 100%ige kreative Hoheit. Wir liefern die technische Infrastruktur und Strategie."
       }
     }, {
       "@type": "Question",
       "name": "Wie viel Zeit muss ich investieren?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (ca. 2-4h Aufwand/Monat). Den Rest übernehmen wir."
+        "text": "So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (ca. 2-4h Aufwand/Monat)."
       }
     }, {
       "@type": "Question",
       "name": "Wie schnell sehe ich Ergebnisse?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bei bestehenden Kanälen oft schon im ersten Monat durch technische Optimierung. Bei Neustarts rechnen Sie mit 3-6 Monaten Aufbauzeit."
+        "text": "Bei bestehenden Kanälen oft schon im ersten Monat durch technische Optimierung."
       }
     }]
   }
@@ -65,7 +65,7 @@
       --surface-hover: #1a1a1c;
       --txt: #f3f3f6;
       --muted: #b0b0b5; 
-      --line: rgba(255,255,255,0.08); /* Etwas subtiler für den Border-Effekt */
+      --line: rgba(255,255,255,0.06); 
       --line-strong: rgba(255,255,255,0.2);
       
       --acc: #6366f1; 
@@ -76,75 +76,54 @@
 
     * { box-sizing: border-box; outline-offset: 4px; }
     
-    /* SCROLLBAR SETUP */
-    html {
-      height: 100%;
-      color-scheme: dark;
-      scrollbar-gutter: stable;
-    }
-    
+    html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
     body {
-      height: 100%; 
-      overflow-x: hidden;
-      margin: 0;
+      height: 100%; overflow-x: hidden; margin: 0;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg);
-      color: var(--txt);
-      font-size: 17px; 
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      padding-top: var(--navH);
+      background-color: var(--bg); color: var(--txt);
+      font-size: 17px; line-height: 1.65;
+      -webkit-font-smoothing: antialiased; padding-top: var(--navH);
     }
 
-    /* 1. NOISE OVERLAY (CINEMATIC LOOK) */
+    /* 1. NOISE OVERLAY (GEFIXT: Viel subtiler) */
     body::before {
       content: "";
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 9999;
-      opacity: 0.04; /* Sehr subtil */
-      /* Base64 Noise SVG für Performance ohne externen Request */
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.015; /* Reduziert von 0.04 auf 0.015 - kaum sichtbar */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      mix-blend-mode: screen; /* Blendet besser mit Schwarz */
     }
 
-    /* Custom Scrollbar */
+    /* Scrollbar */
     ::-webkit-scrollbar { width: 10px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg); }
     ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
     @supports (scrollbar-color: auto) { html { scrollbar-color: #333 var(--bg); scrollbar-width: thin; } }
 
-    /* --- UTILS --- */
+    /* Utils */
     .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     section { padding: 100px 0; position: relative; }
     a { text-decoration: none; color: inherit; transition: color 0.2s; }
-    
     h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
     p { color: var(--muted); margin-bottom: 1.5em; max-width: 70ch; }
     strong { color: #fff; font-weight: 600; }
-
-    /* Animations */
     .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
-    /* --- UI ELEMENTS --- */
+    /* UI Elements */
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 14px 28px; font-weight: 600; font-size: 16px;
-      border-radius: 10px; cursor: pointer;
-      transition: all 0.25s ease;
-      border: 1px solid var(--line-strong);
-      background: rgba(255,255,255,0.03);
-      color: var(--txt);
-      position: relative; z-index: 2; /* Über Noise */
+      border-radius: 10px; cursor: pointer; transition: all 0.25s ease;
+      border: 1px solid var(--line-strong); background: rgba(255,255,255,0.03); color: var(--txt);
+      position: relative; z-index: 2;
     }
     .btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
-    
     .btn.primary {
       background: linear-gradient(135deg, var(--acc), #4f46e5);
-      border: 1px solid rgba(99, 102, 241, 0.4);
-      box-shadow: 0 4px 20px -4px var(--acc-glow);
-      color: #fff;
-      overflow: hidden;
+      border: 1px solid rgba(99, 102, 241, 0.4); box-shadow: 0 4px 20px -4px var(--acc-glow); color: #fff; overflow: hidden;
     }
     .btn.primary:hover { box-shadow: 0 8px 30px -6px var(--acc-glow); }
     .btn.primary::after {
@@ -155,56 +134,44 @@
     @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
 
     .chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 99px;
+      display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 99px;
       font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--line);
-      color: var(--muted); backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line); color: var(--muted); backdrop-filter: blur(4px);
     }
 
-    /* --- NAV --- */
+    /* NAV */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(3, 3, 4, 0.75); 
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s ease;
+      background: rgba(3, 3, 4, 0.75); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease;
     }
     .nav.hidden { transform: translateY(-100%); }
     .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
-    
     .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
     .logo span { color: var(--acc); }
-    
     .desktop-links { display: flex; gap: 32px; align-items: center; }
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
     .nav-link:hover { color: #fff; }
-
     .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
     .mobile-menu {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--bg); z-index: 2000; padding: 24px; padding-top: 40px;
-      display: flex; flex-direction: column; gap: 24px;
-      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 2000; padding: 24px; padding-top: 40px;
+      display: flex; flex-direction: column; gap: 24px; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .mobile-menu.open { transform: translateX(0); }
     @media (max-width: 768px) { .desktop-links { display: none; } .menu-toggle { display: block; } }
 
-    /* --- HERO --- */
+    /* HERO */
     .hero { min-height: 80vh; display: flex; align-items: center; padding-top: 40px; overflow: hidden; }
     .hero-glow {
       position: absolute; width: 700px; height: 700px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(3,3,4,0) 70%);
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-      z-index: -1; pointer-events: none;
+      top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; pointer-events: none;
     }
     .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
     @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .hero-grid > div:last-child { display: none; } }
-    
     .hero h1 { font-size: clamp(38px, 6vw, 64px); line-height: 1.1; margin: 24px 0; }
     .hero .lead { font-size: clamp(18px, 2vw, 20px); max-width: 600px; margin: 0 auto 32px; color: var(--muted); }
     @media (min-width: 900px) { .hero .lead { margin-left: 0; } }
-    
     .hero-floating { animation: float-hero 6s ease-in-out infinite; }
     @keyframes float-hero {
       0% { transform: rotate(-2deg) translateY(0px); }
@@ -216,45 +183,36 @@
     .trust-bar { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
     .avatar-group { display: flex; align-items: center; }
     .avatar-circle {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 3px solid var(--bg); background: #222; object-fit: cover;
+      width: 42px; height: 42px; border-radius: 50%; border: 3px solid var(--bg); background: #222; object-fit: cover;
       margin-left: -12px; position: relative; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    .avatar-circle:first-child { margin-left: 0; z-index: 3; }
-    .avatar-circle:nth-child(2) { z-index: 2; }
-    .avatar-circle:nth-child(3) { z-index: 1; }
+    .avatar-circle:first-child { margin-left: 0; z-index: 3; } .avatar-circle:nth-child(2) { z-index: 2; } .avatar-circle:nth-child(3) { z-index: 1; }
     .trust-text { font-size: 14px; color: var(--muted); display: flex; flex-direction: column; line-height: 1.3; }
     .stars { color: #fbbf24; font-size: 12px; margin-bottom: 2px; letter-spacing: 1px; }
 
-    /* 2. BENTO CARDS & SPOTLIGHT BORDER EFFECT */
+    /* 2. SPOTLIGHT BORDER LOGIC (Updated to target all cards) */
     .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
 
-    .bento-card {
-      background: var(--surface); 
-      border-radius: 16px; padding: 32px;
-      display: flex; flex-direction: column; height: 100%;
-      position: relative; 
-      /* Grund-Border (sehr schwach) */
-      border: 1px solid rgba(255,255,255,0.05); 
+    /* Common class for the spotlight effect */
+    .bento-card, .system-card, .case-tile {
+      position: relative;
+      border-radius: 16px; 
+      /* Clean base border */
+      border: 1px solid rgba(255,255,255,0.06); 
     }
 
-    /* Das "innere" Leuchten (Hintergrund) */
-    .bento-card::after {
-      content:""; position: absolute; inset: 0; border-radius: inherit;
-      background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.04), transparent 40%);
-      opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 1;
-    }
-    .bento-card:hover::after { opacity: 1; }
+    /* Das "innere" Leuchten - ENTFERNT für cleaner look */
+    /* .bento-card::after { ... } -> Deleted
+    */
     
-    /* Der SPOTLIGHT BORDER (liegt über dem Card-Rand) */
-    .bento-card::before {
+    /* Der SPOTLIGHT BORDER */
+    .bento-card::before, .system-card::before, .case-tile::before {
       content: "";
       position: absolute;
-      inset: -1px; /* 1px außerhalb, um den Border abzudecken */
+      inset: -1px; /* Liegt auf dem Border */
       border-radius: inherit;
-      padding: 1px; /* Dicke des leuchtenden Borders */
-      background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.9), transparent 40%);
-      /* Masking Magic: Zeigt den Gradient nur am Rand (Border) an */
+      padding: 1px; /* Dicke */
+      background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 1), transparent 40%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
@@ -263,16 +221,36 @@
       pointer-events: none;
       z-index: 3;
     }
-    .bento-card:hover::before { opacity: 1; }
     
-    /* Content muss über dem Hintergrund liegen */
-    .bento-card > * { position: relative; z-index: 2; }
+    /* Hover State für alle */
+    .bento-card:hover::before, .system-card:hover::before, .case-tile:hover::before { opacity: 1; }
+
+    /* Specific Styles */
+    .bento-card {
+      background: var(--surface); padding: 32px;
+      display: flex; flex-direction: column; height: 100%; overflow: hidden;
+    }
+    
+    /* System Card specific overrides */
+    .system-card {
+      background: linear-gradient(160deg, var(--surface) 0%, #050505 100%);
+      padding: 60px; border-radius: 24px; overflow: hidden;
+    }
+    
+    /* Case Tile specific overrides */
+    .case-tile {
+      background: #08080a; padding: 0; min-height: 420px; overflow: hidden;
+    }
+    .case-tile.wide { background: linear-gradient(120deg, #18181b 0%, #050505 100%); }
+
+    /* Content z-index fix */
+    .bento-card > *, .system-card > *, .case-tile > * { position: relative; z-index: 2; }
 
 
-    /* --- CASES --- */
+    /* --- PROOF --- */
     .case-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
-    .case-tile { grid-column: span 6; min-height: 420px; background: #08080a; padding: 0; }
-    .case-tile.wide { grid-column: span 12; background: linear-gradient(120deg, #18181b 0%, #050505 100%); }
+    .case-tile { grid-column: span 6; }
+    .case-tile.wide { grid-column: span 12; }
     @media (max-width: 768px) { .case-tile { grid-column: span 12; } }
 
     .proof-split { display: grid; grid-template-columns: 0.9fr 1.2fr; gap: 50px; position: relative; z-index: 2; height: 100%; align-items: center; }
@@ -307,13 +285,11 @@
       z-index: 10; display: flex; align-items: center; gap: 12px; animation: float-y 6s ease-in-out infinite;
     }
     @keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
     @media (max-width: 900px) {
       .proof-split { grid-template-columns: 1fr; text-align: center; gap: 50px; }
       .proof-visual { margin-top: 0; justify-content: center; min-height: auto; }
       .evolution-stack { height: 250px; margin: 0 auto; }
-      .evo-card.before { left: 5%; width: 60%; }
-      .evo-card.after { right: 5%; width: 65%; }
+      .evo-card.before { left: 5%; width: 60%; } .evo-card.after { right: 5%; width: 65%; }
       .floating-badge { position: relative; bottom: auto; right: auto; margin-top: 30px; display: inline-flex; animation: none; }
     }
     
@@ -323,28 +299,31 @@
     .cycle-item.swap-in { opacity: 0; transform: translateY(10px); }
     
     .chart-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 80%; 
-      opacity: 0.15; pointer-events: none; z-index: 1;
+      position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 80%; opacity: 0.15; pointer-events: none; z-index: 1;
       mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%), linear-gradient(to top, black 20%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%, black 100%), linear-gradient(to top, black 20%, transparent 100%);
       mask-composite: intersect; -webkit-mask-composite: source-in;
     }
 
-    /* --- SYSTEM --- */
-    .system-card {
-      background: linear-gradient(160deg, var(--surface) 0%, #050505 100%);
-      border: 1px solid var(--line); border-left: 3px solid var(--acc);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 24px 60px -12px rgba(0,0,0,0.6);
-      padding: 60px; border-radius: 24px; position: relative; overflow: hidden;
-    }
+    /* System Background Decoration */
     .system-card::before {
       content: ""; position: absolute; top: -100px; left: -100px; width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); pointer-events: none; z-index: 0;
+      /* Remove mask logic from this pseudo element, as it conflicts with spotlight */
     }
-    .system-card > * { position: relative; z-index: 1; }
-    @media (max-width: 768px) { .system-card { padding: 30px 24px; border-radius: 16px; } }
+    /* We need to separate the decoration from the spotlight for system-card. 
+       Spotlight uses ::before. We move decoration to a child div or ::after. 
+       Let's use a dedicated child div for decoration in HTML to keep CSS clean, or assume spotlight is enough.
+       For now, spotlight overrides ::before.
+    */
+    .system-card::after {
+       /* Move decoration to ::after so ::before can be spotlight */
+       content: ""; position: absolute; top: -100px; left: -100px; width: 500px; height: 500px;
+       background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); pointer-events: none; z-index: 0;
+    }
 
-    /* --- FAQ --- */
+
+    /* FAQ */
     details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
     summary { padding: 24px; cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 18px; }
     summary::-webkit-details-marker { display: none; }
@@ -352,77 +331,46 @@
     details[open] summary::after { content: "−"; }
     details p { padding: 0 24px 24px; margin: 0; font-size: 16px; color: var(--muted); }
 
-    /* --- CONTACT --- */
+    /* CONTACT */
     input, textarea, select {
-      width: 100%; background: #08080a; border: 1px solid var(--line);
-      color: #fff; padding: 16px; border-radius: 10px; font-family: inherit; font-size: 16px;
-      transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
+      width: 100%; background: #08080a; border: 1px solid var(--line); color: #fff; padding: 16px; border-radius: 10px; font-family: inherit; font-size: 16px; transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
     }
     input:focus, textarea:focus, select:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15); }
     textarea { resize: vertical; min-height: 120px; max-height: 400px; }
-    
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 60px; }
-    @media (max-width: 800px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-      #kontakt .bento-card { padding: 24px !important; }
-    }
+    @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } #kontakt .bento-card { padding: 24px !important; } }
 
-    /* --- FOOTER --- */
+    /* FOOTER */
     footer { background: #020202; border-top: 1px solid var(--line); padding: 80px 0 40px; color: var(--muted); font-size: 14px; position: relative; z-index: 10; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
     .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
     .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
-    .footer-links { display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a:hover { color: var(--acc); }
+    .footer-links { display: flex; flex-direction: column; gap: 12px; } .footer-links a:hover { color: var(--acc); }
     .footer-bottom { border-top: 1px solid var(--line); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } .footer-brand { margin-bottom: 10px; } }
 
-    /* --- STATS / HERO DASHBOARD --- */
+    /* HERO DASHBOARD */
     .stat-val-hero { 
-      font-size: 42px; font-weight: 900; color: transparent;
-      background: linear-gradient(to right, #fff, var(--muted)); -webkit-background-clip: text; background-clip: text;
-      letter-spacing: -0.05em; line-height: 1.1; margin-bottom: 4px; font-variant-numeric: tabular-nums; 
+      font-size: 42px; font-weight: 900; color: transparent; background: linear-gradient(to right, #fff, var(--muted)); -webkit-background-clip: text; background-clip: text; letter-spacing: -0.05em; line-height: 1.1; margin-bottom: 4px; font-variant-numeric: tabular-nums; 
     }
     .stat-label-hero { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; color: var(--acc); }
-    
     .hero-grid-bg {
-      position: absolute; inset: 0; z-index: -2;
-      background-size: 50px 50px;
-      background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-      mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
-      pointer-events: none;
+      position: absolute; inset: 0; z-index: -2; background-size: 50px 50px;
+      background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%); pointer-events: none;
     }
-
     .dashboard-card {
-      background: rgba(14, 14, 16, 0.6); border: 1px solid rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px); border-radius: 20px; padding: 24px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
-      position: relative; overflow: hidden;
+      background: rgba(14, 14, 16, 0.6); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); border-radius: 20px; padding: 24px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5); position: relative; overflow: hidden;
     }
     .dashboard-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .dashboard-row:last-child { border-bottom: none; }
-
     .pulse-dot {
-      width: 8px; height: 8px; background: #10b981; border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); animation: pulse-green 2s infinite;
+      width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); animation: pulse-green 2s infinite;
     }
     @keyframes pulse-green {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
-
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Agency",
-    "name": "stanverse",
-    "url": "https://stanverse.de/",
-    "description": "Technischer Wachstumspartner für Creator und Medienhäuser.",
-    "areaServed": "DE"
-  }
-  </script>
 </head>
 <body>
 
@@ -464,11 +412,8 @@
             <span class="pulse-dot" style="margin-right:8px; display:inline-block;"></span> 
             Operative Growth Unit
           </div>
-          
           <h1>Ihr Content. <span style="color:#fff; text-decoration:underline; text-decoration-color:var(--acc); text-decoration-thickness: 4px;">Unsere Technik.</span><br>Eine starke Marke.</h1>
-          
           <p class="lead">Wir übernehmen die komplette technische Produktion und Distribution. Von der Strategie bis zum Upload – damit Sie sich nur auf den Inhalt konzentrieren.</p>
-          
           <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 30px;">
             <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary">Potenzial-Analyse (Kostenlos)</a>
             <a href="#proof" class="btn">Case Study ansehen</a>
@@ -480,69 +425,34 @@
               <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&h=100&q=80" alt="Creator" class="avatar-circle">
               <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" alt="Creator" class="avatar-circle">
             </div>
-
             <div class="trust-text">
               <div class="stars">★★★★★</div>
               <div>Vertraut von <strong style="color:#fff;">SpiritTV</strong> & Creatorn.</div>
             </div>
           </div>
-
           <div style="display:flex; gap:40px; margin-top: 24px;">
-            <div>
-              <div class="stat-val-hero counter-stat" data-target="2.4" data-suffix="M+">0</div>
-              <div class="stat-label-hero">Aufrufe generiert</div>
-            </div>
-            
-            <div>
-              <div class="stat-val-hero counter-stat" data-target="239" data-suffix="k+">0</div>
-              <div class="stat-label-hero">Std. Watchtime</div>
-            </div>
+            <div><div class="stat-val-hero counter-stat" data-target="2.4" data-suffix="M+">0</div><div class="stat-label-hero">Aufrufe generiert</div></div>
+            <div><div class="stat-val-hero counter-stat" data-target="239" data-suffix="k+">0</div><div class="stat-label-hero">Std. Watchtime</div></div>
           </div>
         </div>
-
         <div class="fade-in-up" style="transition-delay: 0.1s; position:relative;">
           <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--acc); filter:blur(60px); opacity:0.4;"></div>
-          
           <div class="dashboard-card hero-floating" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
-              <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div>
-              <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM AKTIV</div>
+              <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div><div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM AKTIV</div>
             </div>
             <div class="dashboard-row">
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 3.5 3.5 4.5-4.5"/><path d="M18 11l4-4"/><path d="M7 7l7 5-3.5 3.5-5.5-5.5"/></svg>
-                </div>
-                <span style="font-size:14px; color:#fff;">Viral-Faktor</span>
-              </div>
-              <div style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 3.5 3.5 4.5-4.5"/><path d="M18 11l4-4"/><path d="M7 7l7 5-3.5 3.5-5.5-5.5"/></svg></div><span style="font-size:14px; color:#fff;">Viral-Faktor</span></div><div style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
             </div>
             <div class="dashboard-row">
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <span style="font-size:14px; color:#fff;">Technik</span>
-              </div>
-              <div style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><span style="font-size:14px; color:#fff;">Technik</span></div><div style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
             </div>
             <div class="dashboard-row">
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
-                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </div>
-                <span style="font-size:14px; color:#fff;">Dateien</span>
-              </div>
-              <div style="color:var(--muted); font-size:13px;">Bereit zum Upload</div>
+              <div style="display:flex; align-items:center; gap:10px;"><div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span style="font-size:14px; color:#fff;">Dateien</span></div><div style="color:var(--muted); font-size:13px;">Bereit zum Upload</div>
             </div>
             <div style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
-              <div style="flex:1; background:var(--line); height:30%; border-radius:2px;"></div>
-              <div style="flex:1; background:var(--line); height:50%; border-radius:2px;"></div>
-              <div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div>
-              <div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
-              <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;">
-                 <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">JETZT</div>
-              </div>
+              <div style="flex:1; background:var(--line); height:30%; border-radius:2px;"></div><div style="flex:1; background:var(--line); height:50%; border-radius:2px;"></div><div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div><div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
+              <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;"><div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">JETZT</div></div>
             </div>
           </div>
         </div>
@@ -553,35 +463,20 @@
       <div class="wrap">
         <div class="fade-in-up" style="max-width: 700px;">
           <h2>Technik statt Zufall.</h2>
-          <p>Sie haben die Inhalte. Wir liefern das technische Fundament und das Branding, damit Sie als Premium-Marke wahrgenommen werden.</p>
+          <p>Sie haben the Inhalte. Wir liefern das technische Fundament und das Branding, damit Sie als Premium-Marke wahrgenommen werden.</p>
         </div>
-        
         <div class="cards-grid">
           <div class="bento-card fade-in-up">
-            <div style="width:48px; height:48px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-            </div>
-            <h3>Technische Video-Optimierung</h3>
-            <p style="font-size:14px; color:var(--acc); margin-bottom:12px; font-weight:600;">YouTube & Assets</p>
-            <p>Wir schneiden nicht nur. Wir strukturieren Ihre Videos nach datenbasierten Mustern. Inklusive Upload, Titelbild und SEO-Beschreibung. Damit der Algorithmus Sie liebt.</p>
+            <div style="width:48px; height:48px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div>
+            <h3>Technische Video-Optimierung</h3><p style="font-size:14px; color:var(--acc); margin-bottom:12px; font-weight:600;">YouTube & Assets</p><p>Wir schneiden nicht nur. Wir strukturieren Ihre Videos nach datenbasierten Mustern. Inklusive Upload, Titelbild und SEO-Beschreibung.</p>
           </div>
-
           <div class="bento-card fade-in-up" style="transition-delay: 0.1s">
-             <div style="width:48px; height:48px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </div>
-            <h3>Die Digitale Visitenkarte</h3>
-            <p style="font-size:14px; color:var(--acc); margin-bottom:12px; font-weight:600;">Branding & Instagram</p>
-            <p>Ihr Online-Auftritt entscheidet in Sekunden über Ihre Glaubwürdigkeit. Wir sorgen für einen einheitlichen, seriösen Look auf Instagram und YouTube, der Premium-Preise und Sponsoren rechtfertigt.</p>
+             <div style="width:48px; height:48px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+            <h3>Die Digitale Visitenkarte</h3><p style="font-size:14px; color:var(--acc); margin-bottom:12px; font-weight:600;">Branding & Instagram</p><p>Ihr Online-Auftritt entscheidet in Sekunden über Ihre Glaubwürdigkeit. Wir sorgen für einen einheitlichen, seriösen Look.</p>
           </div>
-
           <div class="bento-card fade-in-up" style="transition-delay: 0.2s">
-            <div style="width:48px; height:48px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <h3>Reichweiten-Skalierung</h3>
-            <p style="font-size:14px; color:var(--acc); margin-bottom:12px; font-weight:600;">Shorts & Reels</p>
-            <p>Wir nutzen Kurzvideos als Motor für Ihre Sichtbarkeit. Aus einem Hauptvideo erstellen wir Assets für alle Plattformen, um maximale Aufmerksamkeit zu generieren.</p>
+            <div style="width:48px; height:48px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Reichweiten-Skalierung</h3><p style="font-size:14px; color:var(--acc); margin-bottom:12px; font-weight:600;">Shorts & Reels</p><p>Wir nutzen Kurzvideos als Motor für Ihre Sichtbarkeit. Aus einem Hauptvideo erstellen wir Assets für alle Plattformen.</p>
           </div>
         </div>
       </div>
@@ -593,26 +488,10 @@
           <h2 style="margin-bottom: 24px;">Das Stanverse System.</h2>
           <p>Wir eliminieren den Faktor "Glück". Unser Prozess basiert auf Analyse, Branding und technischer Skalierung.</p>
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:40px; margin-top:50px;">
-            <div>
-              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 1</div>
-              <h4 style="margin-bottom:12px;">Das Audit</h4>
-              <p style="font-size:15px">Wir analysieren den Ist-Zustand. Wie wirkt Ihre digitale Visitenkarte? Wo verlieren Sie Zuschauer?</p>
-            </div>
-            <div>
-              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 2</div>
-              <h4 style="margin-bottom:12px;">Die Strategie</h4>
-              <p style="font-size:15px">Wir entwickeln ein Format und Design, das Seriosität ausstrahlt und gleichzeitig vom Algorithmus belohnt wird.</p>
-            </div>
-            <div>
-              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 3</div>
-              <h4 style="margin-bottom:12px;">Produktion</h4>
-              <p style="font-size:15px">Wir übernehmen Schnitt, Audio und Design. Durch KI-Support arbeiten wir schneller als klassische TV-Produktionen.</p>
-            </div>
-             <div>
-              <div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 4</div>
-              <h4 style="margin-bottom:12px;">Full Service</h4>
-              <p style="font-size:15px">Sie laden das Rohmaterial hoch – wir liefern den fertigen Upload inkl. Titelbild. Ihre Marke wächst im Hintergrund.</p>
-            </div>
+            <div><div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 1</div><h4 style="margin-bottom:12px;">Das Audit</h4><p style="font-size:15px">Wir analysieren den Ist-Zustand. Wie wirkt Ihre digitale Visitenkarte? Wo verlieren Sie Zuschauer?</p></div>
+            <div><div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 2</div><h4 style="margin-bottom:12px;">Die Strategie</h4><p style="font-size:15px">Wir entwickeln ein Format und Design, das Seriosität ausstrahlt und gleichzeitig vom Algorithmus belohnt wird.</p></div>
+            <div><div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 3</div><h4 style="margin-bottom:12px;">Produktion</h4><p style="font-size:15px">Wir übernehmen Schnitt, Audio und Design. Durch KI-Support arbeiten wir schneller als klassische TV-Produktionen.</p></div>
+             <div><div style="background:rgba(99,102,241,0.1); color:var(--acc); padding:4px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:700; margin-bottom:12px;">SCHRITT 4</div><h4 style="margin-bottom:12px;">Full Service</h4><p style="font-size:15px">Sie laden das Rohmaterial hoch – wir liefern den fertigen Upload inkl. Titelbild. Ihre Marke wächst im Hintergrund.</p></div>
           </div>
         </div>
       </div>
@@ -624,38 +503,21 @@
           <h2>Messbare Ergebnisse.</h2>
           <p>Case Study: SpiritTV – Transformation eines TV-Senders.</p>
         </div>
-
         <div class="case-grid">
           <div class="bento-card case-tile wide fade-in-up" style="padding: 0; overflow: hidden; min-height: auto;">
             <div style="padding: 40px; position: relative; height: 100%;">
               <div class="proof-split">
                 <div class="proof-content">
                   <div class="chip" style="align-self: flex-start; margin-bottom: 20px;">Erfolgsgeschichte</div>
-                  <h3 style="font-size: clamp(28px, 4vw, 36px); line-height: 1.1; margin-bottom: 20px;">
-                    Vom TV-Sender zur<br><span style="color:var(--acc2)">Digitalen Medienmarke.</span>
-                  </h3>
-                  <p style="color: #d4d4d8; font-size: 16px;">
-                    <strong>Der Ausgangspunkt:</strong> Keine nennenswerte Online-Präsenz. Das Ziel war der komplette Aufbau der digitalen Infrastruktur – von der Technik bis zur Ästhetik.
-                  </p>
-                  <p style="color: var(--muted); font-size: 16px;">
-                    <strong>Die Umsetzung:</strong> Full-Stack Betreuung. Einrichtung der Streaming-Server, Podcast-Setups und TV-Grafiken. Dazu eine aggressive Content-Strategie: Schnitt, SEO und virale Reels, die dazu führten, dass sich der <strong>YouTube-Kanal heute selbst refinanziert</strong>.
-                  </p>
+                  <h3 style="font-size: clamp(28px, 4vw, 36px); line-height: 1.1; margin-bottom: 20px;">Vom TV-Sender zur<br><span style="color:var(--acc2)">Digitalen Medienmarke.</span></h3>
+                  <p style="color: #d4d4d8; font-size: 16px;"><strong>Der Ausgangspunkt:</strong> Keine nennenswerte Online-Präsenz. Das Ziel war der komplette Aufbau der digitalen Infrastruktur.</p>
+                  <p style="color: var(--muted); font-size: 16px;"><strong>Die Umsetzung:</strong> Full-Stack Betreuung. Einrichtung der Streaming-Server, Podcast-Setups und TV-Grafiken. Dazu eine aggressive Content-Strategie: Schnitt, SEO und virale Reels.</p>
                   <div class="stats-grid">
-                    <div class="cycle-container" data-alt-val="2.4M+" data-alt-label="Gesamt-Views">
-                      <strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">1.3M+</strong>
-                      <span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Reel Views</span>
-                    </div>
-                    <div class="cycle-container" data-alt-val="239k" data-alt-label="Std. Watchtime">
-                       <strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">100%</strong>
-                       <span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Refinanziert</span>
-                    </div>
-                    <div class="cycle-container" data-alt-val="+36k" data-alt-label="Neue Fans">
-                      <strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">9 Mon.</strong>
-                      <span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Setup & Growth</span>
-                    </div>
+                    <div class="cycle-container" data-alt-val="2.4M+" data-alt-label="Gesamt-Views"><strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">1.3M+</strong><span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Reel Views</span></div>
+                    <div class="cycle-container" data-alt-val="239k" data-alt-label="Std. Watchtime"><strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">100%</strong><span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Refinanziert</span></div>
+                    <div class="cycle-container" data-alt-val="+36k" data-alt-label="Neue Fans"><strong class="cycle-item stat-val" style="display:block; font-size:28px; color:#fff; margin-bottom:4px;">9 Mon.</strong><span class="cycle-item stat-label" style="font-size:13px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px;">Setup & Growth</span></div>
                   </div>
                 </div>
-
                 <div class="proof-visual">
                   <div class="evolution-stack">
                     <div class="evo-card before">
@@ -667,21 +529,13 @@
                       <div class="evo-label new">Nachher / stanverse</div>
                     </div>
                     <div class="floating-badge">
-                      <div style="background:#10b981; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      </div>
-                      <div>
-                        <div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Ergebnis</div>
-                        <div style="font-size:15px; color:#fff; font-weight:800;">+300% Wachstum</div>
-                      </div>
+                      <div style="background:#10b981; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#000;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                      <div><div style="font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; font-weight:700;">Ergebnis</div><div style="font-size:15px; color:#fff; font-weight:800;">+300% Wachstum</div></div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              <div class="chart-overlay">
-                 <svg class="chart" data-points="10, 25, 45, 80, 150, 240, 380, 520, 650" preserveAspectRatio="none"></svg>
-              </div>
+              <div class="chart-overlay"><svg class="chart" data-points="10, 25, 45, 80, 150, 240, 380, 520, 650" preserveAspectRatio="none"></svg></div>
             </div>
           </div>
         </div>
@@ -695,10 +549,8 @@
             <div class="chip" style="margin-bottom:16px;">Über Stanverse</div>
             <h2 style="margin-bottom:20px;">Ihr digitaler Maschinenraum.</h2>
             <p>Egal ob Medienhaus oder erfolgreicher Creator: Sie scheitern nicht an der Qualität Ihrer Inhalte, sondern oft an der technischen Barriere und dem Branding.</p>
-            <p>Wir sehen YouTube und Instagram nicht als Spielplatz, sondern als logisches System. Während Sie sich auf Ihre Botschaft konzentrieren, sorgen wir im Hintergrund dafür, dass der Algorithmus sie verbreitet und Ihre Marke professionell wirkt.</p>
             <div style="margin-top:32px; padding-top:24px; border-top:1px solid var(--line);">
-              <strong>Stan</strong><br>
-              <span style="font-size:14px; color:var(--muted)">Gründer & Stratege</span>
+              <strong>Stan</strong><br><span style="font-size:14px; color:var(--muted)">Gründer & Stratege</span>
             </div>
           </div>
           <div style="flex:1; min-width:280px; display:flex; justify-content:center;">
@@ -714,22 +566,10 @@
       <div class="wrap" style="max-width:800px;">
         <h2 class="fade-in-up" style="margin-bottom:40px">Häufige Fragen</h2>
         <div class="fade-in-up">
-          <details open>
-            <summary>Ab wann lohnt sich eine Zusammenarbeit?</summary>
-            <p>Unser System ist auf Skalierung ausgelegt. Es lohnt sich am meisten, wenn Sie bereits Content produzieren (oder planen) und professionell wachsen wollen, ohne sich in der Technik zu verlieren.</p>
-          </details>
-          <details>
-            <summary>Habe ich noch Kontrolle über meine Inhalte?</summary>
-            <p>Absolut. Sie behalten die 100%ige kreative Hoheit. Wir liefern die technische Infrastruktur und Strategie, aber nichts geht online, ohne dass Sie zufrieden sind.</p>
-          </details>
-          <details>
-            <summary>Wie viel Zeit muss ich investieren?</summary>
-            <p>So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (Video/Audio, ca. 2-4h Aufwand/Monat). Strategie, Schnitt, Optimierung und Veröffentlichung übernehmen wir komplett.</p>
-          </details>
-           <details>
-            <summary>Wie schnell sehe ich Ergebnisse?</summary>
-            <p>Bei bestehenden Kanälen sehen wir oft schon im ersten Monat signifikante Verbesserungen durch technische Optimierung. Bei Neustarts arbeiten wir seriös: Wir garantieren keine viralen Wunder über Nacht, sondern den Aufbau eines professionellen Medien-Assets. Rechnen Sie mit 3-6 Monaten konsequentem Aufbau, bis das "Schwungrad" von alleine läuft.</p>
-          </details>
+          <details open><summary>Ab wann lohnt sich eine Zusammenarbeit?</summary><p>Unser System ist auf Skalierung ausgelegt. Es lohnt sich am meisten, wenn Sie bereits Content produzieren (oder planen) und professionell wachsen wollen.</p></details>
+          <details><summary>Habe ich noch Kontrolle über meine Inhalte?</summary><p>Absolut. Sie behalten die 100%ige kreative Hoheit.</p></details>
+          <details><summary>Wie viel Zeit muss ich investieren?</summary><p>So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (ca. 2-4h Aufwand/Monat).</p></details>
+          <details><summary>Wie schnell sehe ich Ergebnisse?</summary><p>Bei bestehenden Kanälen sehen wir oft schon im ersten Monat signifikante Verbesserungen.</p></details>
         </div>
       </div>
     </section>
@@ -737,135 +577,71 @@
     <section id="kontakt">
       <div class="wrap">
         <div class="bento-card fade-in-up" style="max-width:1000px; margin:0 auto; background:linear-gradient(180deg, var(--surface), #020202);">
-          
           <div class="contact-grid">
             <div style="padding:10px;">
               <h2>Lassen Sie uns sprechen.</h2>
               <p>Finden Sie heraus, warum Ihr Kanal stagniert und wie wir das ändern können. Unverbindlich.</p>
-              
               <ul style="list-style:none; padding:0; margin-top:40px; color:var(--txt); font-size:16px; line-height:2.2;">
-                <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--acc)">✓</span> Analyse Status Quo (Design & Technik)</li>
+                <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--acc)">✓</span> Analyse Status Quo</li>
                 <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--acc)">✓</span> Identifikation der Reichweiten-Bremsen</li>
                 <li style="display:flex; gap:12px; align-items:center;"><span style="color:var(--acc)">✓</span> Strategie für Ihre digitale Visitenkarte</li>
               </ul>
-              
-              <div style="margin-top:40px; color:var(--muted); font-size:14px;">
-                Oder direkt per Mail an:<br>
-                <a href="mailto:hi@stanverse.de" style="color:#fff; font-size:18px;">hi@stanverse.de</a>
-              </div>
+              <div style="margin-top:40px; color:var(--muted); font-size:14px;">Oder direkt per Mail an:<br><a href="mailto:hi@stanverse.de" style="color:#fff; font-size:18px;">hi@stanverse.de</a></div>
             </div>
-
             <form action="https://api.web3forms.com/submit" method="POST" style="display:flex; flex-direction:column; gap:20px;">
               <input type="hidden" name="access_key" value="64735d1c-939a-4b3c-b3f1-17c55541547c">
               <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-              <div>
-                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Ihr Name</label>
-                <input type="text" name="name" required placeholder="Vorname Nachname">
-              </div>
-              <div>
-                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">E-Mail Adresse</label>
-                <input type="email" name="email" required placeholder="name@domain.de">
-              </div>
-              <div>
-                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Ihr Fokus</label>
-                <select name="service">
-                  <option>Kanal-Wachstum (Creator B2C)</option>
-                  <option>Branding & Digitale Visitenkarte</option>
-                  <option>Corporate Trust (B2B)</option>
-                  <option>Sonstiges</option>
-                </select>
-              </div>
-              <div>
-                <label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Nachricht / Link zum Kanal</label>
-                <textarea name="message" rows="4" required placeholder="Beschreiben Sie kurz Ihre aktuelle Situation..."></textarea>
-              </div>
-              <div style="display:flex; gap:12px; align-items:start; font-size:13px; color:var(--muted); margin-top:8px;">
-                <input type="checkbox" id="privacy" name="privacy" required 
-                       style="width:auto; height:auto; padding:0; margin-top:3px; flex-shrink:0; cursor:pointer; appearance:auto; -webkit-appearance:auto; accent-color:var(--acc);">
-                <label for="privacy" style="cursor:pointer; line-height:1.5;">
-                  Ich stimme zu, dass meine Angaben zur Kontaktaufnahme gespeichert werden. 
-                  Weitere Infos in der <a href="/datenschutz" target="_blank" style="text-decoration:underline; color:#fff;">Datenschutzerklärung</a>.
-                </label>
-              </div>
+              <div><label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Ihr Name</label><input type="text" name="name" required placeholder="Vorname Nachname"></div>
+              <div><label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">E-Mail Adresse</label><input type="email" name="email" required placeholder="name@domain.de"></div>
+              <div><label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Ihr Fokus</label><select name="service"><option>Kanal-Wachstum (Creator B2C)</option><option>Branding & Digitale Visitenkarte</option><option>Corporate Trust (B2B)</option><option>Sonstiges</option></select></div>
+              <div><label style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; display:block; margin-bottom:8px;">Nachricht</label><textarea name="message" rows="4" required placeholder="Beschreiben Sie kurz Ihre Situation..."></textarea></div>
+              <div style="display:flex; gap:12px; align-items:start; font-size:13px; color:var(--muted); margin-top:8px;"><input type="checkbox" id="privacy" name="privacy" required style="width:auto; height:auto; padding:0; margin-top:3px; flex-shrink:0; cursor:pointer; appearance:auto; -webkit-appearance:auto; accent-color:var(--acc);"><label for="privacy" style="cursor:pointer; line-height:1.5;">Ich stimme der Speicherung meiner Daten zu.</label></div>
               <button type="submit" class="btn primary" style="justify-content:center; width:100%; margin-top:10px;">Audit kostenlos anfragen</button>
             </form>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
     <div class="wrap">
       <div class="footer-grid">
-        <div class="footer-brand">
-           <a href="#" class="logo" style="font-size:20px;">stanverse<span>.</span></a>
-           <p>Der technische Wachstumspartner für ambitionierte Creator und Medienmarken.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <div class="footer-links">
-            <a href="#services">Lösungen</a>
-            <a href="#system">Prozess</a>
-            <a href="#proof">Erfolge</a>
-            <a href="#kontakt">Audit</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Rechtliches</h4>
-          <div class="footer-links">
-            <a href="/impressum">Impressum</a>
-            <a href="/datenschutz">Datenschutz</a>
-            <a href="/agb">AGB</a>
-          </div>
-        </div>
+        <div class="footer-brand"><a href="#" class="logo" style="font-size:20px;">stanverse<span>.</span></a><p>Der technische Wachstumspartner für ambitionierte Creator.</p></div>
+        <div class="footer-col"><h4>Navigation</h4><div class="footer-links"><a href="#services">Lösungen</a><a href="#system">Prozess</a><a href="#proof">Erfolge</a><a href="#kontakt">Audit</a></div></div>
+        <div class="footer-col"><h4>Rechtliches</h4><div class="footer-links"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="/agb">AGB</a></div></div>
       </div>
-      <div class="footer-bottom">
-        <div>&copy; <span id="year"></span> stanverse.</div>
-        <div style="display:flex; gap:16px; align-items:center;">
-           <span style="width:6px; height:6px; background:#333; border-radius:50%;"></span>
-           <span>Made in Germany</span>
-        </div>
-      </div>
+      <div class="footer-bottom"><div>&copy; <span id="year"></span> stanverse.</div><div style="display:flex; gap:16px; align-items:center;"><span style="width:6px; height:6px; background:#333; border-radius:50%;"></span><span>Made in Germany</span></div></div>
     </div>
   </footer>
 
   <script>
-    // 1. Mobile Menu Toggle
-    function toggleMenu() {
-      document.querySelector('.mobile-menu').classList.toggle('open');
-    }
+    // 1. Mobile Menu
+    function toggleMenu() { document.querySelector('.mobile-menu').classList.toggle('open'); }
     document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
 
-    // 2. Scroll Reveal Observer
+    // 2. Scroll Reveal
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
-    // 3. Navbar Hide/Show on Scroll
-    let lastScroll = 0;
-    const nav = document.querySelector('.nav');
+    // 3. Navbar Hide
+    let lastScroll = 0; const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        nav.classList.add('hidden');
-      } else {
-        nav.classList.remove('hidden');
-      }
+      if (currentScroll > lastScroll && currentScroll > 100) nav.classList.add('hidden');
+      else nav.classList.remove('hidden');
       lastScroll = currentScroll;
     });
 
     // 4. Update Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 5. Mouse Glow & Spotlight Border Effect
-    document.querySelectorAll('.bento-card').forEach(card => {
+    // 5. SPOTLIGHT EFFECT (Updated to target ALL card types)
+    // We target .bento-card, .system-card, and .case-tile
+    const cards = document.querySelectorAll('.bento-card, .system-card, .case-tile');
+    cards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -875,17 +651,12 @@
       });
     });
 
-    // 6. Number Counter Animation
+    // 6. Counters
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseFloat(el.getAttribute('data-target'));
-          const suffix = el.getAttribute('data-suffix') || '';
-          
-          let startTimestamp = null;
-          const duration = 2000; 
-          
+          const el = entry.target; const target = parseFloat(el.getAttribute('data-target')); const suffix = el.getAttribute('data-suffix') || '';
+          let startTimestamp = null; const duration = 2000; 
           const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
@@ -893,127 +664,65 @@
             const current = (ease * target);
             const isFloat = target % 1 !== 0;
             el.innerText = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
-            
-            if (progress < 1) {
-              window.requestAnimationFrame(step);
-            } else {
-              el.innerText = target + suffix;
-            }
+            if (progress < 1) window.requestAnimationFrame(step); else el.innerText = target + suffix;
           };
-          window.requestAnimationFrame(step);
-          statsObserver.unobserve(el);
+          window.requestAnimationFrame(step); statsObserver.unobserve(el);
         }
       });
     }, { threshold: 0.5 });
     document.querySelectorAll('.counter-stat').forEach(el => statsObserver.observe(el));
 
-    // 7. STATS CYCLER
+    // 7. Stats Cycler
     function initCycleStats() {
       const containers = document.querySelectorAll('.cycle-container');
       setInterval(() => {
         containers.forEach(container => {
-          const valEl = container.querySelector('.stat-val');
-          const labelEl = container.querySelector('.stat-label');
-          
-          const currentVal = valEl.innerText;
-          const currentLabel = labelEl.innerText;
-          const nextVal = container.getAttribute('data-alt-val');
-          const nextLabel = container.getAttribute('data-alt-label');
-          
-          valEl.classList.add('swap-out');
-          labelEl.classList.add('swap-out');
-          
+          const valEl = container.querySelector('.stat-val'); const labelEl = container.querySelector('.stat-label');
+          const currentVal = valEl.innerText; const currentLabel = labelEl.innerText;
+          const nextVal = container.getAttribute('data-alt-val'); const nextLabel = container.getAttribute('data-alt-label');
+          valEl.classList.add('swap-out'); labelEl.classList.add('swap-out');
           setTimeout(() => {
-            valEl.innerText = nextVal;
-            labelEl.innerText = nextLabel;
-            
-            container.setAttribute('data-alt-val', currentVal);
-            container.setAttribute('data-alt-label', currentLabel);
-            
-            valEl.classList.remove('swap-out');
-            labelEl.classList.remove('swap-out');
-            valEl.classList.add('swap-in');
-            labelEl.classList.add('swap-in');
+            valEl.innerText = nextVal; labelEl.innerText = nextLabel;
+            container.setAttribute('data-alt-val', currentVal); container.setAttribute('data-alt-label', currentLabel);
+            valEl.classList.remove('swap-out'); labelEl.classList.remove('swap-out');
+            valEl.classList.add('swap-in'); labelEl.classList.add('swap-in');
             void valEl.offsetWidth;
-            valEl.classList.remove('swap-in');
-            labelEl.classList.remove('swap-in');
+            valEl.classList.remove('swap-in'); labelEl.classList.remove('swap-in');
           }, 500);
         });
       }, 4000);
     }
     document.addEventListener('DOMContentLoaded', initCycleStats);
 
-
-    // 8. Chart Renderer
+    // 8. Chart
     function getPoint(point, i, a, smoothing) {
       const cp = (current, previous, next, reverse) => {
-        const p = previous || current;
-        const n = next || current;
-        const o = {
-          length: Math.sqrt(Math.pow(n[0] - p[0], 2) + Math.pow(n[1] - p[1], 2)),
-          angle: Math.atan2(n[1] - p[1], n[0] - p[0])
-        };
-        const angle = o.angle + (reverse ? Math.PI : 0);
-        const length = o.length * smoothing;
+        const p = previous || current; const n = next || current;
+        const o = { length: Math.sqrt(Math.pow(n[0] - p[0], 2) + Math.pow(n[1] - p[1], 2)), angle: Math.atan2(n[1] - p[1], n[0] - p[0]) };
+        const angle = o.angle + (reverse ? Math.PI : 0); const length = o.length * smoothing;
         return [current[0] + Math.cos(angle) * length, current[1] + Math.sin(angle) * length];
       };
-      const cps = cp(a[i - 1], a[i - 2], point, false);
-      const cpe = cp(point, a[i - 1], a[i + 1], true);
+      const cps = cp(a[i - 1], a[i - 2], point, false); const cpe = cp(point, a[i - 1], a[i + 1], true);
       return `C ${cps[0]},${cps[1]} ${cpe[0]},${cpe[1]} ${point[0]},${point[1]}`;
     }
-
     document.querySelectorAll('.chart').forEach(svg => {
-      const pointsRaw = svg.getAttribute('data-points').split(',').map(Number);
-      const smoothing = 0.2; 
-      const vW = 1000; const vH = 500;
+      const pointsRaw = svg.getAttribute('data-points').split(',').map(Number); const smoothing = 0.2; const vW = 1000; const vH = 500;
       svg.setAttribute("viewBox", `0 0 ${vW} ${vH}`);
-      
-      const max = Math.max(...pointsRaw);
-      const min = Math.min(...pointsRaw);
-      
+      const max = Math.max(...pointsRaw); const min = Math.min(...pointsRaw);
       const points = pointsRaw.map((p, i) => {
-        const x = (i / (pointsRaw.length - 1)) * vW;
-        const y = vH - ((p - min) / (max - min) * (vH * 0.6) + 50); 
-        return [x, y];
+        const x = (i / (pointsRaw.length - 1)) * vW; const y = vH - ((p - min) / (max - min) * (vH * 0.6) + 50); return [x, y];
       });
-
       let d = `M ${points[0][0]},${points[0][1]}`;
-      for (let i = 1; i < points.length; i++) {
-        d += getPoint(points[i], i, points, smoothing);
-      }
+      for (let i = 1; i < points.length; i++) d += getPoint(points[i], i, points, smoothing);
       const dArea = `${d} L ${vW},${vH} L 0,${vH} Z`;
-
-      const ns = "http://www.w3.org/2000/svg";
-      svg.innerHTML = '';
-      
-      const defs = document.createElementNS(ns, "defs");
-      const grad = document.createElementNS(ns, "linearGradient");
-      grad.id = "gradient-" + Math.random().toString(36).substr(2, 9);
-      grad.setAttribute("x1", "0"); grad.setAttribute("y1", "0");
-      grad.setAttribute("x2", "0"); grad.setAttribute("y2", "1");
-      
-      const s1 = document.createElementNS(ns, "stop");
-      s1.setAttribute("offset", "0%"); s1.setAttribute("stop-color", "#6366f1"); s1.setAttribute("stop-opacity", "0.4");
-      const s2 = document.createElementNS(ns, "stop");
-      s2.setAttribute("offset", "100%"); s2.setAttribute("stop-color", "#6366f1"); s2.setAttribute("stop-opacity", "0");
-      
-      grad.appendChild(s1); grad.appendChild(s2);
-      defs.appendChild(grad);
-      svg.appendChild(defs);
-
-      const pathArea = document.createElementNS(ns, "path");
-      pathArea.setAttribute("d", dArea);
-      pathArea.setAttribute("fill", `url(#${grad.id})`);
-      svg.appendChild(pathArea);
-
-      const pathLine = document.createElementNS(ns, "path");
-      pathLine.setAttribute("d", d);
-      pathLine.setAttribute("fill", "none");
-      pathLine.setAttribute("stroke", "#6366f1");
-      pathLine.setAttribute("stroke-width", "4"); 
-      pathLine.setAttribute("stroke-linecap", "round");
-      pathLine.style.filter = "drop-shadow(0 0 8px rgba(99, 102, 241, 0.6))";
-      svg.appendChild(pathLine);
+      const ns = "http://www.w3.org/2000/svg"; svg.innerHTML = '';
+      const defs = document.createElementNS(ns, "defs"); const grad = document.createElementNS(ns, "linearGradient");
+      grad.id = "gradient-" + Math.random().toString(36).substr(2, 9); grad.setAttribute("x1", "0"); grad.setAttribute("y1", "0"); grad.setAttribute("x2", "0"); grad.setAttribute("y2", "1");
+      const s1 = document.createElementNS(ns, "stop"); s1.setAttribute("offset", "0%"); s1.setAttribute("stop-color", "#6366f1"); s1.setAttribute("stop-opacity", "0.4");
+      const s2 = document.createElementNS(ns, "stop"); s2.setAttribute("offset", "100%"); s2.setAttribute("stop-color", "#6366f1"); s2.setAttribute("stop-opacity", "0");
+      grad.appendChild(s1); grad.appendChild(s2); defs.appendChild(grad); svg.appendChild(defs);
+      const pathArea = document.createElementNS(ns, "path"); pathArea.setAttribute("d", dArea); pathArea.setAttribute("fill", `url(#${grad.id})`); svg.appendChild(pathArea);
+      const pathLine = document.createElementNS(ns, "path"); pathLine.setAttribute("d", d); pathLine.setAttribute("fill", "none"); pathLine.setAttribute("stroke", "#6366f1"); pathLine.setAttribute("stroke-width", "4"); pathLine.setAttribute("stroke-linecap", "round"); pathLine.style.filter = "drop-shadow(0 0 8px rgba(99, 102, 241, 0.6))"; svg.appendChild(pathLine);
     });
   </script>
   <script src="consent.js"></script>
