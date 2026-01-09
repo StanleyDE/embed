@@ -8,7 +8,6 @@
   <meta name="description" content="Der YouTube Algorithmus wandelt sich radikal. Erfahren Sie, warum 2026 'Community Bridge' wichtiger ist als Watchtime und wie KI die Discovery verändert." />
   
   <link rel="canonical" href="https://stanverse.de/wissen/youtube-algorithmus-2026" />
-  
   <link rel="icon" type="image/png" href="../favicon.png?v=1.1" />
   <link rel="apple-touch-icon" href="../favicon.png?v=1.1" /> 
   <meta name="theme-color" content="#050505" />
@@ -60,12 +59,7 @@
     }
 
     * { box-sizing: border-box; outline-offset: 4px; }
-    
-    html { 
-        height: 100%; 
-        color-scheme: dark; 
-        scrollbar-gutter: stable; 
-    }
+    html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
     
     body {
       margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -105,7 +99,15 @@
     }
     @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
 
-    /* --- NAV (Identisch zu Index) --- */
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 99px;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--line);
+      color: var(--muted); backdrop-filter: blur(4px);
+    }
+
+    /* --- NAV --- */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(3, 3, 4, 0.75); 
@@ -181,7 +183,7 @@
     }
     .caption { font-size: 14px; color: var(--muted); text-align: center; display: block; margin-bottom: 40px; }
 
-    /* Glow Card (Spotlight Border) */
+    /* Glow Card / Highlight Box (Spotlight Effect) */
     .glow-card {
       position: relative; border-radius: 16px; border: 1px solid var(--line);
       background: var(--surface); overflow: hidden;
@@ -216,7 +218,7 @@
       display: flex; gap: 20px; align-items: center;
     }
 
-    /* --- FOOTER (EXACT MATCH) --- */
+    /* --- FOOTER (Identisch zu Index) --- */
     footer { 
       background: #020202; 
       border-top: 1px solid var(--line); 
@@ -236,24 +238,10 @@
       border-top: 1px solid var(--line); padding-top: 32px;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
     }
-
     @media (max-width: 768px) { 
       .footer-grid { grid-template-columns: 1fr; gap: 40px; } 
       .footer-brand { margin-bottom: 10px; }
     }
-
-    /* Cookie Banner Style */
-    .cookie-banner {
-      position: fixed; bottom: 24px; right: 24px; width: 340px; z-index: 9999;
-      background: rgba(14, 14, 16, 0.95); backdrop-filter: blur(16px);
-      border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      transform: translateY(0); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-    }
-    .cookie-banner.hidden { transform: translateY(20px); opacity: 0; pointer-events: none; }
-    .cookie-text { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-    .cookie-actions { display: flex; gap: 12px; }
-
   </style>
 </head>
 <body>
@@ -382,16 +370,6 @@
       </aside>
     </div>
   </article>
-  
-  <div id="cookie-banner" class="cookie-banner hidden">
-    <div class="cookie-text">
-      <strong>Datenschutz:</strong> Wir nutzen technisch notwendige Cookies, um diese Website zu betreiben. Es werden keine Tracking- oder Werbe-Cookies ohne Ihre Zustimmung gesetzt.
-    </div>
-    <div class="cookie-actions">
-      <button id="accept-cookies" class="btn primary" style="padding: 8px 16px; font-size: 13px;">Akzeptieren</button>
-      <button id="decline-cookies" class="btn" style="padding: 8px 16px; font-size: 13px;">Ablehnen</button>
-    </div>
-  </div>
 
   <footer>
     <div class="wrap">
@@ -478,6 +456,7 @@
       const navLi = document.querySelectorAll(".toc-list .toc-link");
       let current = "";
       
+      // Nutzt "Drittel-Regel": Wenn das Element im oberen Drittel ist, wird es aktiv
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
         if (window.scrollY >= sectionTop - (window.innerHeight / 3)) {
