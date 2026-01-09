@@ -8,7 +8,6 @@
   <meta name="description" content="Strategische Deep Dives für Creator und Medienhäuser. Analysen zu YouTube Algorithmen, Branding und technischer Skalierung." />
   
   <link rel="canonical" href="https://stanverse.de/wissen/" />
-  
   <link rel="icon" type="image/png" href="../favicon.png?v=1.1" />
   <link rel="apple-touch-icon" href="../favicon.png?v=1.1" /> 
   <meta name="theme-color" content="#050505" />
@@ -94,7 +93,7 @@
       color: var(--muted); backdrop-filter: blur(4px);
     }
 
-    /* --- NAV --- */
+    /* --- NAV (Identisch zur Index) --- */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(3, 3, 4, 0.75); 
@@ -104,13 +103,24 @@
     }
     .nav.hidden { transform: translateY(-100%); }
     .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
-    
     .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
     .logo span { color: var(--acc); }
-    
     .desktop-links { display: flex; gap: 32px; align-items: center; }
+    
+    /* Nav Links */
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
     .nav-link:hover { color: #fff; }
+    
+    /* Special Link Style (Wissen) */
+    .nav-special {
+      font-size: 15px; font-weight: 600; 
+      background: linear-gradient(90deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: #fff;
+    }
+    .nav-special:hover { opacity: 0.8; }
 
     .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
     .mobile-menu {
@@ -137,7 +147,6 @@
     .article-card {
       display: flex; flex-direction: column; height: 100%;
       background: var(--surface);
-      /* Base Border */
       border: 1px solid var(--line);
       border-radius: 16px; overflow: hidden;
       transition: transform 0.3s ease;
@@ -169,14 +178,15 @@
     .glow-card:hover::after { opacity: 1; }
     .glow-card > * { position: relative; z-index: 5; }
 
-    /* --- FOOTER --- */
+    /* --- FOOTER (Identisch zu Index) --- */
     footer { 
       background: #020202; 
       border-top: 1px solid var(--line); 
       padding: 80px 0 40px; 
       color: var(--muted);
       font-size: 14px;
-      position: relative; z-index: 10;
+      position: relative;
+      z-index: 10;
     }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
     .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
@@ -192,19 +202,6 @@
       .footer-grid { grid-template-columns: 1fr; gap: 40px; } 
       .footer-brand { margin-bottom: 10px; }
     }
-
-    /* Cookie Banner (für consent.js) */
-    .cookie-banner {
-      position: fixed; bottom: 24px; right: 24px; width: 340px; z-index: 9999;
-      background: rgba(14, 14, 16, 0.95); backdrop-filter: blur(16px);
-      border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      transform: translateY(0); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-    }
-    .cookie-banner.hidden { transform: translateY(20px); opacity: 0; pointer-events: none; }
-    .cookie-text { font-size: 14px; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
-    .cookie-actions { display: flex; gap: 12px; }
-
   </style>
 </head>
 <body>
@@ -212,15 +209,16 @@
   <nav class="nav">
     <div class="wrap nav-in">
       <a href="../index.html" class="logo">stanverse<span>.</span></a>
-      
       <div class="desktop-links">
         <a href="../index.html#services" class="nav-link">Lösungen</a>
         <a href="../index.html#system" class="nav-link">Prozess</a>
         <a href="../index.html#proof" class="nav-link">Referenzen</a>
-        <a href="#" class="nav-link" style="color:#fff;">Wissen</a>
+        
+        <a href="index.html" class="nav-special">Wissen</a>
+        
+        <a href="../index.html#about" class="nav-link">Über uns</a>
         <a href="../index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
       </div>
-
       <button class="menu-toggle" aria-label="Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
@@ -234,7 +232,8 @@
     <a href="../index.html#services" class="nav-link">Lösungen</a>
     <a href="../index.html#system" class="nav-link">Prozess</a>
     <a href="../index.html#proof" class="nav-link">Referenzen</a>
-    <a href="#" class="nav-link" style="color:#fff;">Wissen</a>
+    <a href="index.html" class="nav-link">Wissen</a>
+    <a href="../index.html#about" class="nav-link">Über uns</a>
     <a href="../index.html#kontakt" class="btn primary">Audit anfragen</a>
   </div>
 
@@ -256,7 +255,7 @@
           <div class="card-content">
             <div class="card-meta">
               <span class="card-tag">Strategie</span>
-              <span>20. Mai 2024</span>
+              <span>09. Jan 2026</span>
             </div>
             <h2 class="card-title">Der YouTube Algorithmus 2026: Warum Retention allein nicht mehr reicht.</h2>
             <p class="card-excerpt">Wer heute noch nur auf die Click-Through-Rate starrt, hat verloren. Wir analysieren die Ära der "Community Bridge".</p>
@@ -298,16 +297,6 @@
     </section>
   </main>
 
-  <div id="cookie-banner" class="cookie-banner hidden">
-    <div class="cookie-text">
-      <strong>Datenschutz:</strong> Wir nutzen technisch notwendige Cookies, um diese Website zu betreiben. Es werden keine Tracking- oder Werbe-Cookies ohne Ihre Zustimmung gesetzt.
-    </div>
-    <div class="cookie-actions">
-      <button id="accept-cookies" class="btn primary" style="padding: 8px 16px; font-size: 13px;">Akzeptieren</button>
-      <button id="decline-cookies" class="btn" style="padding: 8px 16px; font-size: 13px;">Ablehnen</button>
-    </div>
-  </div>
-
   <footer>
     <div class="wrap">
       <div class="footer-grid">
@@ -322,7 +311,7 @@
             <a href="../index.html#services">Lösungen</a>
             <a href="../index.html#system">Prozess</a>
             <a href="../index.html#proof">Erfolge</a>
-            <a href="#" style="color:var(--acc)">Wissen</a>
+            <a href="index.html">Wissen</a>
             <a href="../index.html#kontakt">Audit</a>
           </div>
         </div>
