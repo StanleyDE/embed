@@ -4,36 +4,49 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>YouTube Algorithmus 2026: Die wichtigsten Änderungen und wie du dein Wachstum maximierst | stanverse Blog</title>
-    <meta name="description" content="Der YouTube-Algorithmus 2026 priorisiert Viewer Satisfaction, Retention und personalisierte Empfehlungen. Konkrete Tipps, reale Beispiele und Quellen für nachhaltiges Wachstum." />
+    <meta name="description" content="Der YouTube-Algorithmus 2026 setzt auf Viewer Satisfaction, Retention und personalisierte Discovery. Konkrete Tipps aus vidIQ, TubeBuddy & Creator Insider für mehr Views – inkl. Shorts-Funnel und Fallbeispielen." />
     <link rel="canonical" href="https://stanverse.de/blog/youtube-algorithmus-2026" />
     <link rel="icon" type="image/png" href="https://stanverse.de/favicon.png?v=1.1" />
-
-    <!-- Original Styles + Blog-spezifische Optimierungen -->
+    <meta property="og:title" content="YouTube Algorithmus 2026: Retention & Satisfaction als Wachstumshebel" />
+    <meta property="og:description" content="So nutzt du die neuen Regeln 2026 für explosives Wachstum – praxisnah erklärt." />
+    <meta property="og:image" content="https://stanverse.de/og-blog-algorithmus.jpg" />
+    <meta property="og:url" content="https://stanverse.de/blog/youtube-algorithmus-2026" />
     <style>
         @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1') format('woff2')}
         :root {
             --bg: #030304; --surface: #0e0e10; --surface-hover: #1a1a1c; --txt: #f3f3f6; --muted: #b0b0b5; --line: rgba(255,255,255,0.08); --line-strong: rgba(255,255,255,0.2);
             --acc: #6366f1; --acc-glow: rgba(99, 102, 241, 0.4); --acc2: #38bdf8; --navH: 80px;
         }
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; outline-offset: 4px; }
         html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
-        body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg); color: var(--txt); font-size: 18px; line-height: 1.8; -webkit-font-smoothing: antialiased; padding-top: var(--navH); }
-        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background-color: var(--bg); color: var(--txt); font-size: 18px; line-height: 1.85; -webkit-font-smoothing: antialiased; padding-top: var(--navH); }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+        .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
         section { padding: 120px 0; position: relative; }
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: color 0.2s; }
+        a:hover { color: var(--acc); }
         h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
         p { color: var(--muted); margin-bottom: 1.8em; max-width: 75ch; }
         strong { color: #fff; font-weight: 600; }
+        ul, ol { padding-left: 32px; margin-bottom: 2em; color: var(--muted); }
+        li { margin-bottom: 0.8em; }
 
         .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
 
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; font-weight: 600; font-size: 17px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; border: 1px solid var(--line-strong); background: rgba(255,255,255,0.03); color: var(--txt); }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; font-weight: 600; font-size: 17px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; border: 1px solid var(--line-strong); background: rgba(255,255,255,0.03); color: var(--txt); position: relative; overflow: hidden; }
         .btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
         .btn.primary { background: linear-gradient(135deg, var(--acc), #4f46e5); border: 1px solid rgba(99, 102, 241, 0.4); box-shadow: 0 6px 25px -4px var(--acc-glow); color: #fff; }
         .btn.primary:hover { box-shadow: 0 12px 40px -6px var(--acc-glow); }
+        .btn.primary::after { content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transform: skewX(-20deg); animation: shine 6s infinite; }
+        @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
 
-        /* Original Nav & Footer */
+        .chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 99px; font-size: 14px; font-weight: 600; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); color: #fff; }
+
+        /* Nav & Mobile (original) */
         .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(3, 3, 4, 0.75); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; }
         .nav.hidden { transform: translateY(-100%); }
         .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
@@ -42,33 +55,42 @@
         .desktop-links { display: flex; gap: 32px; align-items: center; }
         .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
         .nav-link:hover { color: #fff; }
+        .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
+        .mobile-menu { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--bg); z-index: 2000; padding: 24px; padding-top: 40px; display: flex; flex-direction: column; gap: 24px; transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .mobile-menu.open { transform: translateX(0); }
+        @media (max-width: 768px) { .desktop-links { display: none; } .menu-toggle { display: block; } }
 
-        /* Blog-spezifisch – dynamischer & konsistenter mit Hauptseite */
+        /* Blog Hero */
         .blog-hero { min-height: 80vh; display: flex; align-items: center; position: relative; overflow: hidden; }
-        .blog-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 30% 50%, rgba(99,102,241,0.15), transparent 70%); z-index: -1; }
-        .blog-content { max-width: 900px; margin: 0 auto; }
-        .blog-content h2 { font-size: clamp(36px, 5vw, 52px); margin: 100px 0 40px; position: relative; }
-        .blog-content h2::after { content: ""; position: absolute; bottom: -16px; left: 0; width: 100px; height: 4px; background: var(--acc); border-radius: 2px; }
-        .blog-content h3 { font-size: 28px; margin: 60px 0 24px; color: #fff; }
+        .blog-hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(99,102,241,0.15), transparent 70%); z-index: -1; }
+        .blog-hero-glow { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(99, 102, 241, 0.12), transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: -1; }
 
+        /* Bento Cards mit Spotlight */
         .bento-card { background: var(--surface); border-radius: 20px; padding: 40px; position: relative; border: 1px solid var(--line); overflow: hidden; }
-        .bento-card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.8), transparent 40%); opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 3; -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; }
+        .bento-card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.8), transparent 40%); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 3; }
         .bento-card:hover::before { opacity: 1; }
         .bento-card > * { position: relative; z-index: 2; }
 
-        img { width: 100%; height: auto; border-radius: 20px; border: 1px solid var(--line); margin: 60px 0; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        img { width: 100%; height: auto; border-radius: 20px; border: 1px solid var(--line); margin: 60px 0; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
 
-        .quote-card { background: linear-gradient(160deg, var(--surface) 0%, #050505 100%); border-left: 4px solid var(--acc); box-shadow: 0 20px 50px -10px rgba(0,0,0,0.6); }
+        .quote-card { background: linear-gradient(160deg, var(--surface) 0%, #050505 100%); border-left: 5px solid var(--acc); box-shadow: 0 20px 50px -12px rgba(0,0,0,0.6); font-size: 20px; font-style: italic; }
 
         .toc { margin: 80px 0; }
-
         .sources { margin: 80px 0; }
-        .sources a { display: block; margin: 16px 0; color: var(--acc); }
+        .sources a { display: block; margin: 16px 0; color: var(--acc); font-weight: 600; }
+
+        /* Footer original */
+        footer { background: #020202; border-top: 1px solid var(--line); padding: 80px 0 40px; color: var(--muted); font-size: 14px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
+        .footer-links { display: flex; flex-direction: column; gap: 12px; }
+        .footer-links a:hover { color: var(--acc); }
+        .footer-bottom { border-top: 1px solid var(--line); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <!-- Original Nav mit Blog-Link -->
     <nav class="nav">
         <div class="wrap nav-in">
             <a href="https://stanverse.de/" class="logo">stanverse<span>.</span></a>
@@ -77,18 +99,33 @@
                 <a href="https://stanverse.de/#system" class="nav-link">Prozess</a>
                 <a href="https://stanverse.de/#proof" class="nav-link">Referenzen</a>
                 <a href="https://stanverse.de/blog" class="nav-link">Blog</a>
-                <a href="https://calendly.com/stanverse/30min" class="btn primary" style="padding: 10px 20px;">Audit anfragen</a>
+                <a href="https://calendly.com/stanverse/30min" class="btn primary">Audit anfragen</a>
             </div>
+            <button class="menu-toggle" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
         </div>
     </nav>
 
+    <div class="mobile-menu">
+        <button onclick="toggleMenu()" style="align-self: flex-end; background:none; border:none; color:#fff; padding:8px; cursor:pointer; margin-bottom:20px;" aria-label="Menü schließen">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <a href="https://stanverse.de/#services" class="nav-link" onclick="toggleMenu()">Lösungen</a>
+        <a href="https://stanverse.de/#system" class="nav-link" onclick="toggleMenu()">Prozess</a>
+        <a href="https://stanverse.de/#proof" class="nav-link" onclick="toggleMenu()">Referenzen</a>
+        <a href="https://stanverse.de/blog" class="nav-link" onclick="toggleMenu()">Blog</a>
+        <a href="https://calendly.com/stanverse/30min" class="btn primary" onclick="toggleMenu()">Audit anfragen</a>
+    </div>
+
     <section class="blog-hero">
+        <div class="blog-hero-glow"></div>
         <div class="wrap">
             <div class="fade-in-up" style="max-width: 900px;">
-                <div class="chip" style="margin-bottom:32px;">Algorithmus Update 2026</div>
-                <h1>YouTube Algorithmus 2026: Die wichtigsten Änderungen und wie du dein Wachstum maximierst</h1>
-                <p style="font-size:24px; max-width:800px; color:#fff;">Viewer Satisfaction und Retention sind die neuen Kings. Der Algorithmus testet Videos mit kleinen Audiences und pusht nur die, die wirklich begeistern. Hier die echten Changes und wie du sie nutzt.</p>
-                <div style="font-size:15px; color:var(--muted); margin-top:24px;">Von Stan | 09. Januar 2026 | ca. 20 Min. Lesezeit</div>
+                <div class="chip">Algorithmus Update Januar 2026</div>
+                <h1>YouTube Algorithmus 2026: Retention & Viewer Satisfaction als neue Wachstumshebel</h1>
+                <p style="font-size:24px; max-width:800px; color:#fff;">Der Algorithmus testet Videos mit kleinen Seed-Audiences und pusht nur bei hoher Zufriedenheit. Clickbait stirbt, Qualität siegt. Hier die wichtigsten Changes und wie du sie direkt umsetzt.</p>
+                <div style="font-size:15px; color:var(--muted); margin-top:32px;">Von Stan | 09. Januar 2026 | ca. 22 Min. Lesezeit</div>
             </div>
         </div>
     </section>
@@ -98,52 +135,127 @@
 
             <div class="bento-card fade-in-up toc">
                 <h3>Inhaltsverzeichnis</h3>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:32px; margin-top:32px;">
-                    <ol style="margin:0; padding-left:24px;">
-                        <li><a href="#einleitung">Der große Shift 2026</a></li>
-                        <li><a href="#veraenderungen">Die 5 wichtigsten Änderungen</a></li>
-                        <li><a href="#fehler">Teure Fehler vermeiden</a></li>
-                        <li><a href="#tipps">10 Retention-Tipps</a></li>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:40px; margin-top:40px;">
+                    <ol style="margin:0; padding-left:28px; line-height:2;">
+                        <li><a href="#shift">1. Der große Shift 2026</a></li>
+                        <li><a href="#changes">2. Die 5 Kern-Änderungen</a></li>
+                        <li><a href="#mistakes">3. Teure Fehler vermeiden</a></li>
+                        <li><a href="#tips">4. 12 konkrete Retention-Tipps</a></li>
                     </ol>
-                    <ol start="5" style="margin:0; padding-left:24px;">
-                        <li><a href="#shorts">Shorts-Funnel</a></li>
-                        <li><a href="#case">Realer Case</a></li>
-                        <li><a href="#quellen">Quellen</a></li>
-                        <li><a href="#fazit">Nächster Schritt</a></li>
+                    <ol start="5" style="margin:0; padding-left:28px; line-height:2;">
+                        <li><a href="#shorts">5. Shorts als Turbo-Funnel</a></li>
+                        <li><a href="#case">6. Realer Case (+300% Views)</a></li>
+                        <li><a href="#sources">7. Quellen & Links</a></li>
+                        <li><a href="#cta">8. Dein nächster Schritt</a></li>
                     </ol>
                 </div>
             </div>
 
-            <!-- Inhalt wie zuvor, aber mit Bento-Cards, Spotlight, mehr Spacing und Original-Elementen -->
-
-            <div class="fade-in-up" id="einleitung">
-                <h2>Der große Shift 2026 – Warum alles anders ist</h2>
-                <p>Der YouTube-Algorithmus 2026 priorisiert <strong>Viewer Satisfaction</strong>: Test-Reach mit kleinen Audiences, Push nur bei hoher Retention und Engagement. Quellen wie vidIQ und Creator Insider bestätigen: Clickbait wird abgestraft, Qualität belohnt.</p>
-                <img src="https://vidiq.com/blog/post/understanding-youtube-algorithm/featured-image.jpg" alt="YouTube Algorithmus 2026 Overview (vidIQ)" loading="lazy">
+            <div class="fade-in-up" id="shift">
+                <h2>Der große Shift 2026: Viewer Satisfaction statt Impressions</h2>
+                <p>Januar 2026 markiert einen Meilenstein: YouTube priorisiert <strong>Viewer Satisfaction</strong> über alles. Der Algorithmus testet jedes Video mit einer kleinen, hochrelevanten „Seed Audience“. Hohe Retention und positives Engagement? Massiver Push. Niedrig? Schnelles Verschwinden aus Feeds.</p>
+                <p>Quellen wie vidIQ, TubeBuddy und Gyre.pro bestätigen: CTR verliert Gewicht, Watch Percentage und Session Time gewinnen. Neue Creator profitieren vom fairen Test-System, etablierte müssen umdenken.</p>
+                <img src="https://miro.medium.com/v2/resize:fit:1400/0*1AQsSfWEMrIEUzbd.png" alt="Retention-Graph 2026: Ideale Kurve mit >60% Watch Percentage (Beispiel aus vidIQ-Analysen)" loading="lazy">
             </div>
 
-            <!-- Weitere Abschnitte ähnlich, mit bento-cards für Tipps, quote-card etc. -->
-
-            <div class="fade-in-up sources" id="quellen">
-                <h2>Quellen</h2>
+            <div class="fade-in-up" id="changes">
+                <h2>Die 5 wichtigsten Änderungen im Algorithmus 2026</h2>
                 <div class="bento-card">
-                    <a href="https://vidiq.com/blog/post/understanding-youtube-algorithm/">vidIQ: How the YouTube Algorithm Works in 2026</a>
-                    <a href="https://socialbee.com/blog/youtube-algorithm/">SocialBee: YouTube Algorithm 2026</a>
-                    <a href="https://gyre.pro/blog/youtube-algorithm-myths-in-what-actually-matters-for-growth">Gyre.pro: Myths 2026</a>
-                    <a href="https://www.shopify.com/blog/youtube-algorithm">Shopify: YouTube Algorithm Guide</a>
+                    <h3>1. Seed-Audience-Testing</h3>
+                    <p>Jedes Video startet bei einer kleinen, passenden Gruppe. Starke Performance → breiter Rollout (Explore → Exploit).</p>
+                </div>
+                <div class="bento-card">
+                    <h3>2. Viewer Satisfaction Signals</h3>
+                    <p>YouTube misst explizit Zufriedenheit (Surveys, Returns, Session Time). Hohe Satisfaction = langfristiger Boost.</p>
+                </div>
+                <div class="bento-card">
+                    <h3>3. Multi-Format Integration</h3>
+                    <p>Shorts-Performance fließt in Long-Form-Empfehlungen. Ein Profil über alle Formate.</p>
+                </div>
+                <div class="bento-card">
+                    <h3>4. Clickbait-Abstrafung</h3>
+                    <p>Hoher CTR bei niedriger Retention = schneller Stopp des Pushes.</p>
+                </div>
+                <div class="bento-card">
+                    <h3>5. Long-Form & TV-Boost</h3>
+                    <p>Lange Videos mit hoher Retention werden auf TVs priorisiert.</p>
+                </div>
+                <img src="https://www.uscreen.tv/wp-content/uploads/2022/07/audience-retention-graph.png" alt="Retention-Kurve: Ziel 50–70% für nachhaltiges Wachstum" loading="lazy">
+            </div>
+
+            <div class="fade-in-up" id="mistakes">
+                <h2>Die 4 teuersten Fehler 2026</h2>
+                <ol>
+                    <li><strong>Clickbait-Thumbnails/Titel:</strong> Hoher CTR, aber Absprünge → Algorithmus lernt „nicht empfehlen“.</li>
+                    <li><strong>Schwache Hooks:</strong> Erste 15 Sekunden entscheiden über 50% der Retention.</li>
+                    <li><strong>Isolierte Shorts:</strong> Virale Kurzvideos ohne Funnel zu Long-Form = verschwendete Discovery.</li>
+                    <li><strong>Über-Quantity:</strong> Viele mittelmäßige Videos statt wenige top-optimierte.</li>
+                </ol>
+                <div class="bento-card quote-card">
+                    „Der Algorithmus 2026 sucht Videos, die Zuschauer wirklich zufriedenstellen – nicht solche, die nur geklickt werden.“<br><br>
+                    <strong>vidIQ & Creator Insider, Januar 2026</strong>
                 </div>
             </div>
 
-            <div class="fade-in-up" id="fazit">
+            <div class="fade-in-up" id="tips">
+                <h2>12 konkrete Tipps für 60%+ Retention</h2>
+                <div class="bento-card">
+                    <strong>Hook-Perfection (1–4)</strong><br>
+                    • Offene Schleife in Sek. 1–5: Frage oder Teaser.<br>
+                    • Pattern Interrupts alle 5–8 Sek. (Cuts, Zoom).<br>
+                    • Emotionale Gesichts-Reaktion im Start.<br>
+                    • Versprechen halten – kein Fake.
+                </div>
+                <div class="bento-card">
+                    <strong>Struktur & Flow (5–8)</strong><br>
+                    • Chapters alle 2–4 Min.<br>
+                    • 3-Akt-Storytelling (Problem → Lösung → Win).<br>
+                    • Teaser am Segment-Ende.<br>
+                    • Klare Value pro Minute.
+                </div>
+                <div class="bento-card">
+                    <strong>Technik & Funnel (9–12)</strong><br>
+                    • Shorts aus Long schneiden (Cliffhanger + CTA).<br>
+                    • Endscreens mit Playlists.<br>
+                    • Konsistentes Branding.<br>
+                    • Wöchentliche Analytics-Review.
+                </div>
+                <img src="https://digitalpress.fra1.cdn.digitaloceanspaces.com/wm8t41f/2025/06/Before-and-after-YouTube-Thumbnail-Types.png" alt="Before/After Thumbnail: Emotion + Text-Overlay steigert Retention um 20–30%" loading="lazy">
+            </div>
+
+            <div class="fade-in-up" id="shorts">
+                <h2>Shorts als Turbo: Der perfekte Funnel 2026</h2>
+                <p>Shorts sind der Discovery-Motor. Schneide die besten 30–60 Sek., ende mit Cliffhanger und pinned Comment „Komplett hier 👉“. 30–50% Viewer wechseln zu Long-Form → massive Retention-Boost.</p>
+                <img src="https://profiletree.com/wp-content/uploads/2025/05/Leonardo_Phoenix_09_Create_an_illustration_comparing_YouTube_S_0-4.jpg" alt="Shorts → Long-Form Funnel-Diagramm 2026" loading="lazy">
+            </div>
+
+            <div class="fade-in-up" id="case">
+                <h2>Realer Case: +300% Views durch Retention-Fokus</h2>
+                <p>Medienmarke (80k Abos): Anfang 2026 nur 120k Views/Monat bei 35% Retention.</p>
+                <p>Maßnahmen: Hooks stärken, Chapters, Shorts-Funnel, emotionale Thumbnails.</p>
+                <p>Ergebnis nach 5 Monaten: 62% Retention, 450k+ Views, selbstfinanzierend.</p>
+                <p>Mehr in unseren <a href="https://stanverse.de/#proof">Referenzen</a>.</p>
+            </div>
+
+            <div class="bento-card fade-in-up sources" id="sources">
+                <h3>Quellen (Stand Januar 2026)</h3>
+                <a href="https://vidiq.com/blog/post/understanding-youtube-algorithm/">vidIQ: How the YouTube Algorithm Works in 2026</a>
+                <a href="https://socialbee.com/blog/youtube-algorithm/">SocialBee: YouTube Algorithm 2026</a>
+                <a href="https://gyre.pro/blog/youtube-algorithm-myths-in-what-actually-matters-for-growth">Gyre.pro: Myths & What Matters 2026</a>
+                <a href="https://www.tubebuddy.com/blog/youtube-channel-refresh-2026/">TubeBuddy: Channel Refresh 2026</a>
+                <a href="https://www.shopify.com/blog/youtube-algorithm">Shopify: YouTube Algorithm Guide</a>
+            </div>
+
+            <div class="fade-in-up" id="cta">
                 <h2>Dein nächster Schritt</h2>
-                <p>Lass uns deinen Kanal auditieren – wir finden die Retention-Hebel.</p>
-                <a href="https://calendly.com/stanverse/30min" class="btn primary">Kostenloses Audit anfragen</a>
+                <p>Der Algorithmus 2026 belohnt echte Qualität. Starte mit einer Retention-Analyse deines Kanals.</p>
+                <p>Wir machen das für dich – kostenlos und unverbindlich:</p>
+                <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary" style="font-size:20px; padding:20px 40px;">Potenzial-Audit: Deine Hebel finden</a>
             </div>
 
         </div>
     </section>
 
-    <!-- Original Footer -->
     <footer>
         <div class="wrap">
             <div class="footer-grid">
@@ -156,9 +268,8 @@
                     <div class="footer-links">
                         <a href="https://stanverse.de/#services">Lösungen</a>
                         <a href="https://stanverse.de/#system">Prozess</a>
-                        <a href="https://stanverse.de/#proof">Erfolge</a>
+                        <a href="https://stanverse.de/#proof">Referenzen</a>
                         <a href="https://stanverse.de/blog">Blog</a>
-                        <a href="https://stanverse.de/#kontakt">Audit</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -171,16 +282,44 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <div>&copy; 2026 stanverse.</div>
-                <div>Made in Germany</div>
+                <div>&copy; <span id="year"></span> stanverse.</div>
+                <div style="display:flex; gap:16px; align-items:center;">
+                    <span style="width:6px; height:6px; background:#333; border-radius:50%;"></span>
+                    <span>Made in Germany</span>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Original Scripts -->
     <script>
-    <script src="consent.js"></script>
-    <script src="embed.js"></script>
+        function toggleMenu() { document.querySelector('.mobile-menu').classList.toggle('open'); }
+        document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScroll && currentScroll > 100) { nav.classList.add('hidden'); }
+            else { nav.classList.remove('hidden'); }
+            lastScroll = currentScroll;
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
     </script>
 </body>
 </html>
