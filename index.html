@@ -177,8 +177,25 @@
     .logo span { color: var(--acc); }
     
     .desktop-links { display: flex; gap: 32px; align-items: center; }
+    
+    /* Standard Link */
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
     .nav-link:hover { color: #fff; }
+
+    /* NEU: Special Link für Wissen (Gradient Text) */
+    .nav-special {
+      font-size: 15px; font-weight: 600; 
+      /* Subtiler Verlauf von Weiß zu hellem Indigo */
+      background: linear-gradient(90deg, #ffffff, #a5b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      /* Fallback Farbe */
+      color: #fff;
+    }
+    .nav-special:hover {
+      opacity: 0.8; /* Leichter Fade beim Hover */
+    }
 
     .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
     .mobile-menu {
@@ -274,28 +291,36 @@
     }
 
     /* --- GLOBAL GLOW CARD SYSTEM --- */
+    /* Basis-Styling für alle Karten */
     .bento-card, .system-card, .case-tile, details {
       position: relative;
       border-radius: 16px;
+      /* Basis Border */
       border: 1px solid var(--line);
       background: var(--surface);
       overflow: hidden;
     }
     
+    /* Die Klasse .glow-card aktiviert den Spotlight-Effekt */
     .glow-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      padding: 1px;
+      padding: 1px; /* Dicke des leuchtenden Randes */
       border-radius: inherit;
+      
+      /* Der Farbverlauf für das Spotlight */
       background: radial-gradient(
         600px circle at var(--mouse-x) var(--mouse-y),
         rgba(99, 102, 241, 1),
         transparent 40%
       );
+      
+      /* Masking: Nur den Rand zeigen */
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
+      
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
@@ -303,6 +328,8 @@
     }
 
     .glow-card:hover::after { opacity: 1; }
+    
+    /* Content Protection - damit der Inhalt klickbar bleibt */
     .glow-card > * { position: relative; z-index: 5; }
 
 
@@ -467,11 +494,12 @@
       background: linear-gradient(160deg, var(--surface) 0%, #050505 100%);
       padding: 60px;
     }
-    /* Deko Blob */
+    /* Deko Blob im Hintergrund von System Card */
     .system-card::before {
       content: ""; position: absolute; top: -100px; left: -100px; width: 500px; height: 500px;
       background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%); pointer-events: none; z-index: 0;
     }
+    /* Wichtig: Das Spotlight (::after) hat z-index 10, der Blob (::before) hat 0 */
 
     @media (max-width: 768px) {
       .system-card { padding: 30px 24px; border-radius: 16px; }
@@ -583,7 +611,10 @@
         <a href="#services" class="nav-link">Lösungen</a>
         <a href="#system" class="nav-link">Prozess</a>
         <a href="#proof" class="nav-link">Referenzen</a>
-        <a href="/wissen/" class="nav-link" style="color:#fff;">Wissen</a>
+        
+        <a href="wissen/index.html" class="nav-special">Wissen</a>
+        
+        <a href="#about" class="nav-link">Über uns</a>
         <a href="#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
       </div>
       <button class="menu-toggle" aria-label="Menu">
@@ -599,7 +630,8 @@
     <a href="#services" class="nav-link" onclick="toggleMenu()">Lösungen</a>
     <a href="#system" class="nav-link" onclick="toggleMenu()">Prozess</a>
     <a href="#proof" class="nav-link" onclick="toggleMenu()">Referenzen</a>
-    <a href="/wissen/" class="nav-link" onclick="toggleMenu()">Wissen</a>
+    <a href="wissen/index.html" class="nav-link" onclick="toggleMenu()">Wissen</a>
+    <a href="#about" class="nav-link" onclick="toggleMenu()">Über uns</a>
     <a href="#kontakt" class="btn primary" onclick="toggleMenu()">Audit anfragen</a>
   </div>
 
@@ -826,12 +858,12 @@
                   
                   <div class="evolution-stack">
                     <div class="evo-card before">
-                      <img src="https://i.ibb.co/hFDR7jkx/Thumbnails-122.png" loading="lazy" alt="Vorher" class="evo-img">
+                      <img src="https://i.ibb.co/hFDR7jkx/Thumbnails-122.png" loading="lazy" alt="Vorher YouTube Thumbnail" class="evo-img">
                       <div class="evo-label old">Vorher / Alt</div>
                     </div>
                     
                     <div class="evo-card after">
-                      <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" loading="lazy" alt="Nachher Stanverse" class="evo-img">
+                      <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" loading="lazy" alt="Nachher Stanverse Optimierung" class="evo-img">
                       <div class="evo-label new">Nachher / stanverse</div>
                     </div>
                   
@@ -990,7 +1022,7 @@
             <a href="#services">Lösungen</a>
             <a href="#system">Prozess</a>
             <a href="#proof">Erfolge</a>
-            <a href="/wissen/">Wissen</a>
+            <a href="wissen/index.html">Wissen</a>
             <a href="#kontakt">Audit</a>
           </div>
         </div>
