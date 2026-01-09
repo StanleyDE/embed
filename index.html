@@ -246,16 +246,21 @@
     .evo-label.old { background: rgba(0,0,0,0.7); color: #aaa; border: 1px solid rgba(255,255,255,0.1); }
     .evo-label.new { background: var(--acc); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
 
-    /* Connector Linie (Deko) - NEUES DESIGN: BOGEN OBEN */
+    /* Connector Linie (Deko) - FIX: ZENTRIERT */
     .evo-connector {
       position: absolute;
-      top: 15%; /* Weiter oben für den Bogen-Effekt */
-      left: 40%;
-      width: 100px;
+      /* Exakte Mitte des Containers */
+      top: 50%; 
+      left: 50%;
+      /* Verschieben um die eigene Hälfte zurück + leichtes Tilt */
+      transform: translate(-50%, -50%) rotate(-5deg);
+      
+      width: 160px; /* Breit genug für die Lücke */
       height: 60px;
-      z-index: 10; /* Sichtbar über den Bildern */
+      z-index: 20; /* Über allem */
       pointer-events: none;
-      filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6)); /* Leuchteffekt */
+      filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.8)); /* Leuchten */
+      overflow: visible;
     }
     
     /* Hover Effekt für den ganzen Stack */
@@ -740,9 +745,9 @@
                       <div class="evo-label old">Vorher / Alt</div>
                     </div>
 
-                    <svg class="evo-connector" viewBox="0 0 100 60" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
-                       <path d="M5,50 Q50,-10 95,50" stroke-dasharray="4 4" />
-                       <path d="M85,42 L95,50 L88,58" stroke-width="2" stroke-dasharray="0" />
+                    <svg class="evo-connector" viewBox="0 0 160 80" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
+                       <path d="M10,60 Q80,-10 150,60" stroke-dasharray="4 4" />
+                       <path d="M140,54 L150,60 L142,66" stroke-width="2" stroke-dasharray="0" />
                     </svg>
                     
                     <div class="evo-card after">
