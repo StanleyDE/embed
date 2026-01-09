@@ -246,20 +246,18 @@
     .evo-label.old { background: rgba(0,0,0,0.7); color: #aaa; border: 1px solid rgba(255,255,255,0.1); }
     .evo-label.new { background: var(--acc); color: #fff; box-shadow: 0 4px 12px rgba(99,102,241,0.4); }
 
-    /* Connector Linie (Deko) - FIX: ZENTRIERT */
+    /* Connector Linie (Deko) - FIX: POSITION & FORM */
     .evo-connector {
       position: absolute;
-      /* Exakte Mitte des Containers */
-      top: 15%; 
-      left: 80%;
-      /* Verschieben um die eigene Hälfte zurück + leichtes Tilt */
-      transform: translate(-50%, -50%) rotate(+30deg);
+      top: 11%;             /* WIE GEWÜNSCHT: 11% */
+      left: 50%;            /* Horizontal zentriert */
+      transform: translateX(-50%); /* Exakte Mitte, KEINE Rotation mehr */
       
-      width: 160px; /* Breit genug für die Lücke */
-      height: 60px;
-      z-index: 20; /* Über allem */
+      width: 200px;         /* Etwas breiter für den Bogen */
+      height: 100px;
+      z-index: 20;
       pointer-events: none;
-      filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.8)); /* Leuchten */
+      filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.8));
       overflow: visible;
     }
     
@@ -745,9 +743,9 @@
                       <div class="evo-label old">Vorher / Alt</div>
                     </div>
 
-                    <svg class="evo-connector" viewBox="0 0 160 80" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
-                       <path d="M10,60 Q80,-10 150,60" stroke-dasharray="4 4" />
-                       <path d="M140,54 L150,60 L142,66" stroke-width="2" stroke-dasharray="0" />
+                    <svg class="evo-connector" viewBox="0 0 200 100" fill="none" stroke="var(--acc)" stroke-width="2" stroke-linecap="round">
+                       <path d="M20,80 Q100,0 180,80" stroke-dasharray="6 4" />
+                       <path d="M172,70 L180,80 L170,88" stroke-dasharray="0" />
                     </svg>
                     
                     <div class="evo-card after">
