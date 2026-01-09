@@ -9,16 +9,17 @@
   
   <link rel="canonical" href="https://stanverse.de/" />
   
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="apple-touch-icon" href="favicon.png" /> <meta name="theme-color" content="#050505" />
+  <link rel="icon" type="image/png" href="./favicon.png?v=1.1" />
+  <link rel="apple-touch-icon" href="./favicon.png?v=1.1" /> 
+  <meta name="theme-color" content="#050505" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="stanverse | Technischer Wachstumspartner" />
   <meta property="og:description" content="YouTube & Instagram Strategie für Creator und Unternehmen. Wir bauen digitale Reichweite." />
-  <meta property="og:image" content="https://stanverse.de/og-image.jpg" /> <meta property="og:url" content="https://stanverse.de/" />
+  <meta property="og:image" content="https://stanverse.de/og-image.jpg" /> 
+  <meta property="og:url" content="https://stanverse.de/" />
 
   <style>
-    /* ... (Dein gesamter CSS Style hier unverändert) ... */
     /* --- FONTS & VARS --- */
     @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1') format('woff2')}
     
@@ -146,6 +147,35 @@
     @media (min-width: 900px) {
       .hero .lead { margin-left: 0; }
     }
+    
+    /* NEU: Sanftes Schweben für das Dashboard */
+    @keyframes float-hero {
+      0% { transform: rotate(-2deg) translateY(0px); }
+      50% { transform: rotate(-2deg) translateY(-15px); }
+      100% { transform: rotate(-2deg) translateY(0px); }
+    }
+    .hero-floating {
+      animation: float-hero 6s ease-in-out infinite;
+    }
+
+    /* NEU: Trust Bar (Logos) */
+    .trust-bar {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      opacity: 0.6;
+    }
+    .trust-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-right: 12px;
+    }
+    .partner-icon { height: 24px; width: auto; fill: currentColor; color: #fff; }
 
     /* Bento Grid Cards */
     .bento-card {
@@ -525,14 +555,14 @@
 
   <nav class="nav">
     <div class="wrap nav-in">
-      <a href="#" class="logo">stanverse<span>.</span></a>
+      <a href="/" class="logo">stanverse<span>.</span></a>
       
       <div class="desktop-links">
         <a href="#services" class="nav-link">Lösungen</a>
         <a href="#system" class="nav-link">Prozess</a>
         <a href="#proof" class="nav-link">Referenzen</a>
         <a href="#about" class="nav-link">Über uns</a>
-        <a href="#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px;">Audit anfragen</a>
+        <a href="#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
       </div>
 
       <button class="menu-toggle" aria-label="Menu">
@@ -568,12 +598,18 @@
           
           <p class="lead">Wir übernehmen die komplette technische Produktion und Distribution. Von der Strategie bis zum Upload – damit Sie sich nur auf den Inhalt konzentrieren.</p>
           
-          <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 40px;">
+          <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom: 30px;">
             <a href="https://calendly.com/stanverse/30min" target="_blank" class="btn primary">Potenzial-Analyse (Kostenlos)</a>
-            <a href="#proof" class="btn">Referenz SpiritTV ansehen</a>
+            <a href="#proof" class="btn">Case Study ansehen</a>
           </div>
 
-          <div style="display:flex; gap:40px; border-top: 1px solid var(--line); padding-top: 30px;">
+          <div class="trust-bar">
+            <span class="trust-label">Powering:</span>
+            <svg class="partner-icon" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span style="font-weight:800; color:#fff; letter-spacing:-0.5px;">SpiritTV</span>
+          </div>
+
+          <div style="display:flex; gap:40px; margin-top: 24px;">
             <div>
               <div class="stat-val-hero counter-stat" data-target="2.4" data-suffix="M+">0</div>
               <div class="stat-label-hero">Aufrufe generiert</div>
@@ -589,7 +625,7 @@
         <div class="fade-in-up" style="transition-delay: 0.1s; position:relative;">
           <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--acc); filter:blur(60px); opacity:0.4;"></div>
           
-          <div class="dashboard-card" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
+          <div class="dashboard-card hero-floating" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
             
             <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
               <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div>
