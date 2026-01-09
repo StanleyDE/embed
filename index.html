@@ -42,7 +42,7 @@
       "name": "Wie viel Zeit muss ich investieren?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (Video/Audio, ca. 2-4h Aufwand/Monat). Strategie, Schnitt, Optimierung und Veröffentlichung übernehmen wir komplett."
+        "text": "So wenig wie möglich. Im Idealfall liefern Sie uns nur das Rohmaterial (ca. 2-4h Aufwand/Monat). Strategie, Schnitt, Optimierung und Veröffentlichung übernehmen wir komplett."
       }
     }, {
       "@type": "Question",
@@ -182,19 +182,17 @@
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
     .nav-link:hover { color: #fff; }
 
-    /* NEU: Special Link für Wissen (Gradient Text) */
+    /* Special Link für Wissen (Gradient Text) */
     .nav-special {
       font-size: 15px; font-weight: 600; 
-      /* Subtiler Verlauf von Weiß zu hellem Indigo */
       background: linear-gradient(90deg, #ffffff, #a5b4fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      /* Fallback Farbe */
       color: #fff;
     }
     .nav-special:hover {
-      opacity: 0.8; /* Leichter Fade beim Hover */
+      opacity: 0.8;
     }
 
     .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
@@ -291,36 +289,28 @@
     }
 
     /* --- GLOBAL GLOW CARD SYSTEM --- */
-    /* Basis-Styling für alle Karten */
     .bento-card, .system-card, .case-tile, details {
       position: relative;
       border-radius: 16px;
-      /* Basis Border */
       border: 1px solid var(--line);
       background: var(--surface);
       overflow: hidden;
     }
     
-    /* Die Klasse .glow-card aktiviert den Spotlight-Effekt */
     .glow-card::after {
       content: "";
       position: absolute;
       inset: 0;
-      padding: 1px; /* Dicke des leuchtenden Randes */
+      padding: 1px;
       border-radius: inherit;
-      
-      /* Der Farbverlauf für das Spotlight */
       background: radial-gradient(
         600px circle at var(--mouse-x) var(--mouse-y),
         rgba(99, 102, 241, 1),
         transparent 40%
       );
-      
-      /* Masking: Nur den Rand zeigen */
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
-      
       opacity: 0;
       transition: opacity 0.3s;
       pointer-events: none;
@@ -328,8 +318,6 @@
     }
 
     .glow-card:hover::after { opacity: 1; }
-    
-    /* Content Protection - damit der Inhalt klickbar bleibt */
     .glow-card > * { position: relative; z-index: 5; }
 
 
@@ -548,13 +536,8 @@
     .footer-links a:hover { color: var(--acc); }
     
     .footer-bottom {
-      border-top: 1px solid var(--line);
-      padding-top: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      border-top: 1px solid var(--line); padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
     }
 
     @media (max-width: 768px) {
@@ -563,6 +546,10 @@
     }
 
     /* --- HERO DASHBOARD --- */
+    /* NEU: Interaktiver Wrapper für das Dashboard */
+    .dashboard-link { text-decoration: none; display: block; position: relative; z-index: 10; }
+    .dashboard-link:hover .dashboard-card { transform: rotate(-2deg) scale(1.02); border-color: rgba(99,102,241,0.3); }
+
     .stat-val-hero { 
       font-size: 42px; font-weight: 900; color: transparent;
       background: linear-gradient(to right, #fff, var(--muted)); -webkit-background-clip: text; background-clip: text;
@@ -585,9 +572,15 @@
       backdrop-filter: blur(12px); border-radius: 20px;
       padding: 24px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
       position: relative; overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth Transition */
     }
+    
     .dashboard-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     .dashboard-row:last-child { border-bottom: none; }
+    
+    /* Interactive values on hover */
+    .dashboard-link:hover .dashboard-row .value { color: #fff; text-shadow: 0 0 10px rgba(16,185,129,0.5); }
+    .value { transition: color 0.3s, text-shadow 0.3s; }
 
     .pulse-dot {
       width: 8px; height: 8px; background: #10b981; border-radius: 50%;
@@ -599,6 +592,14 @@
       70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
+    
+    /* CTA Badge in Dashboard */
+    .dash-cta {
+      position: absolute; top: -20px; left: 50%; transform: translateX(-50%);
+      font-size: 10px; color: #fff; background: var(--acc); padding: 1px 4px; border-radius: 2px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-3px); } }
 
   </style>
 </head>
@@ -630,7 +631,7 @@
     <a href="#services" class="nav-link" onclick="toggleMenu()">Lösungen</a>
     <a href="#system" class="nav-link" onclick="toggleMenu()">Prozess</a>
     <a href="#proof" class="nav-link" onclick="toggleMenu()">Referenzen</a>
-    <a href="wissen/index.html" class="nav-link" onclick="toggleMenu()">Wissen</a>
+    <a href="wissen/index.html" class="nav-link">Wissen</a>
     <a href="#about" class="nav-link" onclick="toggleMenu()">Über uns</a>
     <a href="#kontakt" class="btn primary" onclick="toggleMenu()">Audit anfragen</a>
   </div>
@@ -685,54 +686,56 @@
         <div class="fade-in-up" style="transition-delay: 0.1s; position:relative;">
           <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--acc); filter:blur(60px); opacity:0.4;"></div>
           
-          <div class="dashboard-card hero-floating" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
-            
-            <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
-              <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div>
-              <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM AKTIV</div>
-            </div>
+          <a href="#kontakt" class="dashboard-link">
+            <div class="dashboard-card hero-floating" style="transform: rotate(-2deg); max-width: 420px; margin-left: auto;">
+              
+              <div style="display:flex; justify-content:space-between; margin-bottom:20px; padding-bottom:15px; border-bottom:1px solid var(--line);">
+                <div style="font-size:12px; font-weight:700; color:var(--muted); letter-spacing:1px;">KANAL-STATUS</div>
+                <div style="font-size:12px; color:#10b981; font-weight:700;">● SYSTEM AKTIV</div>
+              </div>
 
-            <div class="dashboard-row">
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 3.5 3.5 4.5-4.5"/><path d="M18 11l4-4"/><path d="M7 7l7 5-3.5 3.5-5.5-5.5"/></svg>
+              <div class="dashboard-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 3.5 3.5 4.5-4.5"/><path d="M18 11l4-4"/><path d="M7 7l7 5-3.5 3.5-5.5-5.5"/></svg>
+                  </div>
+                  <span style="font-size:14px; color:#fff;">Viral-Faktor</span>
                 </div>
-                <span style="font-size:14px; color:#fff;">Viral-Faktor</span>
+                <div class="value" style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
               </div>
-              <div style="color:#10b981; font-weight:600; font-size:14px;">98/100</div>
-            </div>
 
-            <div class="dashboard-row">
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <div class="dashboard-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  </div>
+                  <span style="font-size:14px; color:#fff;">Technik</span>
                 </div>
-                <span style="font-size:14px; color:#fff;">Technik</span>
+                <div class="value" style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
               </div>
-              <div style="color:#10b981; font-weight:600; font-size:14px;">Optimiert</div>
-            </div>
 
-            <div class="dashboard-row">
-              <div style="display:flex; align-items:center; gap:10px;">
-                <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
-                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <div class="dashboard-row">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <div style="width:32px; height:32px; background:rgba(255,255,255,0.05); border-radius:6px; display:flex; align-items:center; justify-content:center;">
+                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </div>
+                  <span style="font-size:14px; color:#fff;">Dateien</span>
                 </div>
-                <span style="font-size:14px; color:#fff;">Dateien</span>
+                <div style="color:var(--muted); font-size:13px;">Bereit zum Upload</div>
               </div>
-              <div style="color:var(--muted); font-size:13px;">Bereit zum Upload</div>
-            </div>
 
-            <div style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
-              <div style="flex:1; background:var(--line); height:30%; border-radius:2px;"></div>
-              <div style="flex:1; background:var(--line); height:50%; border-radius:2px;"></div>
-              <div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div>
-              <div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
-              <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;">
-                 <div style="position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-size:10px; color:#fff; background:var(--acc); padding:1px 4px; border-radius:2px;">JETZT</div>
+              <div style="margin-top:20px; height:40px; display:flex; align-items:flex-end; gap:4px;">
+                <div style="flex:1; background:var(--line); height:30%; border-radius:2px;"></div>
+                <div style="flex:1; background:var(--line); height:50%; border-radius:2px;"></div>
+                <div style="flex:1; background:var(--line); height:40%; border-radius:2px;"></div>
+                <div style="flex:1; background:var(--line); height:70%; border-radius:2px;"></div>
+                <div style="flex:1; background:linear-gradient(to top, var(--acc), #a5b4fc); height:100%; border-radius:2px; position:relative;">
+                   <div class="dash-cta">JETZT</div>
+                </div>
               </div>
-            </div>
 
-          </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -858,12 +861,12 @@
                   
                   <div class="evolution-stack">
                     <div class="evo-card before">
-                      <img src="https://i.ibb.co/hFDR7jkx/Thumbnails-122.png" loading="lazy" alt="Vorher YouTube Thumbnail" class="evo-img">
+                      <img src="https://i.ibb.co/hFDR7jkx/Thumbnails-122.png" loading="lazy" alt="Vorher" class="evo-img">
                       <div class="evo-label old">Vorher / Alt</div>
                     </div>
                     
                     <div class="evo-card after">
-                      <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" loading="lazy" alt="Nachher Stanverse Optimierung" class="evo-img">
+                      <img src="https://i.ibb.co/23CYyWDh/Thumbnails-121.png" loading="lazy" alt="Nachher Stanverse" class="evo-img">
                       <div class="evo-label new">Nachher / stanverse</div>
                     </div>
                   
@@ -1083,7 +1086,7 @@
 
     // 5. MOUSE GLOW & SPOTLIGHT BORDER EFFECT (Universal)
     // Select all target elements using the unified .glow-card class
-    const cards = document.querySelectorAll('.glow-card');
+    const cards = document.querySelectorAll('.glow-card, .dashboard-card');
     cards.forEach(card => {
       card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
