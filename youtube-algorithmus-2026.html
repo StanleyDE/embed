@@ -10,7 +10,6 @@
   <link rel="canonical" href="https://stanverse.de/blog/youtube-algorithmus-2026" />
   <link rel="icon" type="image/png" href="./favicon.png?v=1.1" />
   <link rel="apple-touch-icon" href="./favicon.png?v=1.1" /> 
-  
   <meta name="theme-color" content="#050505" />
 
   <meta property="og:type" content="article" />
@@ -41,7 +40,7 @@
   </script>
 
   <style>
-    /* --- CORE STYLES (1:1 Kopie von Index für Konsistenz) --- */
+    /* --- CORE STYLES (Identisch zur Index-Seite) --- */
     @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1') format('woff2')}
     
     :root {
@@ -60,7 +59,12 @@
     }
 
     * { box-sizing: border-box; outline-offset: 4px; }
-    html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
+    
+    html { 
+        height: 100%; 
+        color-scheme: dark; 
+        scrollbar-gutter: stable; 
+    }
     
     body {
       margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -100,7 +104,7 @@
     }
     @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
 
-    /* --- NAV (IDENTISCH ZU INDEX) --- */
+    /* --- NAV (Identisch zu Index) --- */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       background: rgba(3, 3, 4, 0.75); 
@@ -159,6 +163,13 @@
 
     /* Typography */
     .content { color: #d4d4d8; font-size: 18px; line-height: 1.8; }
+    
+    /* --- SCROLL MARGIN FIX --- */
+    /* Dies sorgt dafür, dass die Überschrift nicht unter der Navbar verschwindet beim Klick */
+    .content h2, .content h3 { 
+        scroll-margin-top: 150px; /* 80px Navbar + 70px Abstand */
+    }
+
     .content h2 { color: #fff; font-size: 32px; margin: 60px 0 24px; letter-spacing: -0.02em; font-weight: 800; }
     .content h3 { color: #fff; font-size: 24px; margin: 40px 0 16px; font-weight: 700; }
     .content p { margin-bottom: 24px; }
@@ -172,7 +183,7 @@
     }
     .caption { font-size: 14px; color: var(--muted); text-align: center; display: block; margin-bottom: 40px; }
 
-    /* Glow Card / Highlight Box (Wiederverwendeter Spotlight Effekt) */
+    /* Universal Glow Card (Spotlight Border) */
     .glow-card {
       position: relative; border-radius: 16px; border: 1px solid var(--line);
       background: var(--surface); overflow: hidden;
@@ -208,13 +219,25 @@
     }
 
     /* --- FOOTER (Identisch zu Index) --- */
-    footer { background: #020202; border-top: 1px solid var(--line); padding: 80px 0 40px; color: var(--muted); font-size: 14px; position: relative; z-index: 10; }
+    footer { 
+      background: #020202; 
+      border-top: 1px solid var(--line); 
+      padding: 80px 0 40px; 
+      color: var(--muted);
+      font-size: 14px;
+      position: relative;
+      z-index: 10;
+    }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
     .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
     .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
     .footer-links { display: flex; flex-direction: column; gap: 12px; }
     .footer-links a:hover { color: var(--acc); }
-    .footer-bottom { border-top: 1px solid var(--line); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    
+    .footer-bottom {
+      border-top: 1px solid var(--line); padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } }
 
   </style>
@@ -231,7 +254,7 @@
         <a href="index.html#services" class="nav-link">Lösungen</a>
         <a href="index.html#system" class="nav-link">Prozess</a>
         <a href="index.html#proof" class="nav-link">Referenzen</a>
-        <a href="#" class="nav-link" style="color:#fff;">Insights</a>
+        <a href="#" class="nav-link" style="color:#fff;">Wissen</a>
         <a href="index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
       </div>
 
@@ -248,7 +271,7 @@
     <a href="index.html#services" class="nav-link">Lösungen</a>
     <a href="index.html#system" class="nav-link">Prozess</a>
     <a href="index.html#proof" class="nav-link">Referenzen</a>
-    <a href="#" class="nav-link" style="color:#fff;">Insights</a>
+    <a href="#" class="nav-link" style="color:#fff;">Wissen</a>
     <a href="index.html#kontakt" class="btn primary">Audit anfragen</a>
   </div>
 
@@ -311,7 +334,7 @@
           <li><strong>Technische Hygiene:</strong> Nutzen Sie Kapitelmarken, präzise Untertitel und sauberes Audio, um der KI das "Verstehen" Ihres Contents zu erleichtern.</li>
         </ol>
 
-        <div style="margin-top: 60px; padding: 40px; border-radius:16px; background: linear-gradient(160deg, #111, #000); border: 1px solid var(--line);">
+        <div class="glow-card" style="margin-top: 60px; padding: 40px; border-radius:16px; background: linear-gradient(160deg, #111, #000); border: 1px solid var(--line);">
           <h3 style="margin-top:0;">Ist Ihr Kanal bereit für die Zukunft?</h3>
           <p>Lassen Sie uns Ihren Status Quo analysieren. Wir finden die technischen Bremsklötze, die Sie aktuell Reichweite kosten.</p>
           <a href="index.html#kontakt" class="btn primary">Kostenloses Audit anfragen</a>
@@ -404,14 +427,13 @@
       lastScroll = currentScroll;
     });
 
-    // 3. Progress Bar
+    // 3. Progress Bar & TOC Logic
     window.onscroll = function() {
       let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       let scrolled = (winScroll / height) * 100;
       document.getElementById("progressBar").style.width = scrolled + "%";
       
-      // Update TOC Active State (Optimized Logic)
       updateActiveToc();
     };
 
@@ -450,5 +472,9 @@
     // Update Year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  
+  <script src="consent.js"></script>
+  <script src="embed.js"></script>
+
 </body>
 </html>
