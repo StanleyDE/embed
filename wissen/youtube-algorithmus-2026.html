@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   
   <title>Der YouTube-Algorithmus 2026: Die Post-Retention-Ära | stanverse</title>
-  <meta name="description" content="Eine umfassende Analyse: Warum Community Bridge und KI-Discovery wichtiger sind als Watchtime. Der komplette Guide für Creator und Marken." />
+  <meta name="description" content="Analyse von Stanley Schlegel: Warum Community Bridge und KI-Discovery wichtiger sind als Watchtime. Der komplette Guide für Marken." />
   
   <link rel="canonical" href="https://stanverse.de/wissen/youtube-algorithmus-2026" />
   
@@ -26,7 +26,8 @@
     "image": "https://stanverse.de/blog/img/algo-2026.jpg",
     "author": {
       "@type": "Person",
-      "name": "Stan"
+      "name": "Stanley Schlegel",
+      "url": "https://stanverse.de/#about"
     },
     "publisher": {
       "@type": "Organization",
@@ -37,12 +38,12 @@
       }
     },
     "datePublished": "2026-01-09",
-    "description": "Eine umfassende Analyse der Community-Bridge-Architektur und KI-gesteuerten Discovery."
+    "description": "Eine umfassende Analyse der Community-Bridge-Architektur und KI-gesteuerten Discovery durch Stanley Schlegel."
   }
   </script>
 
   <style>
-    /* --- CORE STYLES (1:1 von Index) --- */
+    /* --- CORE STYLES --- */
     @font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url('https://rsms.me/inter/font-files/InterVariable.woff2?v=4.1') format('woff2')}
     
     :root {
@@ -53,563 +54,228 @@
       --muted: #b0b0b5; 
       --line: rgba(255,255,255,0.08); 
       --line-strong: rgba(255,255,255,0.2);
-      
       --acc: #6366f1; 
       --acc-glow: rgba(99, 102, 241, 0.4);
-      --acc2: #38bdf8; 
       --navH: 80px;
     }
 
-    * { box-sizing: border-box; outline-offset: 4px; }
-    html { height: 100%; color-scheme: dark; scrollbar-gutter: stable; }
-    
+    * { box-sizing: border-box; }
+    html { color-scheme: dark; scrollbar-gutter: stable; }
     body {
-      margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0; font-family: 'Inter', sans-serif;
       background-color: var(--bg); color: var(--txt);
-      font-size: 17px; line-height: 1.65;
-      -webkit-font-smoothing: antialiased; padding-top: var(--navH);
+      font-size: 17px; line-height: 1.65; padding-top: var(--navH);
     }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
-
-    /* UI Elements */
     .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    a { text-decoration: none; color: inherit; transition: color 0.2s; }
+    a { text-decoration: none; color: inherit; }
     
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 28px; font-weight: 600; font-size: 16px;
-      border-radius: 10px; cursor: pointer; transition: all 0.25s ease;
+      padding: 14px 28px; font-weight: 600; border-radius: 10px; cursor: pointer; transition: all 0.25s;
       border: 1px solid var(--line-strong); background: rgba(255,255,255,0.03); color: var(--txt);
-      position: relative; z-index: 2;
     }
-    .btn:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
     .btn.primary {
       background: linear-gradient(135deg, var(--acc), #4f46e5);
       border: 1px solid rgba(99, 102, 241, 0.4);
-      box-shadow: 0 4px 20px -4px var(--acc-glow); color: #fff; overflow: hidden;
-    }
-    .btn.primary:hover { box-shadow: 0 8px 30px -6px var(--acc-glow); }
-    .btn.primary::after {
-      content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: skewX(-20deg); animation: shine 6s infinite;
-    }
-    @keyframes shine { 0%, 80% { left: -100%; } 100% { left: 200%; } }
-
-    .chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 14px; border-radius: 99px;
-      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--line);
-      color: var(--muted); backdrop-filter: blur(4px);
+      box-shadow: 0 4px 20px -4px var(--acc-glow); color: #fff;
     }
 
-    /* --- NAV (Identisch zur Index) --- */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(3, 3, 4, 0.75); 
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s ease;
-    }
-    .nav.hidden { transform: translateY(-100%); }
-    .nav-in { display: flex; align-items: center; height: var(--navH); justify-content: space-between; }
-    .logo { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
-    .logo span { color: var(--acc); }
-    .desktop-links { display: flex; gap: 32px; align-items: center; }
-    .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
-    .nav-link:hover { color: #fff; }
-    .menu-toggle { display: none; background: none; border: none; color: #fff; cursor: pointer; padding: 8px; }
-    
-    .mobile-menu {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--bg); z-index: 2000; padding: 24px; padding-top: 40px;
-      display: flex; flex-direction: column; gap: 24px;
-      transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .mobile-menu.open { transform: translateX(0); }
-    @media (max-width: 768px) { .desktop-links { display: none; } .menu-toggle { display: block; } }
+    /* --- BLOG HEADER OPTIMIZATION --- */
+    .blog-header { padding: 80px 0 40px; text-align: center; max-width: 900px; margin: 0 auto; }
+    @media (max-width: 768px) { .blog-header { padding: 40px 0 30px; } }
 
-    /* --- BLOG CONTENT STYLES --- */
-    
-    /* Progress Bar */
-    .progress-container {
-      position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 2000;
-      background: transparent;
-    }
-    .progress-bar {
-      height: 3px; background: var(--acc); width: 0%;
-      box-shadow: 0 0 10px var(--acc); transition: width 0.1s;
-    }
-
-    .blog-header { padding: 100px 0 60px; text-align: center; max-width: 900px; margin: 0 auto; }
     .blog-meta {
-      display: flex; gap: 16px; justify-content: center; align-items: center;
-      font-size: 14px; color: var(--muted); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+      display: flex; gap: 16px; justify-content: center; font-size: 13px; color: var(--muted); 
+      margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;
     }
-    .blog-title {
-      font-size: clamp(32px, 5vw, 48px); line-height: 1.1; font-weight: 800; color: #fff; margin: 0 0 32px; letter-spacing: -0.02em;
-    }
-    .blog-intro {
-      font-size: 20px; color: #d4d4d8; line-height: 1.6; max-width: 700px; margin: 0 auto;
-    }
+    .blog-title { font-size: clamp(30px, 6vw, 52px); line-height: 1.1; font-weight: 800; margin: 0 0 24px; letter-spacing: -0.03em; }
 
+    /* --- GRID & CONTENT --- */
     .blog-grid {
-      display: grid; grid-template-columns: 1fr 280px; gap: 60px;
-      max-width: 1100px; margin: 0 auto; padding: 0 24px 100px;
+      display: grid; grid-template-columns: 1fr 300px; gap: 60px;
+      max-width: 1150px; margin: 0 auto; padding-bottom: 100px;
     }
-    @media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr; } .toc-col { display: none; } }
-
-    /* Typography */
-    .content { color: #d4d4d8; font-size: 18px; line-height: 1.8; }
+    .content { font-size: 18px; line-height: 1.8; color: #d4d4d8; }
+    .content h2 { color: #fff; font-size: 30px; margin: 60px 0 24px; border-left: 3px solid var(--acc); padding-left: 20px; scroll-margin-top: 120px; }
     
-    /* Scroll Margin Fix */
-    .content h2, .content h3, .content h4 { scroll-margin-top: 150px; }
+    /* Mobile TOC Styling */
+    .mobile-toc { display: none; background: var(--surface); padding: 20px; border-radius: 12px; border: 1px solid var(--line); margin-bottom: 40px; }
+    @media (max-width: 900px) { 
+        .blog-grid { grid-template-columns: 1fr; } 
+        .toc-col { display: none; } 
+        .mobile-toc { display: block; }
+    }
 
-    .content h2 { color: #fff; font-size: 30px; margin: 60px 0 24px; letter-spacing: -0.02em; font-weight: 800; border-left: 3px solid var(--acc); padding-left: 20px; }
-    .content h3 { color: #fff; font-size: 22px; margin: 40px 0 16px; font-weight: 700; }
-    .content h4 { color: #fff; font-size: 18px; margin: 30px 0 12px; font-weight: 700; }
-    .content p { margin-bottom: 24px; }
-    .content ul, .content ol { margin-bottom: 24px; padding-left: 24px; }
-    .content li { margin-bottom: 12px; color: #d4d4d8; }
-    .content strong { color: #fff; font-weight: 700; }
+    /* --- INTERACTIVE CALCULATOR --- */
+    .calculator-box {
+      background: linear-gradient(145deg, var(--surface), #050505);
+      border: 1px solid var(--acc); border-radius: 16px; padding: 30px; margin: 40px 0;
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+    }
+    .calc-input-group { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+    .calc-input-group input { 
+        background: #151518; border: 1px solid var(--line); padding: 12px; 
+        border-radius: 8px; color: #fff; width: 120px; font-size: 16px;
+    }
+    #qcr-result { font-weight: 800; color: var(--acc); font-size: 24px; margin-top: 15px; display: block; }
+
+    /* --- UTILS --- */
+    .glow-card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--acc); z-index: 2000; width: 0%; transition: width 0.1s; }
     
-    .content img { 
-      width: 100%; border-radius: 12px; margin: 40px 0 12px; 
-      border: 1px solid var(--line);
-    }
-    
-    /* Table Styling */
-    .table-responsive { overflow-x: auto; margin: 40px 0; border: 1px solid var(--line); border-radius: 12px; }
-    table { width: 100%; border-collapse: collapse; font-size: 16px; }
-    th, td { padding: 16px; text-align: left; border-bottom: 1px solid var(--line); }
-    th { background: rgba(255,255,255,0.03); color: #fff; font-weight: 600; text-transform: uppercase; font-size: 13px; letter-spacing: 0.05em; }
-    td { color: var(--muted); }
-    tr:last-child td { border-bottom: none; }
-
-    /* CSS Formula Style (Statt Latex) */
-    .formula-box {
-      background: var(--surface); padding: 24px; border-radius: 12px; border: 1px solid var(--line);
-      text-align: center; margin: 30px 0; font-family: 'Inter', sans-serif;
-      display: flex; justify-content: center; align-items: center; gap: 12px;
-      font-size: 18px; color: #fff;
-    }
-    .fraction { display: inline-block; text-align: center; vertical-align: middle; margin: 0 0.2em; }
-    .fraction > span { display: block; padding: 0.1em; }
-    .fraction span.bottom { border-top: 2px solid var(--muted); }
-
-    /* Glow Card / Highlight Box */
-    .glow-card {
-      position: relative; border-radius: 16px; border: 1px solid var(--line);
-      background: var(--surface); overflow: hidden;
-    }
-    .glow-card::after {
-      content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
-      background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 1), transparent 40%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 10;
-    }
-    .glow-card:hover::after { opacity: 1; }
-    .glow-card > * { position: relative; z-index: 5; }
-
-    .highlight-box { padding: 32px; margin: 40px 0; }
-    .box-title { color: var(--acc); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 16px; display: block; letter-spacing: 1px; }
-
-    /* Sticky TOC */
     .toc-sticky { position: sticky; top: 120px; }
-    .toc-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-    .toc-list { list-style: none; padding: 0; margin: 0; border-left: 1px solid var(--line); }
-    .toc-link { 
-      display: block; padding: 8px 0 8px 24px; color: var(--muted); font-size: 14px; text-decoration: none; 
-      border-left: 2px solid transparent; margin-left: -1px; transition: all 0.2s;
-    }
-    .toc-link:hover { color: #fff; }
-    .toc-link.active { color: var(--acc); border-left-color: var(--acc); font-weight: 600; }
-
-    /* Author */
-    .author-box {
-      border-top: 1px solid var(--line); margin-top: 80px; padding-top: 40px;
-      display: flex; gap: 20px; align-items: center;
-    }
-
-    /* --- FOOTER (Identisch zur Index) --- */
-    footer { 
-      background: #020202; 
-      border-top: 1px solid var(--line); 
-      padding: 80px 0 40px; 
-      color: var(--muted);
-      font-size: 14px;
-      position: relative;
-      z-index: 10;
-    }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-    .footer-brand p { font-size: 15px; margin-top: 16px; max-width: 300px; color: #888; }
-    .footer-col h4 { color: #fff; font-size: 16px; margin-bottom: 24px; font-weight: 700; }
-    .footer-links { display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a:hover { color: var(--acc); }
-    
-    .footer-bottom {
-      border-top: 1px solid var(--line); padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
-    }
-    @media (max-width: 768px) { 
-      .footer-grid { grid-template-columns: 1fr; gap: 40px; } 
-      .footer-brand { margin-bottom: 10px; }
-    }
+    .toc-link.active { color: var(--acc); font-weight: 700; border-left: 2px solid var(--acc); padding-left: 15px; transition: 0.2s; }
+    .toc-link { display: block; padding: 6px 0; color: var(--muted); font-size: 14px; margin-left: 10px; }
   </style>
 </head>
 <body>
 
-  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+  <div class="progress-bar" id="progressBar"></div>
 
-  <nav class="nav">
-    <div class="wrap nav-in">
-      <a href="../index.html" class="logo">stanverse<span>.</span></a>
-      <div class="desktop-links">
-        <a href="../index.html#services" class="nav-link">Lösungen</a>
-        <a href="../index.html#system" class="nav-link">Prozess</a>
-        <a href="../index.html#proof" class="nav-link">Referenzen</a>
-        <a href="index.html" class="nav-link">Wissen</a>
-        <a href="../index.html#about" class="nav-link">Über uns</a>
-        <a href="../index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size: 15px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);">Audit anfragen</a>
-      </div>
-      <button class="menu-toggle" aria-label="Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-      </button>
+  <nav class="nav" style="position:fixed; top:0; width:100%; background:rgba(3,3,4,0.8); backdrop-filter:blur(15px); z-index:1000; border-bottom:1px solid var(--line);">
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; height:80px;">
+      <a href="../index.html" style="font-size:22px; font-weight:800;">stanverse<span style="color:var(--acc);">.</span></a>
+      <a href="../index.html#kontakt" class="btn primary" style="padding: 10px 20px; font-size:14px;">Audit anfragen</a>
     </div>
   </nav>
-
-  <div class="mobile-menu">
-    <button onclick="toggleMenu()" style="align-self: flex-end; background:none; border:none; color:#fff; padding:8px; cursor:pointer; margin-bottom:20px;" aria-label="Menü schließen">
-       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
-    <a href="../index.html#services" class="nav-link">Lösungen</a>
-    <a href="../index.html#system" class="nav-link">Prozess</a>
-    <a href="../index.html#proof" class="nav-link">Referenzen</a>
-    <a href="index.html" class="nav-link">Wissen</a>
-    <a href="../index.html#about" class="nav-link">Über uns</a>
-    <a href="../index.html#kontakt" class="btn primary">Audit anfragen</a>
-  </div>
 
   <article>
     <header class="blog-header wrap">
       <div class="blog-meta">
         <span>Strategie</span>
         <span style="color:var(--acc)">•</span>
-        <span>20 Min. Lesezeit</span>
+        <span>8 Min. Lesezeit</span>
       </div>
       <h1 class="blog-title">Der YouTube-Algorithmus 2026: Die Post-Retention-Ära</h1>
-      <p class="blog-intro">Eine umfassende Analyse der Community-Bridge-Architektur und KI-gesteuerten Discovery. Warum die einfache Optimierung auf Klicks und Watchtime nicht mehr ausreicht.</p>
+      <p style="font-size:20px; color:var(--muted); max-width:750px; margin:0 auto;">Warum Community-Brücken und Zufriedenheits-Scores die klassische Watchtime als wichtigste Metrik abgelöst haben.</p>
     </header>
 
-    <div class="blog-grid">
+    <div class="blog-grid wrap">
       <div class="content">
         
-        <div class="highlight-box glow-card">
-          <span class="box-title">Zusammenfassung</span>
-          <p style="margin:0;">Das digitale Medienökosystem des Jahres 2026 markiert eine fundamentale Wende. Über ein Jahrzehnt lang galt die Maximierung der Verweildauer (Retention) als das einzige Gesetz. Diese Ära ist vorbei. Der neue Algorithmus fragt nicht mehr nur: "Haben sie es gesehen?", sondern "Haben sie es wertgeschätzt und teilen sie es?".</p>
-          <p style="margin:20px 0 0 0;">Dieser Bericht analysiert den Status Quo im Januar 2026: Retention ist nicht länger der wichtigste Indikator für Erfolg. Sie wurde abgelöst durch "Zufriedenheit" (Satisfaction Scores) und die Fähigkeit, Communities zu verbinden.</p>
+        <div class="mobile-toc">
+            <span style="font-weight:700; font-size:14px; text-transform:uppercase; color:var(--acc);">Inhalt</span>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:15px;">
+                <a href="#teil-1" style="font-size:13px;">• Paradigmenwechsel</a>
+                <a href="#teil-2" style="font-size:13px;">• Community Bridge</a>
+                <a href="#teil-3" style="font-size:13px;">• KI-Discovery</a>
+                <a href="#teil-6" style="font-size:13px;">• Neue KPIs</a>
+            </div>
         </div>
 
-        <p>Wir analysieren hier die drei Säulen des neuen Ökosystems:</p>
-        <ul>
-            <li><strong>Das Ende der reinen Retention:</strong> Warum "Watch Satisfaction Scores" (WSS) und "Quality Click Ratios" (QCR) jetzt regieren.</li>
-            <li><strong>Die Community Bridge:</strong> Wie Netzwerkeffekte die Verbreitung von Inhalten steuern.</li>
-            <li><strong>Der KI-Unterbau:</strong> Wie Googles Gemini und multimodale Indexierung (Video-Verständnis durch KI) Metadaten wie Tags überflüssig machen.</li>
-        </ul>
+        <div style="background:var(--surface); padding:30px; border-radius:16px; border:1px solid var(--line); margin-bottom:40px;">
+            <p style="margin:0; font-style:italic;">"Wir fragen nicht mehr nur: Wurde es gesehen? Wir fragen: Wurde es wertgeschätzt?" – Stanley Schlegel zur Entwicklung des Algorithmus.</p>
+        </div>
 
-        <h2 id="teil-1">Teil I: Der Paradigmenwechsel – Das Versagen klassischer Metriken</h2>
+        <h2 id="teil-1">Teil I: Das Ende der reinen Retention</h2>
+        <p>Die Ära des passiven Konsums ist vorbei. YouTube 2026 erkennt, ob ein Nutzer "aus Versehen" 10 Minuten zugesehen hat oder ob er echten Wert erhalten hat. Die neue Leitwährung ist die **Zufriedenheit**.</p>
+
+        <div class="calculator-box">
+            <span style="color:var(--acc); font-weight:700; font-size:12px; text-transform:uppercase;">Tool: QCR-Rechner</span>
+            <h3 style="margin:10px 0;">Berechne deinen Quality Click Score</h3>
+            <p style="font-size:14px; color:var(--muted);">Gib deine Daten ein, um zu sehen, wie der Algorithmus die Qualität deiner Klicks bewertet.</p>
+            
+            <div class="calc-input-group">
+                <div>
+                    <label style="display:block; font-size:12px; margin-bottom:5px;">Gesamtklicks</label>
+                    <input type="number" id="calc-clicks" value="1000" oninput="calculateQCR()">
+                </div>
+                <div>
+                    <label style="display:block; font-size:12px; margin-bottom:5px;">Zufriedene Zuschauer*</label>
+                    <input type="number" id="calc-happy" value="450" oninput="calculateQCR()">
+                </div>
+            </div>
+            <div style="margin-top:20px;">
+                <span style="font-size:14px;">Dein Quality Click Ratio:</span>
+                <span id="qcr-result">45.0%</span>
+                <p id="qcr-feedback" style="font-size:13px; margin-top:5px; color:var(--muted);">Guter Wert! Deine Inhalte halten ihr Versprechen.</p>
+            </div>
+        </div>
+
+        <h2 id="teil-2">Teil II: Die Community Bridge</h2>
+        <p>Viralität entsteht 2026 durch das Überschreiten von Community-Grenzen. Ein Video, das "Finanzen" und "Gaming" verbindet, skaliert exponentiell.</p>
         
-        <h3>1.1 Der Verfall von Klickrate und Watchtime</h3>
-        <p>Früher galten Klickrate (CTR) und durchschnittliche Wiedergabedauer (AVD) als die heiligen Kennzahlen. Strategien wurden darauf ausgelegt, diese Zahlen künstlich zu erhöhen – oft auf Kosten der Nutzererfahrung. Doch YouTube hat erkannt: Hohe Watchtime bedeutet oft nur passiven Konsum ("Doomscrolling") und nicht echte Wertschätzung.</p>
-        <p>Im Jahr 2026 erkennt der Algorithmus, wenn ein Nutzer ein Video zwar ganz ansieht, die App danach aber frustriert verlässt. Deshalb ist die Gewichtung der Klickrate (CTR) von geschätzten 35% (2023) auf nur noch etwa 20% gesunken. Dafür zählen Signale der <strong>Zuschauerzufriedenheit</strong> jetzt ca. 35%.</p>
-        
-        <h3>1.2 Das neue Ziel: Watch Satisfaction Score (WSS)</h3>
-        <p>Der "Watch Satisfaction Score" ist die neue wichtigste Metrik. Er ist keine einzelne Zahl im Dashboard, sondern setzt sich zusammen aus:</p>
-        <ul>
-            <li><strong>Direkte Befragung:</strong> Die kleinen Umfragen nach dem Video ("Hat dir das gefallen?").</li>
-            <li><strong>Stimmungs-Analyse:</strong> Die KI (Gemini) liest die Kommentare und versteht, ob die Stimmung positiv oder negativ ist – egal wie viele Kommentare es sind.</li>
-            <li><strong>Zuschauer-Treue:</strong> Kehrt der Nutzer in den nächsten Tagen zur Plattform oder zum Kanal zurück?</li>
-        </ul>
+        <img src="../blog/img/community-bridge.jpg" alt="Infografik zur Community Bridge Theorie von Stanley Schlegel" style="width:100%; border-radius:12px; margin:30px 0; border:1px solid var(--line);">
 
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metrik</th>
-                        <th>Gewichtung 2023 (Geschätzt)</th>
-                        <th>Gewichtung 2026 (Geschätzt)</th>
-                        <th>Funktion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Klickrate (CTR)</td>
-                        <td>35%</td>
-                        <td>20%</td>
-                        <td>Erstes Interesse</td>
-                    </tr>
-                    <tr>
-                        <td>Retention (Watchtime)</td>
-                        <td>40%</td>
-                        <td>25%</td>
-                        <td>Aufmerksamkeit halten</td>
-                    </tr>
-                    <tr>
-                        <td>Zufriedenheit (WSS)</td>
-                        <td>15%</td>
-                        <td>35%</td>
-                        <td>Bestätigter Wert</td>
-                    </tr>
-                    <tr>
-                        <td>Community & Teilen</td>
-                        <td>5%</td>
-                        <td>15%</td>
-                        <td>Verbreitung</td>
-                    </tr>
-                </tbody>
-            </table>
+        <h2 id="teil-6">Fazit: Authentizität siegt</h2>
+        <p>Der Algorithmus ist heute eine soziologische Maschine. Wer versucht, das System auszutricksen, verliert langfristig gegen diejenigen, die echten menschlichen Wert liefern.</p>
+
+        <div style="margin-top:80px; padding:40px; background:var(--surface); border-radius:16px; border:1px solid var(--line); display:flex; gap:25px; align-items:center; flex-wrap:wrap;">
+            <div style="width:80px; height:80px; background:linear-gradient(45deg, var(--acc), #4f46e5); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:28px;">SS</div>
+            <div style="flex:1; min-width:250px;">
+                <span style="display:block; font-weight:800; font-size:20px; color:#fff;">Stanley Schlegel</span>
+                <span style="color:var(--acc); font-size:14px; font-weight:600;">Gründer von stanverse & YouTube-Stratege</span>
+                <p style="font-size:15px; margin-top:10px; color:var(--muted);">Stanley berät Medienmarken und Top-Creator bei der technischen Skalierung ihrer Kanäle auf Basis datengestützter Algorithmus-Analysen.</p>
+            </div>
         </div>
-
-        <h3>1.3 Quality Click Ratio (QCR): Qualität vor Quantität</h3>
-        <p>Um Clickbait zu bekämpfen, misst YouTube die "Qualitäts-Klick-Rate". Sie berechnet den Anteil der Klicks, die zu einem zufriedenen Nutzer führen.</p>
-        
-        <div class="formula-box">
-           QCR = <span class="fraction"><span class="top">Zufriedene Zuschauer</span><span class="bottom">Gesamtklicks</span></span>
-        </div>
-
-        <p>Ein Video mit einer hohen Klickrate (15%), aber wenigen zufriedenen Nutzern, wird abgestraft. Ein Video mit niedrigerer Klickrate (5%), bei dem aber fast jeder Zuschauer zufrieden ist, wird dagegen langfristig gefördert ("Evergreen-Status").</p>
-
-        <h2 id="teil-2">Teil II: Die Ära der „Community Bridge“</h2>
-        <p>Die Plattform ist in viele kleine "Nischen-Silos" zerfallen. Die "Community Bridge"-Theorie besagt, dass der Algorithmus aktiv nach Inhalten sucht, die diese Silos verbinden. Ein Video, das zum Beispiel die Interessen "Finanzen" und "Gaming" erfolgreich verknüpft, wird extrem gefördert.</p>
-
-        <div class="highlight-box glow-card" style="background: rgba(99,102,241,0.05);">
-            <span class="box-title">Strategie-Tipp</span>
-            <p style="margin:0; color:#d4d4d8;">Viralität entsteht 2026 durch das Überschreiten von Community-Grenzen. Wer nur seine Nische bedient, erreicht stabile Aufrufe ("Retention"). Wer Brücken baut, erreicht exponentielles Wachstum ("Skalierung").</p>
-        </div>
-
-        <h3>2.2 Das „Hype“-Feature</h3>
-        <p>Um kleinen Kanälen (unter 500.000 Abos) zu helfen, wurde das "Hype"-Feature eingeführt. Nutzer haben nur drei Hypes pro Woche. Das macht einen "Hype" zu einem viel stärkeren Signal als ein "Like". Wenn Nutzer ihre begrenzten Hypes für ein Video ausgeben, weiß der Algorithmus: Das ist Qualität.</p>
-
-        <h2 id="teil-3">Teil III: KI-gesteuerte Entdeckung</h2>
-        <p>Durch die Integration von Googles KI "Gemini" hat sich die Suche verändert. YouTube versteht den Inhalt eines Videos nun direkt, statt sich auf Titel und Tags zu verlassen.</p>
-        
-        <h3>3.1 Die KI "sieht" das Video</h3>
-        <p>Gemini verarbeitet das Video Pixel für Pixel. Es erkennt Objekte, Handlungen und sogar Emotionen in Gesichtern. Wenn ein Video visuell "Kochen" zeigt, aber im Titel "Autoreparatur" steht, erkennt das System den Widerspruch und straft das Video ab.</p>
-        <p><strong>Die Folge:</strong> "Keyword Stuffing" (Wörter sinnlos in die Beschreibung packen) funktioniert nicht mehr. Ein Video kann für ein Thema gefunden werden, auch wenn das Wort nie fällt, solange das Konzept visuell klar ist.</p>
-
-        <h3>3.2 Optimierung für KI-Suche (GEO)</h3>
-        <p>Da viele Nutzer über Chatbots (wie ChatGPT oder Gemini) suchen, müssen Videos maschinenlesbar sein:</p>
-        <ul>
-            <li><strong>Kapitelmarken:</strong> Dienen als Ankerpunkte für die KI.</li>
-            <li><strong>Informationsdichte:</strong> Die KI bevorzugt Inhalte, die viel Wissen in kurzer Zeit vermitteln.</li>
-            <li><strong>Klare Sprache:</strong> Das gesprochene Wort ist die wichtigste Textquelle für die KI.</li>
-        </ul>
-
-        <h2 id="teil-4">Teil IV: Die Revolution im Wohnzimmer (TV)</h2>
-        <p>Der Fernseher (Connected TV) hat das Smartphone als wichtigstes Gerät für lange Watchtime abgelöst. Das verändert die Strategie von "Schnell die Aufmerksamkeit gewinnen" hin zu "Den Raum unterhalten".</p>
-        <ul>
-            <li><strong>Längere Formate:</strong> Videos über 15 Minuten werden auf dem TV bevorzugt.</li>
-            <li><strong>Ruhigeres Tempo:</strong> Schnelle, hektische Schnitte (wie bei TikTok) wirken auf einem großen 65-Zoll-Bildschirm anstrengend. Ruhigere, filmische Qualität gewinnt.</li>
-            <li><strong>Interaktion:</strong> QR-Codes und die Verbindung zum Handy ermöglichen es Zuschauern, auch am TV zu liken oder einzukaufen.</li>
-        </ul>
-
-        <h2 id="teil-5">Teil V: Das Vertikale Ökosystem & Jewels</h2>
-        <p>Erfolgreiche Creator nutzen 2026 eine Pyramiden-Strategie:</p>
-        <ul>
-            <li><strong>Basis: Shorts</strong> (Hohe Reichweite, neue Zuschauer finden). Shorts dienen als Brücke zum Hauptkanal.</li>
-            <li><strong>Mitte: Lange Videos/TV</strong> (Hohes Vertrauen, Bindung aufbauen).</li>
-            <li><strong>Spitze: Livestreams & Jewels</strong> (Geld verdienen). Durch digitale Geschenke ("Jewels") in vertikalen Livestreams können Superfans ihre Lieblings-Creator direkt unterstützen. Hohe Aktivität hier signalisiert dem Algorithmus extreme Relevanz.</li>
-        </ul>
-
-        <h2 id="teil-6">Teil VI: Die neuen Kennzahlen (KPIs)</h2>
-        <p>Um 2026 erfolgreich zu sein, müssen Creator auf neue Werte achten:</p>
-        
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metrik</th>
-                        <th>Ziel</th>
-                        <th>Auswirkung</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Zufriedenheit (WSS)</strong></td>
-                        <td>Top-Bereich</td>
-                        <td>Sorgt für breite Empfehlungen auf der Startseite.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Qualitäts-Klick-Rate (QCR)</strong></td>
-                        <td>Hoch</td>
-                        <td>Verhindert Abstrafung durch Clickbait-Filter.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Session Time</strong></td>
-                        <td>> 1,5x Videolänge</td>
-                        <td>Wenn dein Video dazu führt, dass Leute länger auf YouTube bleiben, wirst du belohnt.</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h2 id="fazit">Fazit: Die Community ist der Algorithmus</h2>
-        <p>Der "Algorithmus" ist keine schwarze Box mehr, die nur auf Klicks achtet. Er ist eine soziologische Maschine geworden. YouTube hat verstanden: Die Optimierung auf reine Sucht (Retention) macht die Plattform anfällig. Die Optimierung auf Zufriedenheit macht sie stark.</p>
-        <p><strong>Die Gewinner des Jahres 2026 sind nicht jene, die versuchen, das System auszutricksen. Sondern jene, die das liefern, was das System sucht: Echten menschlichen Wert, Authentizität und starke Communitys.</strong></p>
-
-        <div class="glow-card" style="margin-top: 60px; padding: 40px; border-radius:16px; background: linear-gradient(160deg, #111, #000); border: 1px solid var(--line);">
-          <h3 style="margin-top:0;">Ist Ihr Kanal bereit für die Zukunft?</h3>
-          <p>Lassen Sie uns Ihren Status Quo analysieren. Wir finden die technischen Bremsklötze, die Sie aktuell Reichweite kosten.</p>
-          <a href="../index.html#kontakt" class="btn primary">Kostenloses Audit anfragen</a>
-        </div>
-
-        <div class="author-box">
-          <div style="width:64px; height:64px; background:linear-gradient(45deg, #333, #111); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:bold; border:1px solid var(--line);">S</div>
-          <div>
-            <div style="color:#fff; font-weight:700;">Stan</div>
-            <div style="font-size:14px; color:var(--muted);">Gründer von stanverse. Spezialist für technische Skalierung & YouTube Strategie.</div>
-          </div>
-        </div>
-
       </div>
 
       <aside class="toc-col">
         <div class="toc-sticky">
-          <div class="toc-title">Inhalt</div>
-          <ul class="toc-list">
-            <li><a href="#teil-1" class="toc-link">Paradigmenwechsel</a></li>
-            <li><a href="#teil-2" class="toc-link">Community Bridge</a></li>
-            <li><a href="#teil-3" class="toc-link">KI-Discovery</a></li>
-            <li><a href="#teil-4" class="toc-link">Connected TV Revolution</a></li>
-            <li><a href="#teil-5" class="toc-link">Shorts & Jewels</a></li>
-            <li><a href="#teil-6" class="toc-link">Neue KPIs 2026</a></li>
-            <li><a href="#fazit" class="toc-link">Fazit</a></li>
-          </ul>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:20px; color:var(--acc);">Inhalt</div>
+          <nav class="toc-list">
+            <a href="#teil-1" class="toc-link">Paradigmenwechsel</a>
+            <a href="#teil-2" class="toc-link">Community Bridge</a>
+            <a href="#teil-3" class="toc-link">KI-Discovery</a>
+            <a href="#teil-6" class="toc-link">Neue KPIs 2026</a>
+            <a href="#fazit" class="toc-link">Fazit</a>
+          </nav>
           
-          <div class="glow-card" style="margin-top: 40px; padding: 24px;">
-            <div style="font-size:13px; color:var(--muted); margin-bottom:12px;">Brauchen Sie Hilfe bei der Umsetzung?</div>
-            <a href="../index.html#kontakt" style="color:var(--acc); font-weight:700; font-size:14px; text-decoration:none; display:flex; align-items:center; gap:6px;">Zum Audit <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <div class="glow-card" style="margin-top:40px; padding:25px; border-color:var(--acc-glow);">
+            <p style="font-size:14px; font-weight:600; margin-top:0;">Bereit für Wachstum?</p>
+            <p style="font-size:13px; color:var(--muted);">Lass uns deinen Kanal im kostenlosen Audit prüfen.</p>
+            <a href="../index.html#kontakt" style="color:var(--acc); font-weight:700; font-size:14px;">Audit starten →</a>
           </div>
         </div>
       </aside>
     </div>
   </article>
 
-  <footer>
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-           <a href="../index.html" class="logo" style="font-size:20px;">stanverse<span>.</span></a>
-           <p>Der technische Wachstumspartner für ambitionierte Creator und Medienmarken.</p>
-        </div>
-        
-        <div class="footer-col">
-          <h4>Navigation</h4>
-          <div class="footer-links">
-            <a href="../index.html#services">Lösungen</a>
-            <a href="../index.html#system">Prozess</a>
-            <a href="../index.html#proof">Erfolge</a>
-            <a href="index.html">Wissen</a>
-            <a href="../index.html#kontakt">Audit</a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Rechtliches</h4>
-          <div class="footer-links">
-            <a href="../impressum">Impressum</a>
-            <a href="../datenschutz">Datenschutz</a>
-            <a href="../agb">AGB</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>&copy; <span id="year"></span> stanverse.</div>
-        <div style="display:flex; gap:16px; align-items:center;">
-           <span style="width:6px; height:6px; background:#333; border-radius:50%;"></span>
-           <span>Made in Germany</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    // 1. Mobile Menu Toggle
-    function toggleMenu() {
-      document.querySelector('.mobile-menu').classList.toggle('open');
-    }
-    document.querySelector('.menu-toggle').addEventListener('click', toggleMenu);
-
-    // 2. Navbar Hide on Scroll
-    let lastScroll = 0;
-    const nav = document.querySelector('.nav');
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > lastScroll && currentScroll > 100) {
-        nav.classList.add('hidden');
-      } else {
-        nav.classList.remove('hidden');
-      }
-      lastScroll = currentScroll;
-    });
-
-    // 3. Progress Bar & TOC Logic
+    // 1. Progress Bar
     window.onscroll = function() {
       let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       let scrolled = (winScroll / height) * 100;
       document.getElementById("progressBar").style.width = scrolled + "%";
       
-      updateActiveToc();
+      // TOC Active State
+      const sections = document.querySelectorAll("h2[id]");
+      const navLinks = document.querySelectorAll(".toc-link");
+      let current = "";
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 150) current = s.getAttribute("id");
+      });
+      navLinks.forEach(l => {
+        l.classList.remove("active");
+        if (l.getAttribute("href") === "#" + current) l.classList.add("active");
+      });
     };
 
-    // 4. Spotlight Effect (Universal)
-    const cards = document.querySelectorAll('.glow-card');
-    cards.forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-      });
-    });
-
-    // 5. Active TOC Link (Fix: Only IDs)
-    function updateActiveToc() {
-      // WICHTIG: Nur Überschriften, die auch eine ID haben (die im Menü stehen)
-      const sections = document.querySelectorAll("h2[id], h3[id]");
-      const navLi = document.querySelectorAll(".toc-list .toc-link");
-      let current = "";
+    // 2. QCR Rechner Logik
+    function calculateQCR() {
+      const clicks = document.getElementById('calc-clicks').value;
+      const happy = document.getElementById('calc-happy').value;
+      const resultEl = document.getElementById('qcr-result');
+      const feedbackEl = document.getElementById('qcr-feedback');
       
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - (window.innerHeight / 3)) {
-          current = section.getAttribute("id");
+      if(clicks > 0) {
+        const qcr = (happy / clicks * 100).toFixed(1);
+        resultEl.innerText = qcr + "%";
+        
+        if(qcr > 40) {
+          feedbackEl.innerText = "Exzellenter Wert! Der Algorithmus wird dich lieben.";
+          feedbackEl.style.color = "#4ade80";
+        } else if(qcr > 20) {
+          feedbackEl.innerText = "Solider Durchschnitt. Optimiere dein Storytelling.";
+          feedbackEl.style.color = "#fbbf24";
+        } else {
+          feedbackEl.innerText = "Achtung: Clickbait-Gefahr. Deine Retention leidet.";
+          feedbackEl.style.color = "#f87171";
         }
-      });
-
-      navLi.forEach((li) => {
-        li.classList.remove("active");
-        // Sicherstellen, dass das href auch matcht
-        if (li.getAttribute("href") === "#" + current && current !== "") {
-          li.classList.add("active");
-        }
-      });
+      }
     }
-
-    // Update Year
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-  
-  <script src="../consent.js"></script>
-  <script src="../embed.js"></script>
-
 </body>
 </html>
