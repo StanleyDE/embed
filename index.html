@@ -96,8 +96,8 @@
       color-scheme: dark; 
       scrollbar-gutter: stable; 
       background-color: var(--bg);
-      /* WICHTIG: Damit Anker-Links nicht hinter dem Header verschwinden */
-      scroll-padding-top: calc(var(--navH) + 20px);
+      /* Fallback für globale Sprünge */
+      scroll-padding-top: calc(var(--navH) + 30px);
     }
     
     body {
@@ -113,10 +113,9 @@
     ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; border: 2px solid var(--bg); }
     ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
-    /* TYPOGRAPHY UTILS */
+    /* TYPOGRAPHY */
     h1, h2, h3, h4 { 
       margin: 0; font-weight: 800; letter-spacing: -0.02em; color: #fff; 
-      /* OPTIMIERUNG: Sorgt für ausgeglichene Zeilenumbrüche */
       text-wrap: balance; 
     }
     p { color: var(--muted); margin-bottom: 1.5em; max-width: 70ch; text-wrap: pretty; }
@@ -124,9 +123,16 @@
 
     /* LAYOUT UTILS */
     .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; width: 100%; }
-    section { padding: 100px 0; position: relative; }
+    
+    /* WICHTIG: content-visibility entfernt, um Sprung-Fehler zu fixen */
+    section { 
+      padding: 100px 0; 
+      position: relative; 
+      /* Exakte Landung für Anker-Links */
+      scroll-margin-top: calc(var(--navH) + 20px);
+    }
 
-    /* ACCESSIBILITY FOCUS */
+    /* ACCESSIBILITY */
     :focus-visible {
       outline: 2px solid var(--acc);
       outline-offset: 4px;
@@ -193,7 +199,6 @@
     .desktop-links { display: flex; gap: 32px; align-items: center; }
     .nav-link { font-size: 15px; font-weight: 500; color: var(--muted); }
     .nav-link:hover { color: #fff; }
-    .nav-link.active { color: #fff; } /* Für späteres JS Highlighting */
 
     .nav-special {
       font-size: 15px; font-weight: 600; 
